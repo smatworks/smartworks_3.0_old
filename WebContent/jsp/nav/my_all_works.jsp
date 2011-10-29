@@ -3,8 +3,9 @@
 <%@ page import="net.smartworks.model.work.*"%>
 
 <%
-	WorkCategory[] workCategories = SmartWorks
-			.getMyWorkCategories(SmartWorks.getCurrentUser().getId());
+	SmartWorks smartworks = (SmartWorks)request.getAttribute("smartworks");
+	WorkCategory[] workCategories = smartworks
+			.getMyWorkCategories(smartworks.getCurrentUser().getId());
 %>
 
 <ul>
