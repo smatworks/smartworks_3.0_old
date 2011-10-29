@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page import="net.smartworks.*"%>
 <%
-	SmartWorks smartworks = (SmartWorks)request.getAttribute("smartworks");
+	SmartWorks smartWorks = (SmartWorks)request.getAttribute("smartWorks");
 	String contextId = request.getParameter("cid");
 	if (contextId == null)
 		session.setAttribute("cid", SmartWorks.CONTEXT_HOME);
@@ -10,7 +10,7 @@
 		session.setAttribute("cid", contextId);
 	String workSpaceId = request.getParameter("wid");
 	if (workSpaceId == null)
-		session.setAttribute("wid", smartworks.getCurrentUser().getId());
+		session.setAttribute("wid", smartWorks.getCurrentUser().getId());
 	else
 		session.setAttribute("wid", workSpaceId);
 %>

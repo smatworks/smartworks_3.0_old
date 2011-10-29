@@ -3,8 +3,8 @@
 <%@ page import="net.smartworks.model.work.*"%>
 
 <%
-	SmartWorks smartworks = (SmartWorks)request.getAttribute("smartworks");
-	SmartWork[] works = smartworks.getMyAllWorksByGroupId(
+	SmartWorks smartWorks = (SmartWorks)request.getAttribute("smartWorks");
+	SmartWork[] works = smartWorks.getMyAllWorksByGroupId(
 			"currentUser", request.getParameter("groupId"));
 	String iconType = null;
 	String classType = "js_content";

@@ -4,8 +4,7 @@
 <%@ page import="net.smartworks.model.community.*" %> 
 
 <% 
-	SmartWorks smartworks = (SmartWorks)request.getAttribute("smartworks");
-	User[] chatters = smartworks.getAvailableChatter();
+	User[] chatters = smartWorks.getAvailableChatter();
 %>
 
 <ul>

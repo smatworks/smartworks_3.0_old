@@ -2,9 +2,9 @@
 <%@ page import="net.smartworks.*"%>
 <%@ page import="net.smartworks.model.community.*"%>
 <%
-	SmartWorks smartworks = (SmartWorks)request.getAttribute("smartworks");
+	SmartWorks smartWorks = (SmartWorks)request.getAttribute("smartWorks");
 	String key = request.getParameter("key");
-	User[] chatters = smartworks.searchAvailableChatterList(key);
+	User[] chatters = smartWorks.searchAvailableChatterList(key);
 %>
 
 <ul>

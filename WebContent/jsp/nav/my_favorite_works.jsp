@@ -1,10 +1,8 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ page import="net.smartworks.*"%>
 <%@ page import="net.smartworks.model.work.*"%>
-
 <%
-	SmartWorks smartworks = (SmartWorks)request.getAttribute("smartworks");
-	SmartWork[] works = smartworks.getMyFavoriteWorks("currentUser");
+	SmartWork[] works = smartWorks.getMyFavoriteWorks("currentUser");
 	String iconType = null;
 	String classType = "js_content";
 	String workContext = null;

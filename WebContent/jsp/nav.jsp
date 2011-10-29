@@ -2,13 +2,13 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
-	SmartWorks smartworks = (SmartWorks)request.getAttribute("smartworks");
+	SmartWorks smartWorks = (SmartWorks)request.getAttribute("smartWorks");
 	String contentContext = request.getParameter("cid");
 	if (contentContext == null)
 		contentContext = SmartWorks.CONTEXT_HOME;
 	String workSpaceId = request.getParameter("wid");
 	if (workSpaceId == null)
-		workSpaceId = smartworks.getCurrentUser().getId();
+		workSpaceId = smartWorks.getCurrentUser().getId();
 %>
 
 
@@ -18,7 +18,7 @@
 
 <%
 	if (workSpaceId == null
-			|| workSpaceId.equals(smartworks().getId())) {
+			|| workSpaceId.equals(smartWorks.getCurrentUser().getId())) {
 %>
 <div class="nav_list">
 	<%@ include file="nav/works.jsp"%>
@@ -27,9 +27,9 @@
 	<%@ include file="nav/communities.jsp"%>
 </div>
 <%
-	} else if (smartworks.isSameContextPrefix(
+	} else if (smartWorks.isSameContextPrefix(
 			SmartWorks.CONTEXT_PREFIX_GROUP_SPACE, contentContext)
-			|| smartworks.isSameContextPrefix(
+			|| smartWorks.isSameContextPrefix(
 					SmartWorks.CONTEXT_PREFIX_DEPARTMENT_SPACE,
 					contentContext)) {
 %>

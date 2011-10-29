@@ -6,8 +6,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page import="net.smartworks.*"%>
 <%
-	SmartWorks smartworks = (SmartWorks)SmartUtil.getBean("smartWorks", request);
-	String[] messages = smartworks.getBroadcastingMessages();
+	SmartWorks smartWorks = (SmartWorks)SmartUtil.getBean("smartWorks", request);
+	String[] messages = smartWorks.getBroadcastingMessages();
 %>
 
 <!-- Broadcasting Board -->

@@ -8,14 +8,13 @@
 <%@ page import="net.smartworks.model.work.*"%>
 <%@ page import="net.smartworks.util.LocalDate"%>
 <%
-	SmartWorks smartworks = (SmartWorks)request.getAttribute("smartworks");
 	String sNoticeType = request.getParameter("noticeType");
 	String sLastNotice = request.getParameter("dateOfLastNotice");
 	int iNoticeType = (sNoticeType == null) ? Notice.NOTICE_TYPE_INVALID
 			: Integer.parseInt(sNoticeType);
 	LocalDate dateOfLastNotice = (sLastNotice == null) ? new LocalDate(0)
 			: new LocalDate(Long.parseLong(sLastNotice));
-	NoticeBox noticeBox = smartworks.getNoticeBoxForMe10(iNoticeType,
+	NoticeBox noticeBox = smartWorks.getNoticeBoxForMe10(iNoticeType,
 			dateOfLastNotice);
 %>
 <%

@@ -4,9 +4,9 @@
 <%@ page import="net.smartworks.model.community.*"%>
 <%@ page import="net.smartworks.model.notice.*"%>
 <%
-	SmartWorks smartworks = (SmartWorks)request.getAttribute("smartworks");
-	User currentUser = smartworks.getCurrentUser();
-	Notice[] notices = smartworks.getNoticesForMe(currentUser.getId());
+	SmartWorks smartWorks = (SmartWorks)request.getAttribute("smartWorks");
+	User currentUser = smartWorks.getCurrentUser();
+	Notice[] notices = smartWorks.getNoticesForMe(currentUser.getId());
 %>
 
 <div>
@@ -137,7 +137,7 @@
 <div class="global_menu">
 	<div>
 		<a title="<fmt:message key='header.global_menu.help'/>"
-			target="_blank" href="http://manual.smartworks.net/"><fmt:message
+			target="_blank" href="http://manual.smartWorks.net/"><fmt:message
 				key="header.global_menu.help" />
 		</a>
 	</div>

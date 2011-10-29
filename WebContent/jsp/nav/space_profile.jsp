@@ -4,22 +4,21 @@
 <%@ page import="net.smartworks.model.community.*"%>
 
 <%
-	SmartWorks smartworks = (SmartWorks)request.getAttribute("smartworks");
 	String navContext = request.getParameter("cid");
 	if (navContext == null)
 		navContext = SmartWorks.CONTEXT_HOME;
 	String spaceId = request.getParameter("wid");
 	if (spaceId == null)
-		spaceId = smartworks.getCurrentUser().getId();
+		spaceId = smartWorks.getCurrentUser().getId();
 
 	Group thisGroup = null;
 	Department thisDepartment = null;
 	User thisUser = null;
 
-	if (!spaceId.equals(smartworks.getCurrentUser().getId())) {
-		WorkSpace workSpace = smartworks.getWorkSpaceById(spaceId);
+	if (!spaceId.equals(smartWorks.getCurrentUser().getId())) {
+		WorkSpace workSpace = smartWorks.getWorkSpaceById(spaceId);
 		if (workSpace == null) {
-			thisUser = smartworks.getCurrentUser();
+			thisUser = smartWorks.getCurrentUser();
 		} else if (workSpace.getClass() == User.class) {
 			thisUser = (User) workSpace;
 		} else if (workSpace.getClass() == Group.class) {
@@ -28,7 +27,7 @@
 			thisDepartment = (Department) workSpace;
 		}
 	} else {
-		thisUser = smartworks.getCurrentUser();
+		thisUser = smartWorks.getCurrentUser();
 	}
 	/*
 	 if(SmartWorks.isSameContextPrefix(SmartWorks.CONTEXT_PREFIX_GROUP_SPACE, navContext)){

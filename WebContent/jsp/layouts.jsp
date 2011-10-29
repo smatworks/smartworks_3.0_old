@@ -1,17 +1,15 @@
+<%@page import="net.smartworks.model.community.User"%>
+<%@page import="net.smartworks.SmartWorks"%>
 <%@ page contentType="text/html; charset=utf-8"%> 
-
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
-<%@ page import="net.smartworks.*" %> 
-<%@ page import="net.smartworks.model.community.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <%
-	SmartWorks smartworks = (SmartWorks)request.getAttribute("smartworks");
-	User currentUser = smartworks.getCurrentUser();
+	SmartWorks smartWorks = (SmartWorks)request.getAttribute("smartWorks");
+	User currentUser = smartWorks.getCurrentUser();
 %>
 <fmt:setLocale value="<%=currentUser.getLocale() %>" scope="request"/>
 <fmt:setBundle basename="resource.smartworksMessage" scope="request"/>

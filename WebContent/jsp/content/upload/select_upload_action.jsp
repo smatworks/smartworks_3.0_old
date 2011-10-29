@@ -2,13 +2,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page import="net.smartworks.*"%>
 <%
-	SmartWorks smartworks = (SmartWorks)request.getAttribute("smartworks");
 	String cid = request.getParameter("cid");
 	if (cid == null)
 		cid = SmartWorks.CONTEXT_HOME;
 	String wid = request.getParameter("wid");
 	if (wid == null)
-		wid = smartworks.getCurrentUser().getId();
+		wid = smartWorks.getCurrentUser().getId();
 %>
 
 <div id="upload">

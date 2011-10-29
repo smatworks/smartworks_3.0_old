@@ -8,14 +8,13 @@
 <%@ page import="net.smartworks.model.work.*"%>
 <%@ page import="net.smartworks.util.LocalDate"%>
 <%
-	SmartWorks smartworks = (SmartWorks)request.getAttribute("smartworks");
 	String sNoticeType = request.getParameter("noticeType");
 	String sLastNotice = request.getParameter("dateOfLastNotice");
 	int iNoticeType = (sNoticeType == null) ? Notice.NOTICE_TYPE_INVALID
 			: Integer.parseInt(sNoticeType);
 	LocalDate dateOfLastNotice = (sLastNotice == null) ? new LocalDate(0)
 			: new LocalDate(Long.parseLong(sLastNotice));
-	NoticeBox noticeBox = smartworks.getNoticeBoxForMe10(iNoticeType,
+	NoticeBox noticeBox = smartWorks.getNoticeBoxForMe10(iNoticeType,
 			dateOfLastNotice);
 %>
 <%
@@ -63,10 +62,10 @@
 				work = commentsInstance.getWorkInstance().getWork();
 				WorkInstance workInstance = commentsInstance
 						.getWorkInstance();
-				targetContent = smartworks.getTargetContentByWorkType(
+				targetContent = smartWorks.getTargetContentByWorkType(
 						work.getType(),
 						SmartWorks.SPACE_TYPE_WORK_INSTANCE);
-				instContext = smartworks.getContextPrefixByWorkType(
+				instContext = smartWorks.getContextPrefixByWorkType(
 						work.getType(),
 						SmartWorks.SPACE_TYPE_WORK_INSTANCE)
 						+ workInstance.getId();
@@ -94,10 +93,10 @@
 						.getWorkInstance().getWork();
 				TaskInstance taskInstance = commentsInstance
 						.getTaskInstance();
-				targetContent = smartworks.getTargetContentByWorkType(
+				targetContent = smartWorks.getTargetContentByWorkType(
 						work.getType(),
 						SmartWorks.SPACE_TYPE_TASK_INSTANCE);
-				instContext = smartworks.getContextPrefixByWorkType(
+				instContext = smartWorks.getContextPrefixByWorkType(
 						work.getType(),
 						SmartWorks.SPACE_TYPE_TASK_INSTANCE)
 						+ taskInstance.getWorkInstance().getId();

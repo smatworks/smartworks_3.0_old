@@ -3,22 +3,21 @@
 <%@ page import="net.smartworks.model.community.*"%>
 
 <%
-	SmartWorks smartworks = (SmartWorks)request.getAttribute("smartworks");
 	User[] members = null;
 	{
 		String myContext = request.getParameter("cid");
 		if (myContext == null)
 			myContext = SmartWorks.CONTEXT_HOME;
 
-		if (smartworks.isSameContextPrefix(
+		if (smartWorks.isSameContextPrefix(
 				SmartWorks.CONTEXT_PREFIX_GROUP_SPACE, myContext)) {
-			members = smartworks.getGroupById(
-					smartworks.getSpaceIdFromContentContext(myContext))
+			members = smartWorks.getGroupById(
+					smartWorks.getSpaceIdFromContentContext(myContext))
 					.getMembers();
-		} else if (smartworks.isSameContextPrefix(
+		} else if (smartWorks.isSameContextPrefix(
 				SmartWorks.CONTEXT_PREFIX_DEPARTMENT_SPACE, myContext)) {
-			members = smartworks.getDepartmentById(
-					smartworks.getSpaceIdFromContentContext(myContext))
+			members = smartWorks.getDepartmentById(
+					smartWorks.getSpaceIdFromContentContext(myContext))
 					.getMembers();
 		}
 	}

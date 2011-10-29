@@ -23,7 +23,7 @@ public class SmartUtil {
 	}
 
 	/**
-	 * beanName; serviceCall
+	 * beanName; getBean
 	 * @param beanName
 	 * @param request
 	 * @return
@@ -39,9 +39,9 @@ public class SmartUtil {
 		String getHeader = request.getHeader("X-Requested-With");
 		SmartWorks smartworks = (SmartWorks)SmartUtil.getBean("smartWorks", request);
 		if (getHeader != null)
-			return new ModelAndView(defaultPage, "smartworks", smartworks);
+			return new ModelAndView(defaultPage, "smartWorks", smartworks);
 		else
-			return new ModelAndView(ajaxPage, "smartworks", smartworks);
+			return new ModelAndView(ajaxPage, "smartWorks", smartworks);
 	}
 
 }

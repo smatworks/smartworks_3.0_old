@@ -8,7 +8,6 @@
 <%@ page import="net.smartworks.model.work.*"%>
 <%@ page import="net.smartworks.util.LocalDate"%>
 <%
-	SmartWorks smartworks = (SmartWorks)request.getAttribute("smartworks");
 	String sNoticeType = request.getParameter("noticeType");
 	String sLastNotice = request.getParameter("dateOfLastNotice");
 	int iNoticeType = (sNoticeType == null) ? Notice.NOTICE_TYPE_INVALID
@@ -122,10 +121,10 @@
 				WorkInstance instance = (WorkInstance) nMessage
 						.getInstance();
 				owner = instance.getOwner();
-				targetContent = smartworks.getTargetContentByWorkType(
+				targetContent = smartWorks.getTargetContentByWorkType(
 						nMessage.getInstance().getWork().getType(),
 						SmartWorks.SPACE_TYPE_TASK_INSTANCE);
-				instContext = smartworks.getContextPrefixByWorkType(
+				instContext = smartWorks.getContextPrefixByWorkType(
 						nMessage.getInstance().getWork().getType(),
 						SmartWorks.SPACE_TYPE_TASK_INSTANCE)
 						+ nMessage.getInstance().getOwner().getId();
