@@ -11,6 +11,8 @@ package net.smartworks.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.smartworks.util.SmartUtil;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,26 +24,16 @@ public class WorkListController {
 	public ModelAndView iworkList(HttpServletRequest request,
 			HttpServletResponse response) {
 
-		String getHeader = request.getHeader("X-Requested-With");
-
-		if (getHeader != null)
-			return new ModelAndView("jsp/content/work/list/iwork_list.jsp");
-		else
-			return new ModelAndView("iwork_list.tiles");
-
+		return SmartUtil.returnMnv(request,
+				"jsp/content/work/list/iwork_list.jsp", "iwork_list.tiles");
 	}
 
 	@RequestMapping("/pwork_list")
 	public ModelAndView pworkList(HttpServletRequest request,
 			HttpServletResponse response) {
 
-		String getHeader = request.getHeader("X-Requested-With");
-
-		if (getHeader != null)
-			return new ModelAndView("jsp/content/work/list/pwork_list.jsp");
-		else
-			return new ModelAndView("pwork_list.tiles");
-
+		return SmartUtil.returnMnv(request,
+				"jsp/content/work/list/pwork_list.jsp", "pwork_list.tiles");
 	}
 
 	@RequestMapping("/swork_list")
@@ -126,25 +118,15 @@ public class WorkListController {
 	public ModelAndView mailList(HttpServletRequest request,
 			HttpServletResponse response) {
 
-		String getHeader = request.getHeader("X-Requested-With");
-
-		if (getHeader != null)
-			return new ModelAndView("jsp/content/work/list/mail_list.jsp");
-		else
-			return new ModelAndView("mail_list.tiles");
-
+		return SmartUtil.returnMnv(request,
+				"jsp/content/work/list/mail_list.jsp", "mail_list.tiles");
 	}
 
 	@RequestMapping("/saved_list")
 	public ModelAndView savedList(HttpServletRequest request,
 			HttpServletResponse response) {
 
-		String getHeader = request.getHeader("X-Requested-With");
-
-		if (getHeader != null)
-			return new ModelAndView("jsp/content/work/list/saved_list.jsp");
-		else
-			return new ModelAndView("saved_list.tiles");
-
+		return SmartUtil.returnMnv(request,
+				"jsp/content/work/list/saved_list.jsp", "saved_list.tiles");
 	}
 }
