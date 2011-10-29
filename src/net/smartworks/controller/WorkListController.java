@@ -6,7 +6,7 @@
  * Copyright (c) 2011 ManinSoft, Inc. All rights reserved.
  */
 
-package net.smartworks;
+package net.smartworks.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class WorkListController {
-
 
 	@RequestMapping("/iwork_list")
 	public ModelAndView iworkList(HttpServletRequest request,

@@ -12,16 +12,11 @@
 
 <div id="upload">
 	<ul class="select_action">
-		<li><a id="action_work" href=""><img src="images/upic_works.jpg" /> <fmt:message
-					key='common.upload.work' /> </a></li>
-		<li><a id="action_file" href=""><img src="images/upic_file.jpg" /> <fmt:message
-					key='common.upload.file' /> </a></li>
-		<li><a id="action_event" href=""><img src="images/upic_event.jpg" /> <fmt:message
-					key='common.upload.event' /> </a></li>
-		<li><a id="action_memo" href=""><img src="images/upic_memo.jpg" /> <fmt:message
-					key='common.upload.memo' /> </a></li>
-		<li><a id="action_board" href=""><img src="images/upic_notice.jpg" /> <fmt:message
-					key='common.upload.board' /> </a></li>
+		<li class="up_works"><a id="action_work" href=""><fmt:message key='common.upload.work' /> </a></li>
+		<li class="up_file"><a id="action_file" href=""><fmt:message key='common.upload.file' /> </a></li>
+		<li class="up_event"><a id="action_event" href=""><fmt:message key='common.upload.event' /> </a></li>
+		<li class="up_memo"><a id="action_memo" href=""><fmt:message key='common.upload.memo' /> </a></li>
+		<li class="up_board"><a id="action_board" href=""><fmt:message key='common.upload.board' /> </a></li>
 	</ul>
 
 	<!-- 새업무 등록 -->
