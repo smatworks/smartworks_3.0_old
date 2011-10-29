@@ -3,7 +3,8 @@
 <%@ page import="net.smartworks.model.community.*"%>
 
 <%
-	Department[] departments = SmartWorks
+	SmartWorks smartworks = (SmartWorks)request.getAttribute("smartworks");
+	Department[] departments = smartworks
 			.getMyDepartments("currentUser");
 %>
 

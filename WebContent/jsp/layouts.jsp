@@ -9,7 +9,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
-<% User currentUser = SmartWorks.getCurrentUser(); %>
+<%
+	SmartWorks smartworks = (SmartWorks)request.getAttribute("smartworks");
+	User currentUser = smartworks.getCurrentUser();
+%>
 <fmt:setLocale value="<%=currentUser.getLocale() %>" scope="request"/>
 <fmt:setBundle basename="resource.smartworksMessage" scope="request"/>
 

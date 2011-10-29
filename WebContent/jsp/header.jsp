@@ -4,8 +4,9 @@
 <%@ page import="net.smartworks.model.community.*"%>
 <%@ page import="net.smartworks.model.notice.*"%>
 <%
-	User currentUser = SmartWorks.getCurrentUser();
-	Notice[] notices = SmartWorks.getNoticesForMe(currentUser.getId());
+	SmartWorks smartworks = (SmartWorks)request.getAttribute("smartworks");
+	User currentUser = smartworks.getCurrentUser();
+	Notice[] notices = smartworks.getNoticesForMe(currentUser.getId());
 %>
 
 <div>

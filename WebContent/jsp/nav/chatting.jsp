@@ -3,7 +3,10 @@
 <%@ page import="net.smartworks.*" %> 
 <%@ page import="net.smartworks.model.community.*" %> 
 
-<% 	User[] chatters = SmartWorks.getAvailableChatter();%>
+<% 
+	SmartWorks smartworks = (SmartWorks)request.getAttribute("smartworks");
+	User[] chatters = smartworks.getAvailableChatter();
+%>
 
 <ul>
 	<li class="nav_srch">
