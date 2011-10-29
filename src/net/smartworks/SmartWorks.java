@@ -7,7 +7,8 @@ import net.smartworks.model.community.Department;
 import net.smartworks.model.community.Group;
 import net.smartworks.model.community.User;
 import net.smartworks.model.community.WorkSpace;
-import net.smartworks.model.event.ComanyEvent;
+import net.smartworks.model.calendar.CompanyEvent;
+import net.smartworks.model.calendar.CompanyEventBox;
 import net.smartworks.model.instance.AsyncMessageInstance;
 import net.smartworks.model.instance.CommentsInstance;
 import net.smartworks.model.instance.EventInstance;
@@ -224,6 +225,33 @@ public class SmartWorks {
 
 		return new String[] {"오늘 시스템 작업예정으로 오후 5시부터 한시간 동안 시스템을 사용할 수 없으니, 업무진행에 착오없으시길 바랍니다. -- 기술연구소 ---",
 						 "금일 전체회식에 전원참석하여 좋은 친목의 시간이 되기를 바랍니다. --- 경영 기획팀 ----"};
+	}
+	
+	private static CompanyEvent getCompanyEvent1(){
+		CompanyEvent event = new CompanyEvent("companyevent1", "창립기념일");
+		event.setIsHoliday(false);
+		event.setPlannedStart(new LocalDate());
+		event.setPlannedEnd(new LocalDate());
+		return event;
+	}
+	
+	private static CompanyEvent getCompanyEvent2(){
+		CompanyEvent event = new CompanyEvent("companyevent2", "크리스마스");
+		event.setIsHoliday(true);
+		event.setPlannedStart(new LocalDate());
+		LocalDate date1 = new LocalDate();
+		date1.setGMTDate(date1.getGMTDate() + LocalDate.ONE_DAY*2);
+		event.setPlannedEnd(date1);
+		return event;
+	}
+	
+	public static CompanyEventBox getCompanyEventBox(LocalDate date) throws Exception{
+		CompanyEventBox eventBox = new CompanyEventBox();
+		eventBox.setDate(date);
+		CompanyEvent event1 = new CompanyEvent();
+		eventBox.setCompanyEvents(new CompanyEvent[] {event1});
+		return eventBox;
+		
 	}
 
 	public static SmartWork[] getMyFavoriteWorks(String userId)
@@ -474,21 +502,6 @@ public class SmartWorks {
 	// ******************************************//
 	// ************************** 테스트용 데이터
 	// ******************************************//
-
-	private static ComanyEvent getEventHoliday1() throws Exception {
-		ComanyEvent event = new ComanyEvent();
-
-		event.setId("eventHoliday1");
-		event.setName("크리스마스");
-		event.setIsHoliday(true);
-		event.setContent("메리 크리스마스!!! 즐거운 휴일 되세요~~~~");
-		event.setRelatedUsers(new User[] { SmartWorks.getCurrentUser(),
-				SmartWorks.getUser2() });
-		event.setPlannedStart(new LocalDate());
-		event.setPlannedEnd(new LocalDate());
-
-		return event;
-	}
 
 	private static User getUser1() throws Exception {
 		User user = new User();
