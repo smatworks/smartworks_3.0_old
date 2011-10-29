@@ -13,7 +13,7 @@
 </div>
 <div class="notice_ico">
 	<ul>
-		<li class="i_info notice_count_icon"><a
+		<li class="i_info js_notice_count"><a
 			href="jsp/notice/notice_message_box.jsp?noticeType=<%=Notice.NOTICE_TYPE_NOTIFICATION%>"
 			title="<fmt:message key='header.notice.icon.notification'/>"> 
 <%
@@ -28,7 +28,7 @@
 <%
 	}
 %>
-		<li class="i_note notice_count_icon"><a
+		<li class="i_note js_notice_count"><a
 			href="jsp/notice/notice_message_box.jsp?noticeType=<%=Notice.NOTICE_TYPE_MESSAGE%>"
 			title="<fmt:message key='header.notice.icon.message'/>"> 
 <%
@@ -41,7 +41,7 @@
 <%
 	}
 %>
-		<li class="i_replay notice_count_icon"><a
+		<li class="i_replay js_notice_count"><a
 			href="jsp/notice/notice_message_box.jsp?noticeType=<%=Notice.NOTICE_TYPE_COMMENTS%>"
 			title="<fmt:message key='header.notice.icon.comments'/>"> 
 <%
@@ -55,7 +55,7 @@
 <%
 	}
 %>
-		<li class="i_assworks notice_count_icon"><a
+		<li class="i_assworks js_notice_count"><a
 			href="jsp/notice/notice_message_box.jsp?noticeType=<%=Notice.NOTICE_TYPE_ASSIGNED%>"
 			title="<fmt:message key='header.notice.icon.assigned'/>"> 
 <%
@@ -69,7 +69,7 @@
 <%
 	}
 %>
-		<li class="i_mail notice_count_icon"><a
+		<li class="i_mail js_notice_count"><a
 			href="jsp/notice/notice_message_box.jsp?noticeType=<%=Notice.NOTICE_TYPE_MAILBOX%>"
 			title="<fmt:message key='header.notice.icon.mailbox'/>"> 
 <%
@@ -82,7 +82,7 @@
 <%
 	}
 %>
-		<li class="i_imsave notice_count_icon"><a
+		<li class="i_imsave js_notice_count"><a
 			href="jsp/notice/notice_message_box.jsp?noticeType=<%=Notice.NOTICE_TYPE_SAVEDBOX%>"
 			title="<fmt:message key='header.notice.icon.savedbox'/>"> 
 <%
@@ -102,7 +102,7 @@
 <div class="pop_i_info" id="notice_message_box" style="display: none">
 </div>
 
-<div class="top_menu top_menu_click">
+<div class="top_menu js_top_menu">
 	<ul>
 		<li class="idx1 "><span><a
 				href="home.sw?cid=<%=SmartWorks.CONTEXT_HOME%>"><fmt:message

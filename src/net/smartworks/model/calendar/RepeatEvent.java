@@ -1,4 +1,4 @@
-package net.smartworks.model.event;
+package net.smartworks.model.calendar;
 import java.util.Date;
 
 import net.smartworks.util.LocalDate;

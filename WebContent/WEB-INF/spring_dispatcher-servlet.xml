@@ -15,10 +15,6 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 		<beans:property name="suffix" value="" />
 	</beans:bean>
 
-	<annotation-driven />
-
-	<context:component-scan base-package="net.smartworks" />
-
 <!-- 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		one of the properties available; the maximum file size in bytes
 		<beans:property name="maxUploadSize" value="100000" />

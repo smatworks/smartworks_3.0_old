@@ -4,11 +4,11 @@
 
 
 <ul class="navi_tit">
-	<li class='collapse_slide_handle'>&gt; <fmt:message
+	<li class='js_collapse_slide'>&gt; <fmt:message
 			key="nav.works.my_works" /></li>
 	<li class="nav_srch">
 		<div class="srch">
-			<input id="" class="input auto_complete" type="text"
+			<input id="" class="input js_auto_complete" type="text"
 				title="<fmt:message key='search.search_work'/>"
 				placeholder="<fmt:message key='search.search_work'/>"
 				href="layouts/search/work_list.jsp" />
@@ -18,7 +18,7 @@
 </ul>
 
 
-<div class="navi_list collapsible">
+<div class="navi_list js_collapsible">
 	<!-- 내부 메뉴 -->
 	<div class="categ_link js_tab_work">
 		<a href="jsp/nav/my_favorite_works.jsp" class="current"><fmt:message
