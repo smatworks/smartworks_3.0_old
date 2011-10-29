@@ -1,9 +1,15 @@
+<%@page import="org.springframework.web.context.support.WebApplicationContextUtils"%>
+<%@page import="org.springframework.web.context.WebApplicationContext"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page import="net.smartworks.*"%>
 <%
-	String[] messages = SmartWorks
-			.getBroadcastingMessages();
+
+	WebApplicationContext webAppliactionContext = WebApplicationContextUtils.getRequiredWebApplicationContext(pageContext.getServletContext());
+
+	webAppliactionContext.getBean("smartworks");
+	
+	String[] messages = SmartWorks.getBroadcastingMessages();
 %>
 
 <!-- Contents-->
