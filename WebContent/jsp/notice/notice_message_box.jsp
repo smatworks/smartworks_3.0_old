@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
 <%@ page import="net.smartworks.*" %> 
 <%@ page import="net.smartworks.model.community.*" %>
 <%@ page import="net.smartworks.model.notice.*" %> 
@@ -9,7 +8,10 @@
 <%@ page import="net.smartworks.model.work.*" %>
 <%@ page import="net.smartworks.util.LocalDate" %>
 
-<% User currentUser = SmartWorks.getCurrentUser(); %>
+<%
+	SmartWorks smartworks = (SmartWorks)request.getAttribute("smartworks");
+	User currentUser = smartworks.getCurrentUser();
+%>
 <fmt:setLocale value="<%=currentUser.getLocale() %>" scope="request"/>
 <fmt:setBundle basename="resource.smartworksMessage" scope="request"/>
 

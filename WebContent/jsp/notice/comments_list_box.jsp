@@ -1,22 +1,21 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <%@ page import="net.smartworks.*"%>
 <%@ page import="net.smartworks.model.community.*"%>
 <%@ page import="net.smartworks.model.notice.*"%>
 <%@ page import="net.smartworks.model.instance.*"%>
 <%@ page import="net.smartworks.model.work.*"%>
 <%@ page import="net.smartworks.util.LocalDate"%>
-
 <%
+	SmartWorks smartworks = (SmartWorks)request.getAttribute("smartworks");
 	String sNoticeType = request.getParameter("noticeType");
 	String sLastNotice = request.getParameter("dateOfLastNotice");
 	int iNoticeType = (sNoticeType == null) ? Notice.NOTICE_TYPE_INVALID
 			: Integer.parseInt(sNoticeType);
 	LocalDate dateOfLastNotice = (sLastNotice == null) ? new LocalDate(0)
 			: new LocalDate(Long.parseLong(sLastNotice));
-	NoticeBox noticeBox = SmartWorks.getNoticeBoxForMe10(iNoticeType,
+	NoticeBox noticeBox = smartworks.getNoticeBoxForMe10(iNoticeType,
 			dateOfLastNotice);
 %>
 <%
@@ -64,10 +63,10 @@
 				work = commentsInstance.getWorkInstance().getWork();
 				WorkInstance workInstance = commentsInstance
 						.getWorkInstance();
-				targetContent = SmartWorks.getTargetContentByWorkType(
+				targetContent = smartworks.getTargetContentByWorkType(
 						work.getType(),
 						SmartWorks.SPACE_TYPE_WORK_INSTANCE);
-				instContext = SmartWorks.getContextPrefixByWorkType(
+				instContext = smartworks.getContextPrefixByWorkType(
 						work.getType(),
 						SmartWorks.SPACE_TYPE_WORK_INSTANCE)
 						+ workInstance.getId();
@@ -95,10 +94,10 @@
 						.getWorkInstance().getWork();
 				TaskInstance taskInstance = commentsInstance
 						.getTaskInstance();
-				targetContent = SmartWorks.getTargetContentByWorkType(
+				targetContent = smartworks.getTargetContentByWorkType(
 						work.getType(),
 						SmartWorks.SPACE_TYPE_TASK_INSTANCE);
-				instContext = SmartWorks.getContextPrefixByWorkType(
+				instContext = smartworks.getContextPrefixByWorkType(
 						work.getType(),
 						SmartWorks.SPACE_TYPE_TASK_INSTANCE)
 						+ taskInstance.getWorkInstance().getId();
