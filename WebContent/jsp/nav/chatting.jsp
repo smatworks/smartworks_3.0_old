@@ -8,7 +8,7 @@
 <ul>
 	<li class="nav_srch">
 		<div class="srch">
-			<input id="" class="input auto_complete" type="text"
+			<input id="" class="input js_auto_complete" type="text"
 				title="<fmt:message key="search.search_available_chatter"/>"
 				placeholder="<fmt:message key="search.search_available_chatter"/>"
 				href="jsp/search/available_chatter_list.jsp">

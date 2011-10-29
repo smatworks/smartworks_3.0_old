@@ -32,7 +32,7 @@
 		<img src="images/pop_ico_info.jpg" border="0">
 	</div>
 	<div class="info_list"><%=nMessage.getMessage()%><div
-			class="t_date"><%=nMessage.getIssuedDate().toGMTString()%>
+			class="t_date"><%=nMessage.getIssuedDate().toLocalString()%>
 			<div class="btn_x">
 				<a href="">X</a>
 			</div>
