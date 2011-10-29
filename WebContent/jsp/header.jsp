@@ -13,7 +13,6 @@
 </div>
 <div class="notice_ico">
 	<ul>
-		<!--기본상태는 i_info, 아이콘이 활성화 되었응때는 i_info_hover//-->
 		<li class="i_info notice_count_icon"><a
 			href="jsp/notice/notice_message_box.jsp?noticeType=<%=Notice.NOTICE_TYPE_NOTIFICATION%>"
 			title="<fmt:message key='header.notice.icon.notification'/>"> 

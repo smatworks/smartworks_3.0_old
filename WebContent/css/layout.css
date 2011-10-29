@@ -47,10 +47,10 @@ body, #nav {background: url("../images/bg_body.jpg");}
 .i_imsave .current, .i_imsave a.current:hover {background: url("../images/header_nico.png") no-repeat scroll -190px -94px transparent; display:block; height:31px; position:relative;}
 
 
-.num_ic { background: url("../images/header_nico.png") no-repeat scroll -321px -160px transparent; 
+.num_ic { background: url("../images/header_nico.png") no-repeat scroll -321px -102px transparent; 
 		display:inline-block; font-family: Tahoma, dotum; font-size:9px; color:#FFF; height:12px; letter-spacing:0; line-height:13px; padding-right:5px; position:absolute;
 		left:14px; top:13px; text-indent: 4px;}
-.num_ic span { background: url("../images/header_nico.png") no-repeat scroll -357px -160px transparent !important;
+.num_ic span { background: url("../images/header_nico.png") no-repeat scroll -357px -102px transparent !important;
 				display:inline-block; font-size:0; height:12px; line-height:0; overflow:hidden; position:absolute; right:0;  top:0; width:5px;}
 				
 
@@ -151,10 +151,45 @@ body, #nav {background: url("../images/bg_body.jpg");}
 
 /* UpLoad*/
 #upload {margin:10px; height:50px; width:100%; position:relative;}
-#upload li {float:left; padding-right:5px;}
+#upload li {float:left; padding-right:9px;}
+
+.up_works a {background: url("../images/header_nico.png") no-repeat -4px -155px; width:39px; height:22px; padding:4px 0 3px 26px; display:block;}
+.up_works a:hover,
+.up_works .current, 
+.up_works a.current:hover 
+{background: url("../images/header_nico.png") no-repeat -4px -190px; height:22px; padding:4px 0 3px 26px; display:block; font-weight:bold;}
+
+.up_file a {background: url("../images/header_nico.png") no-repeat -78px -155px; width:26px; height:22px; padding:4px 0 3px 28px; display:block;}
+.up_file a:hover,
+.up_file .current, 
+.up_file a.current:hover 
+{background: url("../images/header_nico.png") no-repeat -78px -190px; height:22px; padding:4px 0 3px 28px; display:block; font-weight:bold;}
+
+.up_event a {background: url("../images/header_nico.png") no-repeat -156px -155px; width:39px; height:22px; padding:4px 0 3px 22px; display:block;}
+.up_event a:hover,
+.up_event .current, 
+.up_event a.current:hover
+{background: url("../images/header_nico.png") no-repeat -156px -190px; height:22px; padding:4px 0 3px 22px; display:block; font-weight:bold;}
+
+.up_memo a {background: url("../images/header_nico.png") no-repeat -238px -155px; width:26px; height:22px; padding:4px 0 3px 23px; display:block;}
+.up_memo a:hover,
+.up_memo .current, 
+.up_memo a.current:hover
+{background: url("../images/header_nico.png") no-repeat -238px -190px; height:22px; padding:4px 0 3px 23px; display:block; font-weight:bold;}
+
+.up_notice a {background: url("../images/header_nico.png") no-repeat -322px -155px; height:22px; padding:4px 0 3px 28px; display:block;}
+.up_notice a:hover,
+.up_notice .current, 
+.up_notice a.current:hover 
+{background: url("../images/header_nico.png") no-repeat -322px -190px; height:22px; padding:4px 0 3px 28px; display:block; font-weight:bold;}
 
 .up {border:1px solid #C7C7C7; position:absolute; width:728px; left:0px; top:27px; height:20px; background: none repeat scroll 0 0 #FFFFFF; vertical-align:middle;}
-.up_point {background: url("../images/up_point.gif") no-repeat left top; left:15px; top:22px; width:11px; height:7px; position:relative; z-index:20}
+.up_point {background: url("../images/up_point.gif") no-repeat left top; width:11px; height:7px;}
+.posit_works {left:15px; top:22px; position:relative; z-index:20;}
+.posit_file {left:95px; top:22px; position:relative; z-index:20;}
+.posit_event {left:165px; top:22px; position:relative; z-index:20;}
+.posit_memo {left:225px; top:22px; position:relative; z-index:20;}
+.posit_notice {left:285px; top:22px; position:relative; z-index:20;}
 
 
 /*라운드 포틀릿*/
