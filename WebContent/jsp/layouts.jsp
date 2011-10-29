@@ -46,7 +46,7 @@
 	            
 		<!-- Broadcasting Board -->
 	    <div id="board"><tiles:insertAttribute name="board" /></div>
-		<!-- Contents//-->
+		<!-- Broadcasting Board//-->
 
 		<!-- Contents-->
 	    <div id="content"><tiles:insertAttribute name="content" /></div>

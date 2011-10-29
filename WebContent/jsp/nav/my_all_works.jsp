@@ -11,7 +11,7 @@
 	<%
 		for (WorkCategory workCategory : workCategories) {
 	%>
-	<li class="drill_down ico_cworks"><a
+	<li class="js_drill_down ico_cworks"><a
 		targetContent="jsp/nav/worklist_by_category.jsp"
 		categoryId="<%=workCategory.getId()%>"> <%=workCategory.getName()%></a>
 		<div style="display: none"></div></li>

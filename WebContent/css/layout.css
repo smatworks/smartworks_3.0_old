@@ -56,7 +56,7 @@ body, #nav {background: url("../images/bg_body.jpg");}
 
 .pop_i_info {border:1px solid #acacac; background-color:#242324; width:273px; position:absolute; top:33px; left:106px; padding-bottom:8px; z-index:39;}
 .pop_i_info li {border-bottom:1px solid #DCDFE0; margin:8px 15px;}
-.info_list {background: url("../images/header_nico.png") no-repeat scroll -3px -151px transparent; padding:0 0 2px 18px; line-height:16px; }
+.info_list {padding:0 0 2px 18px; line-height:16px; }
 
 
 
@@ -146,11 +146,11 @@ body, #nav {background: url("../images/bg_body.jpg");}
 
 
 /* Contents*/
-#content {margin:15px 10px 10px 240px; color:#454545; font-family:'돋움',Dotum; line-height:1.5em; z-index:20}
-#top_notice {margin:5px 10px 10px 10px; position:relative; width:100%;}
+#content, #board {margin:15px 10px 10px 240px; color:#454545; font-family:'돋움',Dotum; line-height:1.5em; z-index:20}
+#board {width:728px; height:20px;}
 
 /* UpLoad*/
-#upload {margin:10px; height:50px; width:100%; position:relative;}
+#upload {margin:10px 0; height:50px; width:100%; position:relative;}
 #upload li {float:left; padding-right:9px;}
 
 .up_works a {background: url("../images/header_nico.png") no-repeat -4px -155px; width:39px; height:22px; padding:4px 0 3px 26px; display:block;}
