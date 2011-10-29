@@ -1,8 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page import="net.smartworks.*"%>
-
-
 <ul class="navi_tit">
 	<li class='js_collapse_slide'>&gt; <fmt:message
 			key="nav.works.my_works" /></li>
@@ -30,7 +28,7 @@
 		</a>
 	</div>
 	<div id='my_works'>
-		<%@ include file="my_favorite_works.jsp"%>
+		<jsp:include page="/jsp/nav/my_favorite_works.jsp" />
 	</div>
 	<!--내부메뉴//-->
 </div>

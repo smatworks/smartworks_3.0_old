@@ -2,6 +2,9 @@
 <%@ page import="net.smartworks.*"%>
 <%@ page import="net.smartworks.model.work.*"%>
 <%
+	SmartWorks smartWorks = (SmartWorks)request.getAttribute("smartWorks");
+	String[] messages = smartWorks.getBroadcastingMessages();
+	System.out.println("messages>>>>>"+messages);
 	SmartWork[] works = smartWorks.getMyFavoriteWorks("currentUser");
 	String iconType = null;
 	String classType = "js_content";
