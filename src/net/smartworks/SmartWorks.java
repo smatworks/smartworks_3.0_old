@@ -1,6 +1,5 @@
 package net.smartworks;
 
-import java.util.Date;
 import java.util.StringTokenizer;
 
 import net.smartworks.model.community.Department;
@@ -20,9 +19,21 @@ import net.smartworks.model.notice.NoticeMessage;
 import net.smartworks.model.work.SmartWork;
 import net.smartworks.model.work.Work;
 import net.smartworks.model.work.WorkCategory;
+import net.smartworks.server.service.ICommunityService;
 import net.smartworks.util.LocalDate;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
 public class SmartWorks {
+
+	ICommunityService communityService;
+
+	@Autowired
+	public void setCommunityService(ICommunityService communityService) {
+		this.communityService = communityService;
+	}
 
 	public static String CONTEXT_HOME = "sf.hm";
 	public static String CONTEXT_SMARTCASTER = "sf.sc";
