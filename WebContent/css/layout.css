@@ -8,6 +8,7 @@ body, #nav {background: url("../images/bg_body.jpg");}
 #nav a:hover, #nav a:focus, #nav a:active {color:#FFF; text-decoration:underline;}
 #header a:hover, #header a:focus, #header a:active {color:#FFF;}
 #nav .current {color:#FFF; text-decoration:underline; font-weight:bold;}
+#board {}
 
 /*Header*/
 #header {background: url("../images/header_bg.jpg") repeat scroll left top transparent; height:34px; width:100%; z-index:40; position:relative; }
