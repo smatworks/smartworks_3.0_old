@@ -11,6 +11,9 @@ package net.smartworks.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.smartworks.SmartWorks;
+import net.smartworks.util.SmartUtil;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,16 +22,9 @@ import org.springframework.web.servlet.ModelAndView;
 public class CommunityController {
 
 	@RequestMapping("/department_space")
-	public ModelAndView departmentSpace(HttpServletRequest request,
-			HttpServletResponse response) {
+	public ModelAndView departmentSpace(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		String getHeader = request.getHeader("X-Requested-With");
-
-		if (getHeader != null)
-			return new ModelAndView("jsp/content/space/department_space.jsp");
-		else
-			return new ModelAndView("department_space.tiles");
-
+		return SmartUtil.returnMnv(request, "jsp/content/space/department_space.jsp", "department_space.tiles");
 	}
 
 	@RequestMapping("/group_space")
