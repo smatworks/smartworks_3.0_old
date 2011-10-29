@@ -2,8 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page import="net.smartworks.*"%>
 <%
-	String[] messages = SmartWorks
-			.getBroadcastingMessages();
+	String[] messages = SmartWorks.getBroadcastingMessages();
 %>
 
 <!-- Contents-->
