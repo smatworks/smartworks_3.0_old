@@ -3,7 +3,7 @@
 <%@ page import="net.smartworks.*"%>
 <%
 
-String contextId = request.getParameter("cid");
+	String contextId = request.getParameter("cid");
 	if (contextId == null)
 		session.setAttribute("cid", SmartWorks.CONTEXT_HOME);
 	else

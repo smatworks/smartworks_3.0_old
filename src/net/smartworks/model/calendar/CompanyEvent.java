@@ -1,4 +1,4 @@
-package net.smartworks.model.event;
+package net.smartworks.model.calendar;
 
 import java.util.Date;
 
@@ -6,10 +6,9 @@ import net.smartworks.model.BaseObject;
 import net.smartworks.model.community.User;
 import net.smartworks.util.LocalDate;
 
-public class ComanyEvent extends BaseObject {
+public class CompanyEvent extends BaseObject {
 
 	private Boolean 		isHoliday;
-	private String			content;
 	private User[]			relatedUsers;
 	private LocalDate		plannedStart;
 	private LocalDate		plannedEnd;
@@ -19,12 +18,6 @@ public class ComanyEvent extends BaseObject {
 	}
 	public void setIsHoliday(Boolean isHoliday) {
 		this.isHoliday = isHoliday;
-	}
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
 	}
 	public User[] getRelatedUsers() {
 		return relatedUsers;
@@ -45,11 +38,11 @@ public class ComanyEvent extends BaseObject {
 		this.plannedEnd = plannedEnd;
 	}
 
-	public ComanyEvent(){
+	public CompanyEvent(){
 		super();
 	}
 
-	public ComanyEvent(String id, String name){
+	public CompanyEvent(String id, String name){
 		super(id, name);
 	}
 }

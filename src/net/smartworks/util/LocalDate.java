@@ -6,6 +6,12 @@ import java.util.TimeZone;
 
 public class LocalDate extends Date{
 
+	public static int ONE_SECOND = 1000;
+	public static int ONE_MINUTE = 60*ONE_SECOND;
+	public static int ONE_HOUR = 60*ONE_MINUTE;
+	public static int ONE_DAY = 24*ONE_HOUR;
+	public static int ONE_YEAR = 365*ONE_DAY;
+	
 	private static final long serialVersionUID = 1L;
 	private TimeZone timeZone;
 	private TimeZone hostTimeZone = TimeZone.getDefault();
