@@ -8,7 +8,6 @@ body, #nav {background: url("../images/bg_body.jpg");}
 #nav a:hover, #nav a:focus, #nav a:active {color:#FFF; text-decoration:underline;}
 #header a:hover, #header a:focus, #header a:active {color:#FFF;}
 #nav .current {color:#FFF; text-decoration:underline; font-weight:bold;}
-#board {}
 
 /*Header*/
 #header {background: url("../images/header_bg.jpg") repeat scroll left top transparent; height:34px; width:100%; z-index:40; position:relative; }
@@ -147,11 +146,11 @@ body, #nav {background: url("../images/bg_body.jpg");}
 
 
 /* Contents*/
-#content {margin:15px 10px 10px 240px; color:#454545; font-family:'돋움',Dotum; line-height:1.5em; z-index:20}
-#top_notice {margin:5px 10px 10px 10px; position:relative; width:100%;}
+#content, #board {margin:15px 10px 10px 240px; color:#454545; font-family:'돋움',Dotum; line-height:1.5em; z-index:20}
+#board {width:728px; height:20px;}
 
 /* UpLoad*/
-#upload {margin:10px; height:50px; width:100%; position:relative;}
+#upload {margin:10px 0; height:50px; width:100%; position:relative;}
 #upload li {float:left; padding-right:9px;}
 
 .up_works a {background: url("../images/header_nico.png") no-repeat -4px -155px; width:39px; height:22px; padding:4px 0 3px 26px; display:block;}

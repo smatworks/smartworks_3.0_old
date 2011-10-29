@@ -10,8 +10,7 @@
 	String[] messages = smartworks.getBroadcastingMessages();
 %>
 
-<!-- Contents-->
+<!-- Broadcasting Board -->
 
-<div id="top_notice">
-	<b>[<fmt:message key="broadcasting.board.title"/>]</b><marquee direction="left"><%=messages[0] %></marquee>
-</div>
+<b>[<fmt:message key="broadcasting.board.title"/>]</b><marquee direction="left"><%=messages[0] %></marquee>
+
