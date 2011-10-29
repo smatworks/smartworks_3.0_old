@@ -20,7 +20,7 @@ public class SmartUtil {
 	}
 
 	/**
-	 * beanName; �̿��� service ȣ��
+	 * beanName; serviceCall
 	 * @param beanName
 	 * @param request
 	 * @return
