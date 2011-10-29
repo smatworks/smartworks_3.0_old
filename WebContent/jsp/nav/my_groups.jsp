@@ -3,7 +3,8 @@
 <%@ page import="net.smartworks.model.community.*"%>
 
 <%
-	Group[] groups = SmartWorks.getMyGroups("currentUser");
+	SmartWorks smartworks = (SmartWorks)request.getAttribute("smartworks");
+	Group[] groups = smartworks.getMyGroups("currentUser");
 %>
 
 <ul>
