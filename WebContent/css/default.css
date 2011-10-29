@@ -1,0 +1,97 @@
+html {
+     font-size: 1em;
+}
+
+body {
+     font-size: 0.75em;
+	 scrollbar-face-color:#FFFFFF;/*스크롤바 표면 색상*/
+	 scrollbar-highlight-color:#C7C7C7;/*표면 왼쪽 부분 겉색상*/
+	 scrollbar-shadow-color:#C7C7C7;/*표면 오른쪽 부분 그림자 겉색상*/
+	 scrollbar-3dlight-color:#FFFFFF;/*표면 왼쪽 부분 입체감 색상*/
+	 scrollbar-arrow-color:#C7C7C7;/*스크롤바 조그만 삼각형 색상*/
+	 scrollbar-track-color:#FFFFFF;/*스크롤바 밑에 레일 트렉 색상*/
+	 scrollbar-darkshadow-color:#FFFFFF;/*표면 밑 부분 그림자 색상*/
+	 color:#454545;
+	 font-family:'돋움', Dotum, sans-serif;
+}
+
+label {
+     cursor: pointer;
+}
+
+a:link, a:visited {color:#454545; text-decoration: none;}
+a:hover, a:focus, a:active {color:#454545; text-decoration: underline;}
+
+a, abbr, acronym, address, applet, article, aside, audio, b, blockquote, big, body, center, canvas, caption, cite, code, command, datalist, dd, del, details, dfn, dl, div, dt, em, embed, fieldset, figcaption, figure, font, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, keygen, label, legend, li, meter, nav, menu, object, ol, output, p, pre, progress, q, s, samp, section, small, span, source, strike, strong, sub, sup, table, tbody, tfoot, thead, th, tr, tdvideo, tt, u, ul, var {
+     margin: 0pt;
+     padding: 0pt;
+}
+
+h1, h2, h3, h4, h5, h6, th, td, table, input, button, select, textarea, sub {
+     font-size: 1em;
+}
+
+input, button, select, textarea, sub {
+     font-family:'돋움', Dotum, sans-serif; font-size: 1em;
+	 line-height:1.5em;
+}
+
+em, cite, address, optgroup {
+     font-style: normal;
+}
+
+kbd, samp, code {
+     font-family: monospace;
+}
+
+img, button, select, textarea {
+     vertical-align: middle;
+}
+
+input {border:0 none; outline:medium none; padding:0 3px; vertical-align: middle;}
+
+ul, ol {
+     list-style: none outside none;
+}
+
+img, fieldset {
+     border: 0pt none;
+}
+
+abbr, acronym {
+     border-bottom: 1px dotted black;
+     cursor: help;
+}
+
+table {
+     border-spacing: 0pt;
+     width: 100%;
+}
+
+legend, hr {
+     left: 0pt;
+     overflow: hidden;
+     position: absolute;
+     top: 0pt;
+}
+
+legend, hr, caption {
+     font-size: 0pt;
+     height: 0pt;
+     line-height: 0;
+     visibility: hidden;
+     width: 0pt;
+}
+
+article, aside, audio, canvas, command, datalist, details, embed, figcaption, figure, footer, header, hgroup, keygen, meter, nav, output, progress, section, source, video {
+     display: block;
+}
+
+mark, rp, rt, ruby, summary, time {
+     display: inline;
+}
+
+.float_left {float:left;}
+.float_right {float:right;}
+.center {text-align:center;}
+.clear {display:block; clear:both;}
