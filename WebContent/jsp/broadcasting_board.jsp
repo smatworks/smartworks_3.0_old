@@ -1,3 +1,4 @@
+<%@page import="net.smartworks.util.SmartUtil"%>
 <%@page import="org.springframework.web.context.support.WebApplicationContextUtils"%>
 <%@page import="org.springframework.context.ApplicationContextAware"%>
 <%@page import="org.springframework.context.ApplicationContext"%>
@@ -5,7 +6,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page import="net.smartworks.*"%>
 <%
-	String[] messages =  ((SmartWorks)WebApplicationContextUtils.getRequiredWebApplicationContext(pageContext.getServletContext()).getBean("SmartWorks")).getBroadcastingMessages();
+	//String[] messages =  ((SmartWorks)WebApplicationContextUtils.getRequiredWebApplicationContext(getServletContext()).getBean("smartWorks")).getBroadcastingMessages();
+	SmartWorks smartworks = (SmartWorks)SmartUtil.getService("SmartWorks", request);
+	String[] messages = smartworks.getBroadcastingMessages();
+	//String[] messages =  SmartUtil.getService("Smartworks", request).getBroadcastingMessages();
 %>
 
 <!-- Contents-->
