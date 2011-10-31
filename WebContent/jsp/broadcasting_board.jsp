@@ -5,15 +5,16 @@
 <%@page import="org.springframework.context.ApplicationContext"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ page import="net.smartworks.*"%>
+<%@ page import="net.smartworks.service.ISmartWorks"%>
 <%
-	SmartWorks smartWorks = (SmartWorks) request
+	ISmartWorks smartWorks = (ISmartWorks) request
 			.getAttribute("smartWorks");
 	String[] messages = smartWorks.getBroadcastingMessages();
 %>
 
 <!-- Broadcasting Board -->
 
-<b>[<fmt:message key="broadcasting.board.title" />]</b>
+<b>[<fmt:message key="broadcasting.board.title" />]
+</b>
 <marquee direction="left"><%=messages[0]%></marquee>
 

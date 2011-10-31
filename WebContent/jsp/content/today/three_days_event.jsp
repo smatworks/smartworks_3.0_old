@@ -1,17 +1,17 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ page import="net.smartworks.*"%>
+<%@ page import="net.smartworks.service.ISmartWorks"%>
 <%@ page import="net.smartworks.model.calendar.*"%>
 <%@ page import="net.smartworks.util.*"%>
 <%@ page import="net.smartworks.model.instance.*"%>
 <%@ page import="net.smartworks.model.community.*"%>
 <%
-	SmartWorks smartWorks = (SmartWorks) request
+	ISmartWorks smartWorks = (ISmartWorks) request
 			.getAttribute("smartWorks");
 	User cUser = smartWorks.getCurrentUser();
 	String cid = request.getParameter("cid");
 	if (cid == null)
-		session.setAttribute("cid", SmartWorks.CONTEXT_HOME);
+		session.setAttribute("cid", ISmartWorks.CONTEXT_HOME);
 	else
 		session.setAttribute("cid", cid);
 	String wid = request.getParameter("wid");
@@ -33,19 +33,15 @@
 		<div class="tab_portlet_l"></div>
 		<div class="tab_portletx">
 			<span class="date"><%=today.toLocalDateString()%></span> <span
-				class="eventd"> 
- <%
+				class="eventd"> <%
  	if (threeDaysCC[0].getCompanyEvents().length > 0) {
- %>
-	(
- <%
+ %> ( <%
  	}
  	CompanyEvent[] cesToday = threeDaysCC[0].getCompanyEvents();
  	CompanyEvent[] cesTomorrow = threeDaysCC[1].getCompanyEvents();
  	for (int i = 0; i < cesToday.length; i++) {
  		if (i != 0) {
- %>, 
- <%
+ %>, <%
  		}
  %><%=cesToday[i].getName()%> <%
  	}
@@ -53,7 +49,8 @@
  	if (threeDaysCC[0].getCompanyEvents().length > 0) {
  %>)<%
  	}
- %> </span>
+ %>
+			</span>
 			<%=today.toLocalTimeString()%>
 		</div>
 	</div>
@@ -90,56 +87,53 @@
 									<%
 										}
 									%>
-									<li><span class="t_red"> 
-<%
+									<li><span class="t_red"> <%
  	for (int i = 0; (cnt == 0) && (i < cesToday.length); i++) {
  			if (i != 0) {
  %>, <%
  	}
  %><%=cesToday[i].getName()%> <%
  	}
- %> 
-<%
+ %> <%
  	for (int i = 0; (cnt == 1) && (i < cesTomorrow.length); i++) {
  			if (i != 0) {
  %>, <%
  	}
  %><%=cesTomorrow[i].getName()%> <%
  	}
- %> 
- 									</span></li>
- <%
+ %>
+									</span></li>
+									<%
 	for (EventInstance event : events) {
 		if (((cnt == 0) && today.isSameDate(event.getStart())) || ((cnt == 1) && tomorrow.isSameDate(event.getStart())) || ((cnt == 2) && tomorrow.isAfterDate(event.getStart()))) {
 			User owner = event.getOwner();
-			String userContext = SmartWorks.CONTEXT_PREFIX_USER_SPACE
+			String userContext = ISmartWorks.CONTEXT_PREFIX_USER_SPACE
 															+ owner.getId();
 			String commContext = null;
 			String targetContent = null;
-			String eventContext = SmartWorks.CONTEXT_PREFIX_EVENT_SPACE
+			String eventContext = ISmartWorks.CONTEXT_PREFIX_EVENT_SPACE
 															+ event.getId();
 			WorkSpace workSpace = event.getWorkSpace();
 			if (workSpace != null && workSpace.getClass() == Group.class) {
 				targetContent = "group_space.sw";
-				commContext = SmartWorks.CONTEXT_PREFIX_GROUP_SPACE
+				commContext = ISmartWorks.CONTEXT_PREFIX_GROUP_SPACE
 																+ workSpace.getId();
 			} else if (event.getWorkSpace() != null && workSpace.getClass() == Department.class) {
 				targetContent = "department_space.sw";
-				commContext = SmartWorks.CONTEXT_PREFIX_DEPARTMENT_SPACE
+				commContext = ISmartWorks.CONTEXT_PREFIX_DEPARTMENT_SPACE
 																+ workSpace.getId();
 			}
 			if (cnt < 2) {
  %>
 									<li><span class="t_gbold"><%=event.getStart().toLocalTimeShortString()%></span>
-<%
+										<%
 			} else {
 %>
-									
 									<li><span class="t_gbold"><%=event.getStart().toLocalString()%></span>
-<%
+										<%
 			}
 			if (!owner.getId().equals(cUser.getId())) {
-%>									<span class="t_name"><a
+%> <span class="t_name"><a
 											href="user_space.sw?cid=<%=userContext%>"><%=owner.getLongName()%></a>
 									</span><span class="arr">▶</span> <%
  			}

@@ -1,6 +1,4 @@
-package net.smartworks;
-
-import java.util.StringTokenizer;
+package net.smartworks.service.impl;
 
 import net.smartworks.model.calendar.CompanyCalendar;
 import net.smartworks.model.calendar.CompanyEvent;
@@ -25,6 +23,7 @@ import net.smartworks.model.work.Work;
 import net.smartworks.model.work.WorkCategory;
 import net.smartworks.server.service.ICommunityService;
 import net.smartworks.server.service.INoticeService;
+import net.smartworks.service.ISmartWorks;
 import net.smartworks.util.LocalDate;
 import net.smartworks.util.LocaleInfo;
 
@@ -32,62 +31,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SmartWorks {
+public class SmartWorks implements ISmartWorks {
 
 	ICommunityService communityService;
 	INoticeService noticeService;
 
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#setCommunityService(net.smartworks.server.service.ICommunityService)
+	 */
 	@Autowired
 	public void setCommunityService(ICommunityService communityService) {
 		this.communityService = communityService;
 	}
 
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#setNoticeService(net.smartworks.server.service.INoticeService)
+	 */
 	@Autowired
 	public void setNoticeService(INoticeService noticeService) {
 		this.noticeService = noticeService;
 	}
 
-	public static String CONTEXT_HOME = "sf.hm";
-	public static String CONTEXT_SMARTCASTER = "sf.sc";
-	public static String CONTEXT_DASHBOARD = "sf.db";
-	public static String CONTEXT_MYPROFILE = "sf.pf";
-
-	public static String CONTEXT_PREFIX_SELF = "sf.";
-
-	public static int SPACE_TYPE_WORK_LIST = 1;
-	public static int SPACE_TYPE_WORK_INSTANCE = 2;
-	public static int SPACE_TYPE_TASK_INSTANCE = 3;
-	
-	public static int CONTEXT_PREFIX_LENGTH = 6;
-	public static String CONTEXT_PREFIX_USER_SPACE = "us.sp.";
-	public static String CONTEXT_PREFIX_GROUP_SPACE = "gp.sp.";
-	public static String CONTEXT_PREFIX_DEPARTMENT_SPACE = "dp.sp.";
-
-	public static String CONTEXT_PREFIX_IWORK_LIST = "iw.li.";
-	public static String CONTEXT_PREFIX_PWORK_LIST = "pw.li.";
-	public static String CONTEXT_PREFIX_SWORK_LIST = "sw.li.";
-	public static String CONTEXT_PREFIX_FILE_LIST = "fl.li.";
-	public static String CONTEXT_PREFIX_IMAGE_LIST = "im.li.";
-	public static String CONTEXT_PREFIX_EVENT_LIST = "ev.li.";
-	public static String CONTEXT_PREFIX_MEMO_LIST = "mm.li.";
-	public static String CONTEXT_PREFIX_BOARD_LIST = "bd.li.";
-	public static String CONTEXT_PREFIX_MAIL_LIST = "ml.li.";
-	public static String CONTEXT_PREFIX_SAVED_LIST = "sv.li.";
-
-	public static String CONTEXT_PREFIX_IWORK_SPACE = "iw.sp.";
-	public static String CONTEXT_PREFIX_PWORK_SPACE = "pw.sp.";
-	public static String CONTEXT_PREFIX_SWORK_SPACE = "sw.sp.";
-	public static String CONTEXT_PREFIX_FILE_SPACE = "fl.sp.";
-	public static String CONTEXT_PREFIX_IMAGE_SPACE = "im.sp.";
-	public static String CONTEXT_PREFIX_EVENT_SPACE = "ev.sp.";
-	public static String CONTEXT_PREFIX_MEMO_SPACE = "mm.sp.";
-	public static String CONTEXT_PREFIX_BOARD_SPACE = "bd.sp.";
-	public static String CONTEXT_PREFIX_MAIL_SPACE = "ml.sp.";
-
-	public static String CONTEXT_PREFIX_IWORK_TASK = "iw.ts.";
-	public static String CONTEXT_PREFIX_PWORK_TASK = "pw.ts.";
-	public static String CONTEXT_PREFIX_SWORK_TASK = "sw.ts.";
-
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#isSameContextPrefix(java.lang.String, java.lang.String)
+	 */
+	@Override
 	public boolean isSameContextPrefix(String contextPrefix,
 			String contextId) throws Exception {
 		if (contextPrefix == null || contextId == null
@@ -99,6 +67,10 @@ public class SmartWorks {
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#isWorkContextType(java.lang.String)
+	 */
+	@Override
 	public boolean isWorkContextType(String contextId) throws Exception {
 		if (contextId == null || contextId.length() < 3)
 			return false;
@@ -117,6 +89,10 @@ public class SmartWorks {
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#isWorkSpaceContextType(java.lang.String)
+	 */
+	@Override
 	public boolean isWorkSpaceContextType(String contextId)
 			throws Exception {
 		if (contextId == null || contextId.length() < 6)
@@ -134,6 +110,10 @@ public class SmartWorks {
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#isTaskSpaceContextType(java.lang.String)
+	 */
+	@Override
 	public boolean isTaskSpaceContextType(String contextId)
 			throws Exception {
 		if (contextId == null || contextId.length() < 6)
@@ -145,6 +125,10 @@ public class SmartWorks {
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#isCommunitySpaceContextType(java.lang.String)
+	 */
+	@Override
 	public boolean isCommunitySpaceContextType(String contextId)
 			throws Exception {
 		if (contextId == null || contextId.length() < 6)
@@ -156,13 +140,17 @@ public class SmartWorks {
 		return false;
 	}
 
-	public static String getSpaceIdFromContentContext(String contentContext)
+	public String getSpaceIdFromContentContext(String contentContext)
 			throws Exception {
 		if (contentContext == null || contentContext.length() <= SmartWorks.CONTEXT_PREFIX_LENGTH)
 			return null;
 		return contentContext.substring(SmartWorks.CONTEXT_PREFIX_LENGTH);
 	}
 	
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#getWorkSpaceById(java.lang.String)
+	 */
+	@Override
 	public WorkSpace getWorkSpaceById(String workSpaceId)
 			throws Exception {
 		WorkSpace workSpace = null;
@@ -191,6 +179,10 @@ public class SmartWorks {
 		return workSpace;
 	}
 
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#getContextPrefixByWorkType(int, int)
+	 */
+	@Override
 	public String getContextPrefixByWorkType(int smartWorkType,
 			int spaceType) throws Exception {
 
@@ -219,6 +211,10 @@ public class SmartWorks {
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#getTargetContentByWorkType(int, int)
+	 */
+	@Override
 	public String getTargetContentByWorkType(int smartWorkType,
 			int spaceType) throws Exception {
 
@@ -248,12 +244,20 @@ public class SmartWorks {
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#getBroadcastingMessages()
+	 */
+	@Override
 	public String[] getBroadcastingMessages()
 			throws Exception {
 		return new String[] {"오늘 시스템 작업예정으로 오후 5시부터 한시간 동안 시스템을 사용할 수 없으니, 업무진행에 착오없으시길 바랍니다. -- 기술연구소 ---",
 						 "금일 전체회식에 전원참석하여 좋은 친목의 시간이 되기를 바랍니다. --- 경영 기획팀 ----"};
 	}
 	
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#getCompanyCalendars(net.smartworks.util.LocalDate, int)
+	 */
+	@Override
 	public CompanyCalendar[] getCompanyCalendars(LocalDate fromDate, int days) throws Exception{
 		CompanyCalendar cc1 = new CompanyCalendar(new LocalDate(), new CompanyEvent[]{getCompanyEvent1(), getCompanyEvent2()}, new WorkHour());
 		CompanyCalendar cc2 = new CompanyCalendar(new LocalDate((new LocalDate()).getTime()+LocalDate.ONE_DAY), new CompanyEvent[]{getCompanyEvent2()}, new WorkHour());
@@ -265,10 +269,18 @@ public class SmartWorks {
 		
 	}
 	
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#getCompanyCalendars(net.smartworks.util.LocalDate, net.smartworks.util.LocalDate)
+	 */
+	@Override
 	public CompanyCalendar[] getCompanyCalendars(LocalDate fromDate, LocalDate toDate) throws Exception{
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#getEventInstances(net.smartworks.util.LocalDate, int)
+	 */
+	@Override
 	public EventInstance[] getEventInstances(LocalDate fromDate, int days) throws Exception{
 		LocalDate time1 = new LocalDate(); time1.plusToGMTTime(-1*LocalDate.ONE_HOUR);
 		LocalDate time2 = new LocalDate(); time2.plusToGMTTime(LocalDate.ONE_HOUR);		
@@ -306,10 +318,18 @@ public class SmartWorks {
 		return new EventInstance[] {event1, event2, event3, event4, event5};
 	}
 	
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#getEventInstances(net.smartworks.util.LocalDate, net.smartworks.util.LocalDate)
+	 */
+	@Override
 	public EventInstance[] getEventInstances(LocalDate fromDate, LocalDate toDate) throws Exception{
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#getBoardInstances(net.smartworks.util.LocalDate, int)
+	 */
+	@Override
 	public BoardInstance[] getBoardInstances(LocalDate fromDate, int days) throws Exception{
 		LocalDate time1 = new LocalDate(); time1.plusToGMTTime(-(1*LocalDate.ONE_HOUR));
 		LocalDate time2 = new LocalDate(); time2.plusToGMTTime(-(LocalDate.ONE_HOUR));		
@@ -338,6 +358,10 @@ public class SmartWorks {
 		return new BoardInstance[] {board1, board2, board3, board4, board5, board6, board7, board8, board9, board10};
 	}
 	
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#getBoardInstances(net.smartworks.util.LocalDate, net.smartworks.util.LocalDate)
+	 */
+	@Override
 	public BoardInstance[] getBoardInstances(LocalDate fromDate, LocalDate toDate) throws Exception{
 		return null;
 	}
@@ -360,6 +384,10 @@ public class SmartWorks {
 		return event;
 	}
 	
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#getCompanyEventBox(net.smartworks.util.LocalDate)
+	 */
+	@Override
 	public CompanyCalendar getCompanyEventBox(LocalDate date) throws Exception{
 		CompanyCalendar eventBox = new CompanyCalendar();
 		eventBox.setDate(date);
@@ -369,6 +397,10 @@ public class SmartWorks {
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#getMyFavoriteWorks(java.lang.String)
+	 */
+	@Override
 	public SmartWork[] getMyFavoriteWorks(String userId)
 			throws Exception {
 
@@ -376,12 +408,20 @@ public class SmartWorks {
 				getSmartWork3() };
 	}
 
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#getMyWorkCategories(java.lang.String)
+	 */
+	@Override
 	public WorkCategory[] getMyWorkCategories(String userId)
 			throws Exception {
 
 		return new WorkCategory[] { getWorkCategory1(), getWorkCategory2() };
 	}
 
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#getMyAllWorksByCategoryId(java.lang.String, java.lang.String)
+	 */
+	@Override
 	public SmartWork[] getMyAllWorksByCategoryId(String userId,
 			String categoryId) throws Exception {
 
@@ -405,6 +445,10 @@ public class SmartWorks {
 		return resultWorks;
 	}
 
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#getMyAllWorksByGroupId(java.lang.String, java.lang.String)
+	 */
+	@Override
 	public SmartWork[] getMyAllWorksByGroupId(String userId,
 			String groupId) throws Exception {
 
@@ -412,6 +456,10 @@ public class SmartWorks {
 				getSmartWork9() };
 	}
 
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#getMyRecentInstances(java.lang.String)
+	 */
+	@Override
 	public WorkInstance[] getMyRecentInstances(String userId)
 			throws Exception {
 
@@ -419,12 +467,20 @@ public class SmartWorks {
 				getWorkInstance3(), getWorkInstance4(), getWorkInstance5() };
 	}
 
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#getMyDepartments(java.lang.String)
+	 */
+	@Override
 	public Department[] getMyDepartments(String userId) throws Exception {
 		return new Department[] { getDepartment1(), getDepartment2(),
 				getDepartment3(), getDepartment4() };
 
 	}
 
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#getDepartmentById(java.lang.String)
+	 */
+	@Override
 	public Department getDepartmentById(String departId)
 			throws Exception {
 		Department[] departments = getMyDepartments(getCurrentUser().getId());
@@ -436,10 +492,18 @@ public class SmartWorks {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#getMyGroups(java.lang.String)
+	 */
+	@Override
 	public Group[] getMyGroups(String userId) throws Exception {
 		return new Group[] { getGroup1(), getGroup2(), getGroup3() };
 	}
 
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#getGroupById(java.lang.String)
+	 */
+	@Override
 	public Group getGroupById(String groupId) throws Exception {
 		Group[] groups = getMyGroups(getCurrentUser().getId());
 		for (int i = 0; i < groups.length; i++) {
@@ -450,6 +514,10 @@ public class SmartWorks {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#getCurrentUser()
+	 */
+	@Override
 	public User getCurrentUser() throws Exception {
 		User user = new User();
 		user.setId("jisook@maninsoft.co.kr");
@@ -467,6 +535,10 @@ public class SmartWorks {
 		return user;
 	}
 
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#getUserById(java.lang.String)
+	 */
+	@Override
 	public User getUserById(String userId) throws Exception {
 		if (getCurrentUser().getId().equals(userId))
 			return getCurrentUser();
@@ -477,11 +549,19 @@ public class SmartWorks {
 		return getCurrentUser();
 	}
 
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#searchWorkList(java.lang.String, java.lang.String)
+	 */
+	@Override
 	public SmartWork[] searchWorkList(String user, String key)
 			throws Exception {
 		return getMyFavoriteWorks(user);
 	}
 
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#searchCommunityList(java.lang.String, java.lang.String)
+	 */
+	@Override
 	public WorkSpace[] searchCommunityList(String user, String key)
 			throws Exception {
 		WorkSpace[] comms = new WorkSpace[] { getMyGroups(user)[0],
@@ -491,6 +571,10 @@ public class SmartWorks {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#searchCommunityMemberList(java.lang.String, java.lang.String)
+	 */
+	@Override
 	public User[] searchCommunityMemberList(String user, String key)
 			throws Exception {
 		User[] users = new User[] { getUser1(),
@@ -499,6 +583,10 @@ public class SmartWorks {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#getAvailableChatter()
+	 */
+	@Override
 	public User[] getAvailableChatter() throws Exception {
 		User[] chatters = new User[] { getUser2(),
 				getUser1(), getCurrentUser(),
@@ -510,6 +598,10 @@ public class SmartWorks {
 		return chatters;
 	}
 
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#searchAvailableChatterList(java.lang.String)
+	 */
+	@Override
 	public User[] searchAvailableChatterList(String key)
 			throws Exception {
 		User[] chatters = new User[] { getUser2(),
@@ -523,6 +615,10 @@ public class SmartWorks {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#getCompanyEventsByDate(net.smartworks.util.LocalDate, int)
+	 */
+	@Override
 	public EventInstance[] getCompanyEventsByDate(LocalDate date,
 			int maxEvents) throws Exception {
 		EventInstance[] events = new EventInstance[] {
@@ -531,6 +627,10 @@ public class SmartWorks {
 		return events;
 	}
 
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#getMyEventsByDate(java.lang.String, net.smartworks.util.LocalDate, int)
+	 */
+	@Override
 	public EventInstance[] getMyEventsByDate(String userId, LocalDate date,
 			int maxEvents) throws Exception {
 		EventInstance[] events = new EventInstance[] {
@@ -539,6 +639,10 @@ public class SmartWorks {
 		return events;
 	}
 
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#getNoticesForMe(java.lang.String)
+	 */
+	@Override
 	public Notice[] getNoticesForMe(String userId) throws Exception {
 		return new Notice[] { new Notice(Notice.TYPE_NOTIFICATION, 1),
 				new Notice(Notice.TYPE_MESSAGE, 0),
@@ -548,6 +652,10 @@ public class SmartWorks {
 				new Notice(Notice.TYPE_SAVEDBOX, 7) };
 	}
 
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#getNoticeBoxForMe10(int, net.smartworks.util.LocalDate)
+	 */
+	@Override
 	public NoticeBox getNoticeBoxForMe10(int noticeType,
 			LocalDate lastNotice) throws Exception {
 		if (noticeType == Notice.TYPE_NOTIFICATION) {

@@ -10,7 +10,7 @@ package net.smartworks.util;
 
 import javax.servlet.http.HttpServletRequest;
 
-import net.smartworks.SmartWorks;
+import net.smartworks.service.ISmartWorks;
 
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
@@ -37,7 +37,7 @@ public class SmartUtil {
 
 	public static ModelAndView returnMnv(HttpServletRequest request, String defaultPage, String ajaxPage) {
 		String getHeader = request.getHeader("X-Requested-With");
-		SmartWorks smartworks = (SmartWorks)SmartUtil.getBean("smartWorks", request);
+		ISmartWorks smartworks = (ISmartWorks)SmartUtil.getBean("smartWorks", request);
 		if (getHeader != null)
 			return new ModelAndView(defaultPage, "smartWorks", smartworks);
 		else

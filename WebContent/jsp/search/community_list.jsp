@@ -1,8 +1,8 @@
 <%@ page contentType="text/html; charset=utf-8"%>
-<%@ page import="net.smartworks.*"%>
+<%@ page import="net.smartworks.service.ISmartWorks"%>
 <%@ page import="net.smartworks.model.community.*"%>
 <%
-	SmartWorks smartWorks = (SmartWorks) request
+	ISmartWorks smartWorks = (ISmartWorks) request
 			.getAttribute("smartWorks");
 	String key = request.getParameter("key");
 	WorkSpace[] communities = smartWorks.searchCommunityList(smartWorks
@@ -16,7 +16,7 @@
 			if (workSpace.getClass() == User.class) {
 				User user = (User) workSpace;
 				picName = user.getMinPicture();
-				comContext = SmartWorks.CONTEXT_PREFIX_USER_SPACE
+				comContext = ISmartWorks.CONTEXT_PREFIX_USER_SPACE
 						+ user.getId();
 				targetContent = "user_space.sw";
 				comName = user.getName();
@@ -24,7 +24,7 @@
 			} else if (workSpace.getClass() == Department.class) {
 				Department depart = (Department) workSpace;
 				picName = depart.getMinPicture();
-				comContext = SmartWorks.CONTEXT_PREFIX_DEPARTMENT_SPACE
+				comContext = ISmartWorks.CONTEXT_PREFIX_DEPARTMENT_SPACE
 						+ depart.getId();
 				targetContent = "department_space.sw";
 				comName = depart.getName();
@@ -32,7 +32,7 @@
 			} else if (workSpace.getClass() == Group.class) {
 				Group group = (Group) workSpace;
 				picName = group.getMinPicture();
-				comContext = SmartWorks.CONTEXT_PREFIX_GROUP_SPACE
+				comContext = ISmartWorks.CONTEXT_PREFIX_GROUP_SPACE
 						+ group.getId();
 				targetContent = "group_space.sw";
 				comName = group.getName();

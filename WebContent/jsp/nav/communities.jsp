@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ page import="net.smartworks.*"%>
+<%@ page import="net.smartworks.service.ISmartWorks"%>
 
 <ul class="navi_tit">
 	<li class="js_collapse_slide">&gt; <fmt:message
@@ -23,8 +23,7 @@
 	<!-- 내부 메뉴 -->
 	<div class="categ_link js_tab_com">
 		<a href="my_departments.sw" class="current"><fmt:message
-				key="nav.communities.my_departments" /> </a> <a
-			href="my_groups.sw"><fmt:message
+				key="nav.communities.my_departments" /> </a> <a href="my_groups.sw"><fmt:message
 				key="nav.communities.my_groups" /> </a>
 	</div>
 	<div id='my_communities'>

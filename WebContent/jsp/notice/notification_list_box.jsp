@@ -1,14 +1,14 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page import="net.smartworks.*"%>
+<%@ page import="net.smartworks.service.ISmartWorks"%>
 <%@ page import="net.smartworks.model.community.*"%>
 <%@ page import="net.smartworks.model.notice.*"%>
 <%@ page import="net.smartworks.model.instance.*"%>
 <%@ page import="net.smartworks.model.work.*"%>
 <%@ page import="net.smartworks.util.LocalDate"%>
 <%
-	SmartWorks smartWorks = (SmartWorks) request
+	ISmartWorks smartWorks = (ISmartWorks) request
 			.getAttribute("smartWorks");
 	String sNoticeType = request.getParameter("noticeType");
 	String sLastNotice = request.getParameter("dateOfLastNotice");
@@ -43,9 +43,9 @@
 				EventInstance event = (EventInstance) nMessage
 						.getEvent();
 				owner = event.getOwner();
-				instContext = SmartWorks.CONTEXT_PREFIX_EVENT_SPACE
+				instContext = ISmartWorks.CONTEXT_PREFIX_EVENT_SPACE
 						+ event.getId();
-				userContext = SmartWorks.CONTEXT_PREFIX_USER_SPACE
+				userContext = ISmartWorks.CONTEXT_PREFIX_USER_SPACE
 						+ owner.getId();
 %>
 <li><div class="info_img">
@@ -71,9 +71,9 @@
 				owner = task.getOwner();
 				WorkInstance work = (WorkInstance) task
 						.getWorkInstance();
-				instContext = SmartWorks.CONTEXT_PREFIX_PWORK_TASK
+				instContext = ISmartWorks.CONTEXT_PREFIX_PWORK_TASK
 						+ task.getId();
-				userContext = SmartWorks.CONTEXT_PREFIX_USER_SPACE
+				userContext = ISmartWorks.CONTEXT_PREFIX_USER_SPACE
 						+ owner.getId();
 %>
 <li><div class="info_img">
@@ -94,9 +94,9 @@
 <%
 	} else if (nMessage.getType() == NoticeMessage.TYPE_JOIN_REQUEST) {
 				owner = nMessage.getIssuer();
-				instContext = SmartWorks.CONTEXT_PREFIX_GROUP_SPACE
+				instContext = ISmartWorks.CONTEXT_PREFIX_GROUP_SPACE
 						+ nMessage.getGroup().getId();
-				userContext = SmartWorks.CONTEXT_PREFIX_USER_SPACE
+				userContext = ISmartWorks.CONTEXT_PREFIX_USER_SPACE
 						+ owner.getId();
 %>
 <li><div class="info_img">
@@ -105,9 +105,7 @@
 			src="<%=owner.getMinPicture()%>" border="0"> </a>
 	</div>
 	<div class="info_list">
-		<a
-			href="group_space.sw?cid=<%=instContext%>">
-			<%=nMessage.getGroup().getName()%></a><%=nMessage.getMessage()%>
+		<a href="group_space.sw?cid=<%=instContext%>"> <%=nMessage.getGroup().getName()%></a><%=nMessage.getMessage()%>
 		<div class="t_date"><%=nMessage.getIssuedDate().toLocalString()%>
 			<div class="btn_x">
 				<a href="">X</a>
@@ -121,12 +119,12 @@
 				owner = instance.getOwner();
 				targetContent = smartWorks.getTargetContentByWorkType(
 						nMessage.getInstance().getWork().getType(),
-						SmartWorks.SPACE_TYPE_TASK_INSTANCE);
+						ISmartWorks.SPACE_TYPE_TASK_INSTANCE);
 				instContext = smartWorks.getContextPrefixByWorkType(
 						nMessage.getInstance().getWork().getType(),
-						SmartWorks.SPACE_TYPE_TASK_INSTANCE)
+						ISmartWorks.SPACE_TYPE_TASK_INSTANCE)
 						+ nMessage.getInstance().getOwner().getId();
-				userContext = SmartWorks.CONTEXT_PREFIX_USER_SPACE
+				userContext = ISmartWorks.CONTEXT_PREFIX_USER_SPACE
 						+ owner.getId();
 %>
 <li><div class="info_img">

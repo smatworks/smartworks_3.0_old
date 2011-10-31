@@ -1,9 +1,9 @@
 <%@ page contentType="text/html; charset=utf-8"%>
-<%@ page import="net.smartworks.*"%>
+<%@ page import="net.smartworks.service.ISmartWorks"%>
 <%@ page import="net.smartworks.model.work.*"%>
 
 <%
-	SmartWorks smartWorks = (SmartWorks) request
+	ISmartWorks smartWorks = (ISmartWorks) request
 			.getAttribute("smartWorks");
 	SmartWork[] works = smartWorks.getMyAllWorksByGroupId(
 			"currentUser", request.getParameter("groupId"));
@@ -18,17 +18,17 @@
 		for (SmartWork work : works) {
 			if (work.getType() == SmartWork.TYPE_PROCESS) {
 				iconType = "ico_pworks";
-				workContext = SmartWorks.CONTEXT_PREFIX_PWORK_LIST
+				workContext = ISmartWorks.CONTEXT_PREFIX_PWORK_LIST
 						+ work.getId();
 				targetContent = "pwork_list.sw";
 			} else if (work.getType() == SmartWork.TYPE_INFORMATION) {
 				iconType = "ico_iworks";
-				workContext = SmartWorks.CONTEXT_PREFIX_IWORK_LIST
+				workContext = ISmartWorks.CONTEXT_PREFIX_IWORK_LIST
 						+ work.getId();
 				targetContent = "iwork_list.sw";
 			} else if (work.getType() == SmartWork.TYPE_SCHEDULE) {
 				iconType = "ico_sworks";
-				workContext = SmartWorks.CONTEXT_PREFIX_SWORK_LIST
+				workContext = ISmartWorks.CONTEXT_PREFIX_SWORK_LIST
 						+ work.getId();
 				targetContent = "swork_list.sw";
 			}

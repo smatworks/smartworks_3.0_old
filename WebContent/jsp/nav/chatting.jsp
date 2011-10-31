@@ -1,10 +1,10 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ page import="net.smartworks.*"%>
+<%@ page import="net.smartworks.service.ISmartWorks"%>
 <%@ page import="net.smartworks.model.community.*"%>
 
 <%
-	SmartWorks smartWorks = (SmartWorks) request
+	ISmartWorks smartWorks = (ISmartWorks) request
 			.getAttribute("smartWorks");
 	User[] chatters = smartWorks.getAvailableChatter();
 %>
@@ -18,13 +18,13 @@
 				href="available_chatter_list.sw">
 			<button title="<fmt:message key='search.search'/>" onclick=""></button>
 		</div>
-		<div style="display: none"></div></li>
+		<div style="display: none"></div>
+	</li>
 	<li class="ico_chatpe">
 		<%
 			for (User chatter : chatters) {
-		%> <img
-		src="<%=chatter.getMinPicture()%>" title="<%=chatter.getLongName()%>" />
-		<%
+		%> <img src="<%=chatter.getMinPicture()%>"
+		title="<%=chatter.getLongName()%>" /> <%
 			}
 		%>
 	</li>

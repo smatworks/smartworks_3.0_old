@@ -5,10 +5,10 @@
 <!-- 등록하기//-->
 
 <!-- 이벤트,공지 포틀릿 -->
-<jsp:include page="/jsp/content/today/three_days_event.jsp"/>
+<jsp:include page="/jsp/content/today/three_days_event.jsp" />
 <!-- 이벤트,공지 포틀릿//-->
 
 <!-- 나의 진행중인 업무 -->
-<jsp:include page="/jsp/content/today/my_running_instance_list.jsp"/>
+<jsp:include page="/jsp/content/today/my_running_instance_list.jsp" />
 <!-- 나의 진행중인 업무 //-->
 <!-- Contents//-->

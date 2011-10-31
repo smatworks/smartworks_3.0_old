@@ -1,16 +1,16 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ page import="net.smartworks.*"%>
+<%@ page import="net.smartworks.service.ISmartWorks"%>
 <%@ page import="net.smartworks.model.community.*"%>
 <%@ page import="net.smartworks.model.notice.*"%>
 <%
-	SmartWorks smartWorks = (SmartWorks) request
+	ISmartWorks smartWorks = (ISmartWorks) request
 			.getAttribute("smartWorks");
 	User currentUser = smartWorks.getCurrentUser();
 	Notice[] notices = smartWorks.getNoticesForMe(currentUser.getId());
 	String cid = request.getParameter("cid");
 	if (cid == null)
-		cid = SmartWorks.CONTEXT_HOME;
+		cid = ISmartWorks.CONTEXT_HOME;
 	String wid = request.getParameter("wid");
 	if (wid == null)
 
@@ -19,7 +19,8 @@
 %>
 
 <div>
-	<a class="company_logo" href="home.sw?cid=<%=SmartWorks.CONTEXT_HOME%>"></a>
+	<a class="company_logo"
+		href="home.sw?cid=<%=ISmartWorks.CONTEXT_HOME%>"></a>
 </div>
 <div class="notice_ico">
 	<ul>
@@ -30,7 +31,8 @@
  			&& notices[Notice.TYPE_NOTIFICATION]
  					.getLength() > 0) {
  %> <em class="num_ic"><%=notices[Notice.TYPE_NOTIFICATION]
-						.getLength()%><span></span> </em> </a></li>
+						.getLength()%><span></span> </em>
+		</a></li>
 		<%
 			}
 		%>
@@ -40,7 +42,8 @@
  	if (notices.length > Notice.TYPE_MESSAGE
  			&& notices[Notice.TYPE_MESSAGE].getLength() > 0) {
  %> <em class="num_ic"><%=notices[Notice.TYPE_MESSAGE].getLength()%><span></span>
-			</em> </a></li>
+			</em>
+		</a></li>
 		<%
 			}
 		%>
@@ -50,7 +53,8 @@
  	if (notices.length > Notice.TYPE_COMMENTS
  			&& notices[Notice.TYPE_COMMENTS].getLength() > 0) {
  %> <em class="num_ic"><%=notices[Notice.TYPE_COMMENTS]
-						.getLength()%><span></span> </em> </a></li>
+						.getLength()%><span></span> </em>
+		</a></li>
 		<%
 			}
 		%>
@@ -60,7 +64,8 @@
  	if (notices.length > Notice.TYPE_ASSIGNED
  			&& notices[Notice.TYPE_ASSIGNED].getLength() > 0) {
  %> <em class="num_ic"><%=notices[Notice.TYPE_ASSIGNED]
-						.getLength()%><span></span> </em> </a></li>
+						.getLength()%><span></span> </em>
+		</a></li>
 		<%
 			}
 		%>
@@ -70,7 +75,8 @@
  	if (notices.length > Notice.TYPE_MAILBOX
  			&& notices[Notice.TYPE_MAILBOX].getLength() > 0) {
  %> <em class="num_ic"><%=notices[Notice.TYPE_MAILBOX].getLength()%><span></span>
-			</em> </a></li>
+			</em>
+		</a></li>
 		<%
 			}
 		%>
@@ -80,7 +86,8 @@
  	if (notices.length > Notice.TYPE_SAVEDBOX
  			&& notices[Notice.TYPE_SAVEDBOX].getLength() > 0) {
  %> <em class="num_ic"><%=notices[Notice.TYPE_SAVEDBOX]
-						.getLength()%><span></span> </em> </a></li>
+						.getLength()%><span></span> </em>
+		</a></li>
 		<%
 			}
 		%>
@@ -93,32 +100,28 @@
 <div class="top_menu">
 	<ul>
 		<li class="idx1">
-		<%if(cid.equals(SmartWorks.CONTEXT_HOME)){ %>
-		<span><a class="current" href="home.sw?cid=<%=SmartWorks.CONTEXT_HOME%>"><fmt:message
-						key="header.top_menu.home" /> </a> </span>
-		<%}else{ %>
-		<span><a href="home.sw?cid=<%=SmartWorks.CONTEXT_HOME%>"><fmt:message
-						key="header.top_menu.home" /> </a> </span>
-		<%}%>						
+			<%if(cid.equals(ISmartWorks.CONTEXT_HOME)){ %> <span><a
+				class="current" href="home.sw?cid=<%=ISmartWorks.CONTEXT_HOME%>"><fmt:message
+						key="header.top_menu.home" /> </a> </span> <%}else{ %> <span><a
+				href="home.sw?cid=<%=ISmartWorks.CONTEXT_HOME%>"><fmt:message
+						key="header.top_menu.home" /> </a> </span> <%}%>
 		</li>
 		<li class="idx2">
-		<%if(cid.equals(SmartWorks.CONTEXT_SMARTCASTER)){ %>
-		<span><a class="current" href="smartcaster.sw?cid=<%=SmartWorks.CONTEXT_SMARTCASTER%>"><fmt:message
-						key="header.top_menu.smartcaster" /> </a> </span>
-		<%}else{ %>
-		<span><a href="smartcaster.sw?cid=<%=SmartWorks.CONTEXT_SMARTCASTER%>"><fmt:message
-						key="header.top_menu.smartcaster" /> </a> </span>
-		<%}%>
-						
+			<%if(cid.equals(ISmartWorks.CONTEXT_SMARTCASTER)){ %> <span><a
+				class="current"
+				href="smartcaster.sw?cid=<%=ISmartWorks.CONTEXT_SMARTCASTER%>"><fmt:message
+						key="header.top_menu.smartcaster" /> </a> </span> <%}else{ %> <span><a
+				href="smartcaster.sw?cid=<%=ISmartWorks.CONTEXT_SMARTCASTER%>"><fmt:message
+						key="header.top_menu.smartcaster" /> </a> </span> <%}%>
+
 		</li>
 		<li class="idx3">
-		<%if(cid.equals(SmartWorks.CONTEXT_DASHBOARD)){ %>
-		<span><a class="current" href="dashboard.sw?cid=<%=SmartWorks.CONTEXT_DASHBOARD%>"><fmt:message
-						key="header.top_menu.dashboard" /> </a> </span>
-		<%}else{ %>
-		<span><a href="dashboard.sw?cid=<%=SmartWorks.CONTEXT_DASHBOARD%>"><fmt:message
-						key="header.top_menu.dashboard" /> </a> </span>
-		<%}%>
+			<%if(cid.equals(ISmartWorks.CONTEXT_DASHBOARD)){ %> <span><a
+				class="current"
+				href="dashboard.sw?cid=<%=ISmartWorks.CONTEXT_DASHBOARD%>"><fmt:message
+						key="header.top_menu.dashboard" /> </a> </span> <%}else{ %> <span><a
+				href="dashboard.sw?cid=<%=ISmartWorks.CONTEXT_DASHBOARD%>"><fmt:message
+						key="header.top_menu.dashboard" /> </a> </span> <%}%>
 		</li>
 	</ul>
 </div>
@@ -138,16 +141,16 @@
 				key="header.global_menu.help" /> </a>
 	</div>
 	<div>
-		<a href="" onclick="$(this).parent().next('div').toggle(); return false;"><%=currentUser.getPosition()%>
-		<%=currentUser.getName()%>▼
-		</a>
+		<a href=""
+			onclick="$(this).parent().next('div').toggle(); return false;"><%=currentUser.getPosition()%>
+			<%=currentUser.getName()%>▼ </a>
 	</div>
 
 	<!-- global_menu sub -->
 	<div class="pop" style="display: none">
 		<ul>
 			<li><a
-				href="my_profile.sw?cid=<%=SmartWorks.CONTEXT_MYPROFILE%>"><fmt:message
+				href="my_profile.sw?cid=<%=ISmartWorks.CONTEXT_MYPROFILE%>"><fmt:message
 						key="header.global_menu.edit_my_profile" /> </a></li>
 			<li><a href=""><fmt:message key="header.global_menu.logout" />
 			</a></li>

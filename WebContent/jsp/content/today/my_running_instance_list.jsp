@@ -1,12 +1,12 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ page import="net.smartworks.*"%>
+<%@ page import="net.smartworks.service.ISmartWorks"%>
 <%@ page import="net.smartworks.model.calendar.*"%>
 <%@ page import="net.smartworks.util.*"%>
 <%@ page import="net.smartworks.model.instance.*"%>
 <%@ page import="net.smartworks.model.community.*"%>
 <%
-	SmartWorks smartWorks = (SmartWorks) request
+	ISmartWorks smartWorks = (ISmartWorks) request
 			.getAttribute("smartWorks");
 	User cUser = smartWorks.getCurrentUser();
 
@@ -23,17 +23,18 @@
 		<ul class="portlet_r" style="display: block;">
 			<div id="work_ing">
 				<ul>
-					<li><span class="tit"><fmt:message key="content.my_running_instance_list"/></span>
-						<li class="nav_srch">
-							<div class="srch">
-								<input id="" class="input js_auto_complete" type="text"
-									title="<fmt:message key="search.search_running_instance"/>"
-									placeholder="<fmt:message key="search.search_running_instance"/>"
-									href="running_instance_list.sw">
-								<button title="<fmt:message key='search.search'/>" onclick=""></button>
-							</div>
-							<div style="display: none"></div>
-						</li>
+					<li><span class="tit"><fmt:message
+								key="content.my_running_instance_list" /></span>
+					<li class="nav_srch">
+						<div class="srch">
+							<input id="" class="input js_auto_complete" type="text"
+								title="<fmt:message key="search.search_running_instance"/>"
+								placeholder="<fmt:message key="search.search_running_instance"/>"
+								href="running_instance_list.sw">
+							<button title="<fmt:message key='search.search'/>" onclick=""></button>
+						</div>
+						<div style="display: none"></div>
+					</li>
 					</li>
 					<li class="working_br">
 						<div class="pic">
