@@ -311,7 +311,19 @@ public class SmartWorks {
 		LocalDate time10 = new LocalDate(); time10.plusToGMTTime(-(10*LocalDate.ONE_DAY+LocalDate.ONE_HOUR*14));
 		
 		BoardInstance board1 = new BoardInstance("board1", "워크샵 일정계획 공지 합니다.", new SocialWork("socialwork1", "Board Work"), getCurrentUser(), time1);
-		return new BoardInstance[] {board1};
+		board1.setWorkSpace(getGroup2());
+		BoardInstance board2 = new BoardInstance("board2", "하반기 해외 B2B마케팅 성공사례 세미나", new SocialWork("socialwork1", "Board Work"), getUser1(), time2);
+		BoardInstance board3 = new BoardInstance("board3", "올레캠퍼스 자바개발자 교육과정 소개합니다.", new SocialWork("socialwork1", "Board Work"), getUser2(), time3);
+		board3.setWorkSpace(getDepartment2());
+		BoardInstance board4 = new BoardInstance("board4", "가을 조직개편 조직도 입니다.", new SocialWork("socialwork1", "Board Work"), getUser3(), time4);
+		BoardInstance board5 = new BoardInstance("board5", "가을 정기 임직원 승진 발표", new SocialWork("socialwork1", "Board Work"), getUser3(), time5);
+		BoardInstance board6 = new BoardInstance("board6", "2011년도 경영계획 공지합니다.", new SocialWork("socialwork1", "Board Work"), getCurrentUser(), time6);
+		BoardInstance board7 = new BoardInstance("board7", "여름휴가 일정 공지합니다.", new SocialWork("socialwork1", "Board Work"), getCurrentUser(), time7);
+		BoardInstance board8 = new BoardInstance("board8", "제품개발 프로젝트 전체 일정 계획공지합니다.", new SocialWork("socialwork1", "Board Work"), getUser2(), time8);
+		board8.setWorkSpace(getDepartment1());
+		BoardInstance board9 = new BoardInstance("board9", "사무실 이전 계획 입니다.", new SocialWork("socialwork1", "Board Work"), getUser1(), time9);
+		BoardInstance board10 = new BoardInstance("board10", "스마트웍스닷넷 장기 로드맵 입니다.", new SocialWork("socialwork1", "Board Work"), getCurrentUser(), time10);
+		return new BoardInstance[] {board1, board2, board3, board4, board5, board6, board7, board8, board9, board10};
 	}
 	
 	public static BoardInstance[] getBoardInstances(LocalDate fromDate, LocalDate toDate) throws Exception{
