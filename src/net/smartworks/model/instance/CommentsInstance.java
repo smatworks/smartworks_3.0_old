@@ -74,7 +74,7 @@ public class CommentsInstance extends Instance {
 
 	public CommentsInstance(String id, int commentsType, String comments,
 			User commentor, LocalDate lastModifiedDate) {
-		super(id, "", Instance.INSTANCE_TYPE_COMMENTS, commentor,
+		super(id, "", Instance.TYPE_COMMENTS, commentor,
 				lastModifiedDate);
 		this.commentsType = commentsType;
 		this.commentor = commentor;

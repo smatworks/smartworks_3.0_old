@@ -183,25 +183,25 @@ public class SmartWorks {
 			int spaceType) throws Exception {
 
 		if (spaceType == SmartWorks.SPACE_TYPE_WORK_LIST) {
-			if (smartWorkType == SmartWork.WORK_TYPE_INFORMATION)
+			if (smartWorkType == SmartWork.TYPE_INFORMATION)
 				return SmartWorks.CONTEXT_PREFIX_IWORK_LIST;
-			if (smartWorkType == SmartWork.WORK_TYPE_PROCESS)
+			if (smartWorkType == SmartWork.TYPE_PROCESS)
 				return SmartWorks.CONTEXT_PREFIX_PWORK_LIST;
-			if (smartWorkType == SmartWork.WORK_TYPE_SCHEDULE)
+			if (smartWorkType == SmartWork.TYPE_SCHEDULE)
 				return SmartWorks.CONTEXT_PREFIX_SWORK_LIST;
 		} else if(spaceType == SmartWorks.SPACE_TYPE_WORK_INSTANCE){
-			if (smartWorkType == SmartWork.WORK_TYPE_INFORMATION)
+			if (smartWorkType == SmartWork.TYPE_INFORMATION)
 				return SmartWorks.CONTEXT_PREFIX_IWORK_SPACE;
-			if (smartWorkType == SmartWork.WORK_TYPE_PROCESS)
+			if (smartWorkType == SmartWork.TYPE_PROCESS)
 				return SmartWorks.CONTEXT_PREFIX_PWORK_SPACE;
-			if (smartWorkType == SmartWork.WORK_TYPE_SCHEDULE)
+			if (smartWorkType == SmartWork.TYPE_SCHEDULE)
 				return SmartWorks.CONTEXT_PREFIX_SWORK_SPACE;
 		} else if(spaceType == SmartWorks.SPACE_TYPE_TASK_INSTANCE){
-			if (smartWorkType == SmartWork.WORK_TYPE_INFORMATION)
+			if (smartWorkType == SmartWork.TYPE_INFORMATION)
 				return SmartWorks.CONTEXT_PREFIX_IWORK_TASK;
-			if (smartWorkType == SmartWork.WORK_TYPE_PROCESS)
+			if (smartWorkType == SmartWork.TYPE_PROCESS)
 				return SmartWorks.CONTEXT_PREFIX_PWORK_TASK;
-			if (smartWorkType == SmartWork.WORK_TYPE_SCHEDULE)
+			if (smartWorkType == SmartWork.TYPE_SCHEDULE)
 				return SmartWorks.CONTEXT_PREFIX_SWORK_TASK;
 		}
 		return null;
@@ -211,25 +211,25 @@ public class SmartWorks {
 			int spaceType) throws Exception {
 
 		if (spaceType == SmartWorks.SPACE_TYPE_WORK_LIST) {
-			if (smartWorkType == SmartWork.WORK_TYPE_INFORMATION)
+			if (smartWorkType == SmartWork.TYPE_INFORMATION)
 				return "iwork_list.sw";
-			if (smartWorkType == SmartWork.WORK_TYPE_PROCESS)
+			if (smartWorkType == SmartWork.TYPE_PROCESS)
 				return "pwork_list.sw";
-			if (smartWorkType == SmartWork.WORK_TYPE_SCHEDULE)
+			if (smartWorkType == SmartWork.TYPE_SCHEDULE)
 				return "swork_list.sw";
 		} else if(spaceType == SmartWorks.SPACE_TYPE_WORK_INSTANCE){
-			if (smartWorkType == SmartWork.WORK_TYPE_INFORMATION)
+			if (smartWorkType == SmartWork.TYPE_INFORMATION)
 				return "iwork_space.sw";
-			if (smartWorkType == SmartWork.WORK_TYPE_PROCESS)
+			if (smartWorkType == SmartWork.TYPE_PROCESS)
 				return "pwork_space.sw";
-			if (smartWorkType == SmartWork.WORK_TYPE_SCHEDULE)
+			if (smartWorkType == SmartWork.TYPE_SCHEDULE)
 				return "swork_space.sw";
 		} else if(spaceType == SmartWorks.SPACE_TYPE_TASK_INSTANCE){
-			if (smartWorkType == SmartWork.WORK_TYPE_INFORMATION)
+			if (smartWorkType == SmartWork.TYPE_INFORMATION)
 				return "iwork_task.sw";
-			if (smartWorkType == SmartWork.WORK_TYPE_PROCESS)
+			if (smartWorkType == SmartWork.TYPE_PROCESS)
 				return "pwork_task.sw";
-			if (smartWorkType == SmartWork.WORK_TYPE_SCHEDULE)
+			if (smartWorkType == SmartWork.TYPE_SCHEDULE)
 				return "swork_task.sw";
 
 		}
@@ -528,65 +528,65 @@ public class SmartWorks {
 	}
 
 	public static Notice[] getNoticesForMe(String userId) throws Exception {
-		return new Notice[] { new Notice(Notice.NOTICE_TYPE_NOTIFICATION, 1),
-				new Notice(Notice.NOTICE_TYPE_MESSAGE, 0),
-				new Notice(Notice.NOTICE_TYPE_COMMENTS, 29),
-				new Notice(Notice.NOTICE_TYPE_ASSIGNED, 0),
-				new Notice(Notice.NOTICE_TYPE_MAILBOX, 420),
-				new Notice(Notice.NOTICE_TYPE_SAVEDBOX, 7) };
+		return new Notice[] { new Notice(Notice.TYPE_NOTIFICATION, 1),
+				new Notice(Notice.TYPE_MESSAGE, 0),
+				new Notice(Notice.TYPE_COMMENTS, 29),
+				new Notice(Notice.TYPE_ASSIGNED, 0),
+				new Notice(Notice.TYPE_MAILBOX, 420),
+				new Notice(Notice.TYPE_SAVEDBOX, 7) };
 	}
 
 	public static NoticeBox getNoticeBoxForMe10(int noticeType,
 			LocalDate lastNotice) throws Exception {
-		if (noticeType == Notice.NOTICE_TYPE_NOTIFICATION) {
+		if (noticeType == Notice.TYPE_NOTIFICATION) {
 			NoticeBox noticeBox = new NoticeBox();
 			noticeBox.setNoticeMessages(getNotificationMessages());
-			noticeBox.setNoticeType(Notice.NOTICE_TYPE_NOTIFICATION);
+			noticeBox.setNoticeType(Notice.TYPE_NOTIFICATION);
 			noticeBox.setDateOfLastNotice(new LocalDate());
 			noticeBox.setRemainingLength(48);
 			return noticeBox;
 		}
 
-		if (noticeType == Notice.NOTICE_TYPE_MESSAGE) {
+		if (noticeType == Notice.TYPE_MESSAGE) {
 			NoticeBox noticeBox = new NoticeBox();
 			noticeBox.setNoticeMessages(getMessageMessages());
-			noticeBox.setNoticeType(Notice.NOTICE_TYPE_MESSAGE);
+			noticeBox.setNoticeType(Notice.TYPE_MESSAGE);
 			noticeBox.setDateOfLastNotice(new LocalDate());
 			noticeBox.setRemainingLength(48);
 			return noticeBox;
 		}
 
-		if (noticeType == Notice.NOTICE_TYPE_COMMENTS) {
+		if (noticeType == Notice.TYPE_COMMENTS) {
 			NoticeBox noticeBox = new NoticeBox();
 			noticeBox.setNoticeMessages(getCommentsMessages());
-			noticeBox.setNoticeType(Notice.NOTICE_TYPE_COMMENTS);
+			noticeBox.setNoticeType(Notice.TYPE_COMMENTS);
 			noticeBox.setDateOfLastNotice(new LocalDate());
 			noticeBox.setRemainingLength(48);
 			return noticeBox;
 		}
 
-		if (noticeType == Notice.NOTICE_TYPE_ASSIGNED) {
+		if (noticeType == Notice.TYPE_ASSIGNED) {
 			NoticeBox noticeBox = new NoticeBox();
 			noticeBox.setNoticeMessages(getAssignedMessages());
-			noticeBox.setNoticeType(Notice.NOTICE_TYPE_ASSIGNED);
+			noticeBox.setNoticeType(Notice.TYPE_ASSIGNED);
 			noticeBox.setDateOfLastNotice(new LocalDate());
 			noticeBox.setRemainingLength(48);
 			return noticeBox;
 		}
 
-		if (noticeType == Notice.NOTICE_TYPE_MAILBOX) {
+		if (noticeType == Notice.TYPE_MAILBOX) {
 			NoticeBox noticeBox = new NoticeBox();
 			noticeBox.setNoticeMessages(getMailboxMessages());
-			noticeBox.setNoticeType(Notice.NOTICE_TYPE_MAILBOX);
+			noticeBox.setNoticeType(Notice.TYPE_MAILBOX);
 			noticeBox.setDateOfLastNotice(new LocalDate());
 			noticeBox.setRemainingLength(48);
 			return noticeBox;
 		}
 
-		if (noticeType == Notice.NOTICE_TYPE_SAVEDBOX) {
+		if (noticeType == Notice.TYPE_SAVEDBOX) {
 			NoticeBox noticeBox = new NoticeBox();
 			noticeBox.setNoticeMessages(getSavedboxMessages());
-			noticeBox.setNoticeType(Notice.NOTICE_TYPE_SAVEDBOX);
+			noticeBox.setNoticeType(Notice.TYPE_SAVEDBOX);
 			noticeBox.setDateOfLastNotice(new LocalDate());
 			noticeBox.setRemainingLength(48);
 			return noticeBox;
@@ -666,47 +666,47 @@ public class SmartWorks {
 	}
 
 	private static SmartWork getSmartWork1() throws Exception {
-		return new SmartWork("work1", "근태품의", SmartWork.WORK_TYPE_PROCESS, "",
+		return new SmartWork("work1", "근태품의", SmartWork.TYPE_PROCESS, "",
 				getWorkCategory1());
 	}
 
 	private static SmartWork getSmartWork2() throws Exception {
-		return new SmartWork("work2", "회의록", SmartWork.WORK_TYPE_INFORMATION,
+		return new SmartWork("work2", "회의록", SmartWork.TYPE_INFORMATION,
 				"", getWorkCategory1());
 	}
 
 	private static SmartWork getSmartWork3() throws Exception {
-		return new SmartWork("work3", "구매기안", SmartWork.WORK_TYPE_PROCESS, "",
+		return new SmartWork("work3", "구매기안", SmartWork.TYPE_PROCESS, "",
 				getWorkCategory1());
 	}
 
 	private static SmartWork getSmartWork4() throws Exception {
-		return new SmartWork("work4", "제안견적프로세스", SmartWork.WORK_TYPE_PROCESS,
+		return new SmartWork("work4", "제안견적프로세스", SmartWork.TYPE_PROCESS,
 				"", getWorkCategory2());
 	}
 
 	private static SmartWork getSmartWork5() throws Exception {
-		return new SmartWork("work5", "영업기회", SmartWork.WORK_TYPE_INFORMATION,
+		return new SmartWork("work5", "영업기회", SmartWork.TYPE_INFORMATION,
 				"", getWorkCategory2());
 	}
 
 	private static SmartWork getSmartWork6() throws Exception {
-		return new SmartWork("work6", "자료실", SmartWork.WORK_TYPE_GROUP, "",
+		return new SmartWork("work6", "자료실", SmartWork.TYPE_GROUP, "",
 				getWorkCategory2());
 	}
 
 	private static SmartWork getSmartWork7() throws Exception {
-		return new SmartWork("work11", "구매프로세스", SmartWork.WORK_TYPE_PROCESS,
+		return new SmartWork("work11", "구매프로세스", SmartWork.TYPE_PROCESS,
 				"", getWorkCategory2());
 	}
 
 	private static SmartWork getSmartWork8() throws Exception {
 		return new SmartWork("work21", "구매발주서",
-				SmartWork.WORK_TYPE_INFORMATION, "", getWorkCategory2());
+				SmartWork.TYPE_INFORMATION, "", getWorkCategory2());
 	}
 
 	private static SmartWork getSmartWork9() throws Exception {
-		return new SmartWork("work31", "자재발주서", SmartWork.WORK_TYPE_PROCESS,
+		return new SmartWork("work31", "자재발주서", SmartWork.TYPE_PROCESS,
 				"", getWorkCategory2());
 	}
 
@@ -793,40 +793,40 @@ public class SmartWorks {
 			throws Exception {
 
 		NoticeMessage notice1, notice2, notice3, notice4, notice5;
-		if (noticeType == NoticeMessage.NOTIFICATION_TYPE_SYSTEM_NOTICE) {
+		if (noticeType == NoticeMessage.TYPE_SYSTEM_NOTICE) {
 			notice1 = new NoticeMessage("notice1",
-					NoticeMessage.NOTIFICATION_TYPE_SYSTEM_NOTICE,
+					NoticeMessage.TYPE_SYSTEM_NOTICE,
 					SmartWorks.getUser1(), new LocalDate());
 			notice1.setMessage("금주 주말(토요일, 일요일)에 시스템 정기점검을 실시하는 관계를 시스템을 1시간 가량 사용할 수 없으니 이점 양해 바랍니다.");
 			return notice1;
 		}
 
-		if (noticeType == NoticeMessage.NOTIFICATION_TYPE_EVENT_ALARM) {
+		if (noticeType == NoticeMessage.TYPE_EVENT_ALARM) {
 			notice2 = new NoticeMessage("notic2",
-					NoticeMessage.NOTIFICATION_TYPE_EVENT_ALARM,
+					NoticeMessage.TYPE_EVENT_ALARM,
 					SmartWorks.getUser2(), new LocalDate());
 			notice2.setEvent(getEventInstance1());
 			return notice2;
 		}
-		if (noticeType == NoticeMessage.NOTIFICATION_TYPE_TASK_DELAYED) {
+		if (noticeType == NoticeMessage.TYPE_TASK_DELAYED) {
 			notice3 = new NoticeMessage("notice3",
-					NoticeMessage.NOTIFICATION_TYPE_TASK_DELAYED,
+					NoticeMessage.TYPE_TASK_DELAYED,
 					SmartWorks.getCurrentUser(), new LocalDate());
 			notice3.setInstance(getTaskInstance1());
 			return notice3;
 		}
 
-		if (noticeType == NoticeMessage.NOTIFICATION_TYPE_JOIN_REQUEST) {
+		if (noticeType == NoticeMessage.TYPE_JOIN_REQUEST) {
 			notice4 = new NoticeMessage("notice4",
-					NoticeMessage.NOTIFICATION_TYPE_JOIN_REQUEST,
+					NoticeMessage.TYPE_JOIN_REQUEST,
 					SmartWorks.getUser1(), new LocalDate());
 			notice4.setGroup(getGroup1());
 			notice4.setMessage("님이 커뮤너티에 가입을 신청하셨습니다.");
 			return notice4;
 		}
-		if (noticeType == NoticeMessage.NOTIFICATION_TYPE_INSTANCE_CREATED) {
+		if (noticeType == NoticeMessage.TYPE_INSTANCE_CREATED) {
 			notice5 = new NoticeMessage("notice5",
-					NoticeMessage.NOTIFICATION_TYPE_INSTANCE_CREATED,
+					NoticeMessage.TYPE_INSTANCE_CREATED,
 					SmartWorks.getUser1(), new LocalDate());
 			notice5.setInstance(getWorkInstance1());
 			notice5.setMessage("새로운 업무를 등록하였습니다..");
@@ -840,24 +840,24 @@ public class SmartWorks {
 
 		NoticeMessage notice1, notice2, notice3, notice4, notice5;
 		notice1 = new NoticeMessage("notice1",
-				NoticeMessage.NOTIFICATION_TYPE_SYSTEM_NOTICE,
+				NoticeMessage.TYPE_SYSTEM_NOTICE,
 				SmartWorks.getUser1(), new LocalDate());
 		notice1.setMessage("금주 주말(토요일, 일요일)에 시스템 정기점검을 실시하는 관계를 시스템을 1시간 가량 사용할 수 없으니 이점 양해 바랍니다.");
 		notice2 = new NoticeMessage("notic2",
-				NoticeMessage.NOTIFICATION_TYPE_EVENT_ALARM,
+				NoticeMessage.TYPE_EVENT_ALARM,
 				SmartWorks.getUser2(), new LocalDate());
 		notice2.setEvent(getEventInstance1());
 		notice3 = new NoticeMessage("notice3",
-				NoticeMessage.NOTIFICATION_TYPE_TASK_DELAYED,
+				NoticeMessage.TYPE_TASK_DELAYED,
 				SmartWorks.getCurrentUser(), new LocalDate());
 		notice3.setInstance(getTaskInstance1());
 		notice4 = new NoticeMessage("notice4",
-				NoticeMessage.NOTIFICATION_TYPE_JOIN_REQUEST,
+				NoticeMessage.TYPE_JOIN_REQUEST,
 				SmartWorks.getUser1(), new LocalDate());
 		notice4.setGroup(getGroup1());
 		notice4.setMessage("님이 커뮤너티에 가입을 신청하셨습니다.");
 		notice5 = new NoticeMessage("notice5",
-				NoticeMessage.NOTIFICATION_TYPE_INSTANCE_CREATED,
+				NoticeMessage.TYPE_INSTANCE_CREATED,
 				SmartWorks.getUser1(), new LocalDate());
 		notice5.setInstance(getWorkInstance1());
 		notice5.setMessage("새로운 업무를 등록하였습니다..");

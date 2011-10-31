@@ -12,7 +12,7 @@
 			.getAttribute("smartWorks");
 	String sNoticeType = request.getParameter("noticeType");
 	String sLastNotice = request.getParameter("dateOfLastNotice");
-	int noticeType = (sNoticeType == null) ? Notice.NOTICE_TYPE_INVALID
+	int noticeType = (sNoticeType == null) ? Notice.TYPE_INVALID
 			: Integer.parseInt(sNoticeType);
 	LocalDate dateOfLastNotice = (sLastNotice == null) ? new LocalDate(
 			0) : new LocalDate(Long.parseLong(sLastNotice));
@@ -23,7 +23,7 @@
 	for (NoticeMessage nMessage : (NoticeMessage[]) noticeBox
 			.getNoticeMessages()) {
 		if (noticeBox != null
-				&& noticeBox.getNoticeType() == Notice.NOTICE_TYPE_COMMENTS) {
+				&& noticeBox.getNoticeType() == Notice.TYPE_COMMENTS) {
 			CommentsInstance commentsInstance = (CommentsInstance) nMessage
 					.getInstance();
 			String instContext = null, targetContent = null;

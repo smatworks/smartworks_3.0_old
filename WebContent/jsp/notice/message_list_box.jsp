@@ -12,7 +12,7 @@
 			.getAttribute("smartWorks");
 	String sNoticeType = request.getParameter("noticeType");
 	String sLastNotice = request.getParameter("dateOfLastNotice");
-	int noticeType = (sNoticeType == null) ? Notice.NOTICE_TYPE_INVALID
+	int noticeType = (sNoticeType == null) ? Notice.TYPE_INVALID
 			: Integer.parseInt(sNoticeType);
 	LocalDate dateOfLastNotice = (sLastNotice == null) ? new LocalDate(
 			0) : new LocalDate(Long.parseLong(sLastNotice));
@@ -24,7 +24,7 @@
 			.getNoticeMessages()) {
 		String instContext = null;
 		if (noticeBox != null
-				&& noticeBox.getNoticeType() == Notice.NOTICE_TYPE_MESSAGE) {
+				&& noticeBox.getNoticeType() == Notice.TYPE_MESSAGE) {
 			AsyncMessageInstance messageInstance = (AsyncMessageInstance) nMessage
 					.getInstance();
 			User owner = messageInstance.getSender();

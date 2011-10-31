@@ -24,63 +24,63 @@
 <div class="notice_ico">
 	<ul>
 		<li class="i_info js_notice_count"><a
-			href="jsp/notice/notice_message_box.jsp?noticeType=<%=Notice.NOTICE_TYPE_NOTIFICATION%>"
+			href="jsp/notice/notice_message_box.jsp?noticeType=<%=Notice.TYPE_NOTIFICATION%>"
 			title="<fmt:message key='header.notice.icon.notification'/>"> <%
- 	if (notices.length > Notice.NOTICE_TYPE_NOTIFICATION
- 			&& notices[Notice.NOTICE_TYPE_NOTIFICATION]
- 					.getNoticeLength() > 0) {
- %> <em class="num_ic"><%=notices[Notice.NOTICE_TYPE_NOTIFICATION]
-						.getNoticeLength()%><span></span> </em> </a></li>
+ 	if (notices.length > Notice.TYPE_NOTIFICATION
+ 			&& notices[Notice.TYPE_NOTIFICATION]
+ 					.getLength() > 0) {
+ %> <em class="num_ic"><%=notices[Notice.TYPE_NOTIFICATION]
+						.getLength()%><span></span> </em> </a></li>
 		<%
 			}
 		%>
 		<li class="i_note js_notice_count"><a
-			href="jsp/notice/notice_message_box.jsp?noticeType=<%=Notice.NOTICE_TYPE_MESSAGE%>"
+			href="jsp/notice/notice_message_box.jsp?noticeType=<%=Notice.TYPE_MESSAGE%>"
 			title="<fmt:message key='header.notice.icon.message'/>"> <%
- 	if (notices.length > Notice.NOTICE_TYPE_MESSAGE
- 			&& notices[Notice.NOTICE_TYPE_MESSAGE].getNoticeLength() > 0) {
- %> <em class="num_ic"><%=notices[Notice.NOTICE_TYPE_MESSAGE].getNoticeLength()%><span></span>
+ 	if (notices.length > Notice.TYPE_MESSAGE
+ 			&& notices[Notice.TYPE_MESSAGE].getLength() > 0) {
+ %> <em class="num_ic"><%=notices[Notice.TYPE_MESSAGE].getLength()%><span></span>
 			</em> </a></li>
 		<%
 			}
 		%>
 		<li class="i_replay js_notice_count"><a
-			href="jsp/notice/notice_message_box.jsp?noticeType=<%=Notice.NOTICE_TYPE_COMMENTS%>"
+			href="jsp/notice/notice_message_box.jsp?noticeType=<%=Notice.TYPE_COMMENTS%>"
 			title="<fmt:message key='header.notice.icon.comments'/>"> <%
- 	if (notices.length > Notice.NOTICE_TYPE_COMMENTS
- 			&& notices[Notice.NOTICE_TYPE_COMMENTS].getNoticeLength() > 0) {
- %> <em class="num_ic"><%=notices[Notice.NOTICE_TYPE_COMMENTS]
-						.getNoticeLength()%><span></span> </em> </a></li>
+ 	if (notices.length > Notice.TYPE_COMMENTS
+ 			&& notices[Notice.TYPE_COMMENTS].getLength() > 0) {
+ %> <em class="num_ic"><%=notices[Notice.TYPE_COMMENTS]
+						.getLength()%><span></span> </em> </a></li>
 		<%
 			}
 		%>
 		<li class="i_assworks js_notice_count"><a
-			href="jsp/notice/notice_message_box.jsp?noticeType=<%=Notice.NOTICE_TYPE_ASSIGNED%>"
+			href="jsp/notice/notice_message_box.jsp?noticeType=<%=Notice.TYPE_ASSIGNED%>"
 			title="<fmt:message key='header.notice.icon.assigned'/>"> <%
- 	if (notices.length > Notice.NOTICE_TYPE_ASSIGNED
- 			&& notices[Notice.NOTICE_TYPE_ASSIGNED].getNoticeLength() > 0) {
- %> <em class="num_ic"><%=notices[Notice.NOTICE_TYPE_ASSIGNED]
-						.getNoticeLength()%><span></span> </em> </a></li>
+ 	if (notices.length > Notice.TYPE_ASSIGNED
+ 			&& notices[Notice.TYPE_ASSIGNED].getLength() > 0) {
+ %> <em class="num_ic"><%=notices[Notice.TYPE_ASSIGNED]
+						.getLength()%><span></span> </em> </a></li>
 		<%
 			}
 		%>
 		<li class="i_mail js_notice_count"><a
-			href="jsp/notice/notice_message_box.jsp?noticeType=<%=Notice.NOTICE_TYPE_MAILBOX%>"
+			href="jsp/notice/notice_message_box.jsp?noticeType=<%=Notice.TYPE_MAILBOX%>"
 			title="<fmt:message key='header.notice.icon.mailbox'/>"> <%
- 	if (notices.length > Notice.NOTICE_TYPE_MAILBOX
- 			&& notices[Notice.NOTICE_TYPE_MAILBOX].getNoticeLength() > 0) {
- %> <em class="num_ic"><%=notices[Notice.NOTICE_TYPE_MAILBOX].getNoticeLength()%><span></span>
+ 	if (notices.length > Notice.TYPE_MAILBOX
+ 			&& notices[Notice.TYPE_MAILBOX].getLength() > 0) {
+ %> <em class="num_ic"><%=notices[Notice.TYPE_MAILBOX].getLength()%><span></span>
 			</em> </a></li>
 		<%
 			}
 		%>
 		<li class="i_imsave js_notice_count"><a
-			href="jsp/notice/notice_message_box.jsp?noticeType=<%=Notice.NOTICE_TYPE_SAVEDBOX%>"
+			href="jsp/notice/notice_message_box.jsp?noticeType=<%=Notice.TYPE_SAVEDBOX%>"
 			title="<fmt:message key='header.notice.icon.savedbox'/>"> <%
- 	if (notices.length > Notice.NOTICE_TYPE_SAVEDBOX
- 			&& notices[Notice.NOTICE_TYPE_SAVEDBOX].getNoticeLength() > 0) {
- %> <em class="num_ic"><%=notices[Notice.NOTICE_TYPE_SAVEDBOX]
-						.getNoticeLength()%><span></span> </em> </a></li>
+ 	if (notices.length > Notice.TYPE_SAVEDBOX
+ 			&& notices[Notice.TYPE_SAVEDBOX].getLength() > 0) {
+ %> <em class="num_ic"><%=notices[Notice.TYPE_SAVEDBOX]
+						.getLength()%><span></span> </em> </a></li>
 		<%
 			}
 		%>

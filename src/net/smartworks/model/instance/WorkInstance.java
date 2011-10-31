@@ -33,7 +33,7 @@ public class WorkInstance extends Instance {
 
 	public WorkInstance(String id, String subject, Work work, User owner,
 			LocalDate lastModifiedDate) {
-		super(id, subject, Instance.INSTANCE_TYPE_WORK, owner, lastModifiedDate);
+		super(id, subject, Instance.TYPE_WORK, owner, lastModifiedDate);
 		super.setWork(work);
 		this.lastModifier = owner;
 	}

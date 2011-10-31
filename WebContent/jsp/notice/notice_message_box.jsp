@@ -18,43 +18,43 @@
 
 <%
 	String strNoticeType = request.getParameter("noticeType");
-	int noticeType = (strNoticeType == null) ? Notice.NOTICE_TYPE_INVALID
+	int noticeType = (strNoticeType == null) ? Notice.TYPE_INVALID
 			: Integer.parseInt(strNoticeType);
 %>
 <ul>
 	<%
-		if (noticeType == Notice.NOTICE_TYPE_NOTIFICATION) {
+		if (noticeType == Notice.TYPE_NOTIFICATION) {
 	%>
 	<li class="t_bold"><fmt:message
 			key="notice.message.box.notification" />
 	</li>
 	<jsp:include page="/jsp/notice/notification_list_box.jsp" />
 	<%
-		} else if (noticeType == Notice.NOTICE_TYPE_MESSAGE) {
+		} else if (noticeType == Notice.TYPE_MESSAGE) {
 	%>
 	<li class="t_bold"><fmt:message key="notice.message.box.message" />
 	</li>
 	<jsp:include page="/jsp/notice/message_list_box.jsp" />
 	<%
-		} else if (noticeType == Notice.NOTICE_TYPE_COMMENTS) {
+		} else if (noticeType == Notice.TYPE_COMMENTS) {
 	%>
 	<li class="t_bold"><fmt:message key="notice.message.box.comments" />
 	</li>
 	<jsp:include page="/jsp/notice/comments_list_box.jsp" />
 	<%
-		} else if (noticeType == Notice.NOTICE_TYPE_ASSIGNED) {
+		} else if (noticeType == Notice.TYPE_ASSIGNED) {
 	%>
 	<li class="t_bold"><fmt:message key="notice.message.box.assigned" />
 	</li>
 	<jsp:include page="/jsp/notice/assigned_list_box.jsp" />
 	<%
-		} else if (noticeType == Notice.NOTICE_TYPE_MAILBOX) {
+		} else if (noticeType == Notice.TYPE_MAILBOX) {
 	%>
 	<li class="t_bold"><fmt:message key="notice.message.box.mailbox" />
 	</li>
 	<jsp:include page="/jsp/notice/mailbox_list_box.jsp" />
 	<%
-		} else if (noticeType == Notice.NOTICE_TYPE_SAVEDBOX) {
+		} else if (noticeType == Notice.TYPE_SAVEDBOX) {
 	%>
 	<li class="t_bold"><fmt:message key="notice.message.box.savedbox" />
 	</li>
