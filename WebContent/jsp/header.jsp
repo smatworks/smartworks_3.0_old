@@ -92,27 +92,34 @@
 
 <div class="top_menu">
 	<ul>
-		<%if(cid.equals(SmartWorks.CONTEXT_HOME)){ %>
-		<li class="idx1 current">
-		<%}else{ %>
 		<li class="idx1">
-		<%}%>
+		<%if(cid.equals(SmartWorks.CONTEXT_HOME)){ %>
+		<span><a class="current" href="home.sw?cid=<%=SmartWorks.CONTEXT_HOME%>"><fmt:message
+						key="header.top_menu.home" /> </a> </span>
+		<%}else{ %>
 		<span><a href="home.sw?cid=<%=SmartWorks.CONTEXT_HOME%>"><fmt:message
-						key="header.top_menu.home" /> </a> </span></li>
-		<%if(cid.equals(SmartWorks.CONTEXT_SMARTCASTER)){ %>
-		<li class="idx2 current">
-		<%}else{ %>
+						key="header.top_menu.home" /> </a> </span>
+		<%}%>						
+		</li>
 		<li class="idx2">
-		<%}%>
-		<span><a href="smartcaster.sw?cid=<%=SmartWorks.CONTEXT_SMARTCASTER%>"><fmt:message
-						key="header.top_menu.smartcaster" /> </a> </span></li>
-		<%if(cid.equals(SmartWorks.CONTEXT_DASHBOARD)){ %>
-		<li class="idx3 current">
+		<%if(cid.equals(SmartWorks.CONTEXT_SMARTCASTER)){ %>
+		<span><a class="current" href="smartcaster.sw?cid=<%=SmartWorks.CONTEXT_SMARTCASTER%>"><fmt:message
+						key="header.top_menu.smartcaster" /> </a> </span>
 		<%}else{ %>
-		<li class="idx3">
+		<span><a href="smartcaster.sw?cid=<%=SmartWorks.CONTEXT_SMARTCASTER%>"><fmt:message
+						key="header.top_menu.smartcaster" /> </a> </span>
 		<%}%>
+						
+		</li>
+		<li class="idx3">
+		<%if(cid.equals(SmartWorks.CONTEXT_DASHBOARD)){ %>
+		<span><a class="current" href="dashboard.sw?cid=<%=SmartWorks.CONTEXT_DASHBOARD%>"><fmt:message
+						key="header.top_menu.dashboard" /> </a> </span>
+		<%}else{ %>
 		<span><a href="dashboard.sw?cid=<%=SmartWorks.CONTEXT_DASHBOARD%>"><fmt:message
-						key="header.top_menu.dashboard" /> </a> </span></li>
+						key="header.top_menu.dashboard" /> </a> </span>
+		<%}%>
+		</li>
 	</ul>
 </div>
 
@@ -130,8 +137,11 @@
 			target="_blank" href="http://manual.smartWorks.net/"><fmt:message
 				key="header.global_menu.help" /> </a>
 	</div>
-	<a href="" onclick="$(this).next('div').toggle(); return false;"><%=currentUser.getPosition()%>
-		<%=currentUser.getName()%>▼</a>
+	<div>
+		<a href="" onclick="$(this).next('div').toggle(); return false;"><%=currentUser.getPosition()%>
+		<%=currentUser.getName()%>▼
+		</a>
+	</div>
 
 	<!-- global_menu sub -->
 	<div class="pop" style="display: none">
