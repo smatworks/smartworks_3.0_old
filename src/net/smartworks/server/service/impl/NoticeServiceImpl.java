@@ -101,6 +101,18 @@ public class NoticeServiceImpl implements INoticeService {
 		return null;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.smartworks.service.impl.ISmartWorks#getBroadcastingMessages()
+	 */
+	@Override
+	public String[] getBroadcastingMessages() throws Exception {
+		return new String[] { "오늘 시스템 작업예정으로 오후 5시부터 한시간 동안 시스템을 사용할 수 없으니, 업무진행에 착오없으시길 바랍니다. -- 기술연구소 ---",
+				"금일 전체회식에 전원참석하여 좋은 친목의 시간이 되기를 바랍니다. --- 경영 기획팀 ----" };
+	}
+
+	// For Test...
 	private NoticeMessage[] getNotificationMessages() throws Exception {
 
 		NoticeMessage notice1, notice2, notice3, notice4, notice5;

@@ -23,4 +23,6 @@ public interface INoticeService {
 	 */
 	public NoticeBox getNoticeBoxForMe10(int noticeType,
 			LocalDate lastNotice) throws Exception;
+
+	public String[] getBroadcastingMessages() throws Exception;
 }

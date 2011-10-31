@@ -21,4 +21,10 @@ public interface ICommunityService {
 
 	public abstract Department[] getMyDepartments(String userId) throws Exception;
 
+	public abstract WorkSpace getWorkSpaceById(String workSpaceId) throws Exception;
+
+	public abstract User[] getAvailableChatter() throws Exception;
+
+	public abstract User[] searchAvailableChatterList(String key) throws Exception;
+
 }
