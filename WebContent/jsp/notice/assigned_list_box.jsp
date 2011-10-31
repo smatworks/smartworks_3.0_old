@@ -38,10 +38,10 @@
 				WorkInstance workInstance = taskInstance
 						.getWorkInstance();
 				Work work = workInstance.getWork();
-				String targetContent = SmartWorks
+				String targetContent = smartWorks
 						.getTargetContentByWorkType(work.getType(),
 								SmartWorks.SPACE_TYPE_TASK_INSTANCE);
-				String contextId = SmartWorks
+				String contextId = smartWorks
 						.getContextPrefixByWorkType(work.getType(),
 								SmartWorks.SPACE_TYPE_TASK_INSTANCE)
 						+ taskInstance.getId();

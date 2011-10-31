@@ -32,12 +32,12 @@
 		thisUser = smartWorks.getCurrentUser();
 	}
 	/*
-	 if(SmartWorks.isSameContextPrefix(SmartWorks.CONTEXT_PREFIX_GROUP_SPACE, navContext)){
-	 thisGroup = SmartWorks.getGroupById(SmartWorks.getSpaceIdFromContentContext(navContext));
-	 }else if(SmartWorks.isSameContextPrefix(SmartWorks.CONTEXT_PREFIX_DEPARTMENT_SPACE, navContext)){
-	 thisDepartment = SmartWorks.getDepartmentById(SmartWorks.getSpaceIdFromContentContext(navContext));		
-	 }else if(SmartWorks.isSameContextPrefix(SmartWorks.CONTEXT_PREFIX_USER_SPACE, navContext)){
-	 thisUser = SmartWorks.getUserById(SmartWorks.getSpaceIdFromContentContext(navContext));
+	 if(smartWorks.isSameContextPrefix(SmartWorks.CONTEXT_PREFIX_GROUP_SPACE, navContext)){
+	 thisGroup = smartWorks.getGroupById(smartWorks.getSpaceIdFromContentContext(navContext));
+	 }else if(smartWorks.isSameContextPrefix(SmartWorks.CONTEXT_PREFIX_DEPARTMENT_SPACE, navContext)){
+	 thisDepartment = smartWorks.getDepartmentById(smartWorks.getSpaceIdFromContentContext(navContext));		
+	 }else if(smartWorks.isSameContextPrefix(SmartWorks.CONTEXT_PREFIX_USER_SPACE, navContext)){
+	 thisUser = smartWorks.getUserById(smartWorks.getSpaceIdFromContentContext(navContext));
 	 */
 %>
 

@@ -36,7 +36,7 @@
 				targetContent = "swork_space.sw";
 			}
 			if (workSpaceId != null
-					&& !workSpaceId.equals(SmartWorks.getCurrentUser()
+					&& !workSpaceId.equals(smartWorks.getCurrentUser()
 							.getId())) {
 				classType = "";
 			} else {

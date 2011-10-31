@@ -35,10 +35,10 @@
 					|| commentsInstance.getCommentsType() == CommentsInstance.COMMENTS_TYPE_ON_WORK_MANUAL) {
 				work = commentsInstance.getWork();
 				owner = commentsInstance.getOwner();
-				targetContent = SmartWorks
+				targetContent = smartWorks
 						.getTargetContentByWorkType(work.getType(),
 								SmartWorks.SPACE_TYPE_WORK_LIST);
-				instContext = SmartWorks
+				instContext = smartWorks
 						.getContextPrefixByWorkType(work.getType(),
 								SmartWorks.SPACE_TYPE_WORK_LIST)
 						+ work.getId();
