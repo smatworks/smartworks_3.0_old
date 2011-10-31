@@ -1,3 +1,4 @@
+<%@page import="net.smartworks.util.SmartUtil"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -10,15 +11,14 @@
 
 <%
 	ISmartWorks smartWorks = (ISmartWorks) request.getAttribute("smartWorks");
-	User currentUser = smartWorks.getCurrentUser();
+	User currentUser = SmartUtil.getCurrentUser();
 %>
 <fmt:setLocale value="<%=currentUser.getLocale() %>" scope="request" />
 <fmt:setBundle basename="resource.smartworksMessage" scope="request" />
 
 <%
 	String strNoticeType = request.getParameter("noticeType");
-	int noticeType = (strNoticeType == null) ? Notice.TYPE_INVALID
-			: Integer.parseInt(strNoticeType);
+	int noticeType = (strNoticeType == null) ? Notice.TYPE_INVALID : Integer.parseInt(strNoticeType);
 %>
 <ul>
 	<%
