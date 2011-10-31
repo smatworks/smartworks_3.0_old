@@ -12,6 +12,9 @@ import net.smartworks.util.LocaleInfo;
 import net.smartworks.util.SmartTest;
 import net.smartworks.util.SmartUtil;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class CalendarServiceImpl implements ICalendarService {
 	/*
 	 * (non-Javadoc)

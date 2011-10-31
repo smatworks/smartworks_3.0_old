@@ -8,6 +8,9 @@ import net.smartworks.util.LocalDate;
 import net.smartworks.util.SmartTest;
 import net.smartworks.util.SmartUtil;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class WorkInstanceServiceImpl implements IWorkInstanceService {
 	/*
 	 * (non-Javadoc)

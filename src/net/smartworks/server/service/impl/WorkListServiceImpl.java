@@ -5,6 +5,9 @@ import net.smartworks.model.work.WorkCategory;
 import net.smartworks.server.service.IWorkListService;
 import net.smartworks.util.SmartTest;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class WorkListServiceImpl implements IWorkListService {
 
 	/*
