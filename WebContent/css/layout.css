@@ -9,6 +9,8 @@ body, #nav {background: url("../images/bg_body.jpg");}
 #header a:hover, #header a:focus, #header a:active {color:#FFF;}
 #nav .current {color:#FFF; text-decoration:underline; font-weight:bold;}
 
+#content a:hover, #content a:focus, #content a:active, #content a:link, #content a:visited {color: #333333; text-decoration:underline;}
+
 /*Header*/
 #header {background: url("../images/header_bg.jpg") repeat scroll left top transparent; height:34px; width:100%; z-index:40; position:relative; }
 
@@ -148,7 +150,9 @@ body, #nav {background: url("../images/bg_body.jpg");}
 #board {width:728px; height:20px;}
 
 /* UpLoad*/
-#upload {margin:10px 0; height:50px; width:100%; position:relative;}
+#upload {margin:10px 0; width:100%;}
+#upload ul a:hover, #upload ul a:focus, #upload ul a:active, #upload ul a:link, #upload ul a:visited {color: #333333; text-decoration:none;}
+#upload ul {height:22px;}
 #upload li {float:left; padding-right:9px;}
 
 .up_works a {background: url("../images/header_nico.png") no-repeat -4px -155px; width:39px; height:22px; padding:4px 0 3px 26px; display:block;}
@@ -181,16 +185,26 @@ body, #nav {background: url("../images/bg_body.jpg");}
 .up_board a.current:hover 
 {background: url("../images/header_nico.png") no-repeat -322px -190px; height:22px; padding:4px 0 3px 28px; display:block; font-weight:bold;}
 
-.up_warp {padding-right:100px; position:relative;}
+.up_size {height:35px;}
+.up_warp {position:relative; padding:0 77px 0 0;}
 .up_form {position:relative;}
-.up {border:1px solid #C7C7C7; position:absolute; left:0px; top:27px; width:100%; height:20px; background: none repeat scroll 0 0 #FFFFFF; vertical-align:middle;}
+.up {border:1px solid #C7C7C7; position:absolute; left:0px; width:100%; height:20px; background: none repeat scroll 0 0 #FFFFFF; vertical-align:middle;}
 .up_point {background: url("../images/up_point.gif") no-repeat left top; width:11px; height:7px;}
 
-.posit_works {left:15px; top:22px; position:relative; z-index:20;}
-.posit_file {left:95px; top:22px; position:relative; z-index:20;}
-.posit_event {left:165px; top:22px; position:relative; z-index:20;}
-.posit_memo {left:225px; top:22px; position:relative; z-index:20;}
-.posit_board {left:285px; top:22px; position:relative; z-index:20;}
+.btn_posi {position:absolute; right:0;}
+
+.ext_txt_btn {position:absolute; right:10px; font-family:'돋움',Dotum; font-size: 11px;}
+.ext_txt_btn div { float:left; margin-left:8px;}
+.ext_txt_btn .current { font-weight:bold;}
+
+.form_works {background: none repeat scroll 0 0 #FFFFFF; border: 1px solid #C7C7C7; height:100%; margin-top: 20px; padding:5px;}
+
+
+.posit_works {left:15px; top:0; position:relative; z-index:20;}
+.posit_file {left:95px; top:0; position:relative; z-index:20;}
+.posit_event {left:165px; top:0; position:relative; z-index:20;}
+.posit_memo {left:225px; top:0; position:relative; z-index:20;}
+.posit_board {left:285px; top:0; position:relative; z-index:20;}
 
 
 /*라운드 포틀릿*/
@@ -272,7 +286,7 @@ body, #nav {background: url("../images/bg_body.jpg");}
 .ico_division_s {background: url("../images/ico_division_s.gif") no-repeat scroll 0 0 transparent; padding:0 0 0 21px; color:#23579e;}
 
 /* Button */
-.btn {background-color:#666666; float:right; height:22px; position:relative;}
+.btn {background-color:#666666; float:right; height:22px; position:absolute;}
 .Btn01Start {background: url("../images/btn_bg_left.jpg") repeat scroll 0 0 transparent;
 			 float:left; height:22px; width:5px;}
 .Btn01Center {background: url("../images/btn_bg_center.jpg") repeat scroll 0 0 transparent;
