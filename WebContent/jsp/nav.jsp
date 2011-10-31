@@ -4,8 +4,7 @@
 <%@ page import="net.smartworks.*"%>
 <%@ page import="net.smartworks.model.community.*" %>
 <%
-	SmartWorks smartWorks = (SmartWorks) request
-			.getAttribute("smartWorks");
+	SmartWorks smartWorks = (SmartWorks) request.getAttribute("smartWorks");
 	User cUser = smartWorks.getCurrentUser();
 	String cid = request.getParameter("cid");
 	if (cid == null)
@@ -20,8 +19,8 @@
 	<jsp:include page="/jsp/nav/space_profile.jsp"/></div>
 
 <%
-	if (SmartWorks.isCommunitySpaceContextType(cid)){
-		if(!SmartWorks.isSameContextPrefix(SmartWorks.CONTEXT_PREFIX_USER_SPACE, cid)){
+	if (smartWorks.isCommunitySpaceContextType(cid)){
+		if(!smartWorks.isSameContextPrefix(SmartWorks.CONTEXT_PREFIX_USER_SPACE, cid)){
 		%>
 		<div class="nav_list">
 			<jsp:include page="/jsp/nav/community_members.jsp"/>

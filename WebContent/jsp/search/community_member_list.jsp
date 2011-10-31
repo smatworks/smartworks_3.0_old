@@ -5,7 +5,7 @@
 	SmartWorks smartWorks = (SmartWorks) request
 			.getAttribute("smartWorks");
 	String key = request.getParameter("key");
-	User[] users = smartWorks.searchCommunityMemberList(SmartWorks
+	User[] users = smartWorks.searchCommunityMemberList(smartWorks
 			.getCurrentUser().getId(), key);
 %>
 

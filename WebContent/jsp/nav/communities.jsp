@@ -11,7 +11,7 @@
 			<input id="" class="input js_auto_complete" type="text"
 				title="<fmt:message key='search.search_people_depart_group'/>"
 				placeholder="<fmt:message key='search.search_people_depart_group'/>"
-				href="jsp/search/community_list.jsp">
+				href="community_list.sw">
 			<button title="<fmt:message key='search.search'/>" onclick=""></button>
 		</div>
 		<div style="display: none"></div>
@@ -22,9 +22,9 @@
 <div class='navi_list js_collapsible'>
 	<!-- 내부 메뉴 -->
 	<div class="categ_link js_tab_com">
-		<a href="jsp/nav/my_departments.jsp" class="current"><fmt:message
+		<a href="my_departments.sw" class="current"><fmt:message
 				key="nav.communities.my_departments" /> </a> <a
-			href="jsp/nav/my_groups.jsp"><fmt:message
+			href="my_groups.sw"><fmt:message
 				key="nav.communities.my_groups" /> </a>
 	</div>
 	<div id='my_communities'>

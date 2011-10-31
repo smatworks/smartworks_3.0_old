@@ -1,15 +1,14 @@
 package net.smartworks;
 
-import java.util.Locale;
 import java.util.StringTokenizer;
 
+import net.smartworks.model.calendar.CompanyCalendar;
+import net.smartworks.model.calendar.CompanyEvent;
+import net.smartworks.model.calendar.WorkHour;
 import net.smartworks.model.community.Department;
 import net.smartworks.model.community.Group;
 import net.smartworks.model.community.User;
 import net.smartworks.model.community.WorkSpace;
-import net.smartworks.model.calendar.CompanyEvent;
-import net.smartworks.model.calendar.CompanyCalendar;
-import net.smartworks.model.calendar.WorkHour;
 import net.smartworks.model.instance.AsyncMessageInstance;
 import net.smartworks.model.instance.BoardInstance;
 import net.smartworks.model.instance.CommentsInstance;
@@ -25,8 +24,8 @@ import net.smartworks.model.work.SocialWork;
 import net.smartworks.model.work.Work;
 import net.smartworks.model.work.WorkCategory;
 import net.smartworks.server.service.ICommunityService;
-import net.smartworks.util.LocaleInfo;
 import net.smartworks.util.LocalDate;
+import net.smartworks.util.LocaleInfo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -82,7 +81,7 @@ public class SmartWorks {
 	public static String CONTEXT_PREFIX_PWORK_TASK = "pw.ts.";
 	public static String CONTEXT_PREFIX_SWORK_TASK = "sw.ts.";
 
-	public static boolean isSameContextPrefix(String contextPrefix,
+	public boolean isSameContextPrefix(String contextPrefix,
 			String contextId) throws Exception {
 		if (contextPrefix == null || contextId == null
 				|| contextPrefix.length() >= contextId.length())
@@ -93,7 +92,7 @@ public class SmartWorks {
 		return false;
 	}
 
-	public static boolean isWorkContextType(String contextId) throws Exception {
+	public boolean isWorkContextType(String contextId) throws Exception {
 		if (contextId == null || contextId.length() < 3)
 			return false;
 		if (contextId.substring(0, 3).equals("iw.")
@@ -111,7 +110,7 @@ public class SmartWorks {
 		return false;
 	}
 
-	public static boolean isWorkSpaceContextType(String contextId)
+	public boolean isWorkSpaceContextType(String contextId)
 			throws Exception {
 		if (contextId == null || contextId.length() < 6)
 			return false;
@@ -128,7 +127,7 @@ public class SmartWorks {
 		return false;
 	}
 
-	public static boolean isTaskSpaceContextType(String contextId)
+	public boolean isTaskSpaceContextType(String contextId)
 			throws Exception {
 		if (contextId == null || contextId.length() < 6)
 			return false;
@@ -139,7 +138,7 @@ public class SmartWorks {
 		return false;
 	}
 
-	public static boolean isCommunitySpaceContextType(String contextId)
+	public boolean isCommunitySpaceContextType(String contextId)
 			throws Exception {
 		if (contextId == null || contextId.length() < 6)
 			return false;
@@ -157,36 +156,35 @@ public class SmartWorks {
 		return contentContext.substring(SmartWorks.CONTEXT_PREFIX_LENGTH);
 	}
 	
-	public static WorkSpace getWorkSpaceById(String workSpaceId)
+	public WorkSpace getWorkSpaceById(String workSpaceId)
 			throws Exception {
 		WorkSpace workSpace = null;
 
-		Department[] departments = SmartWorks.getMyDepartments(SmartWorks
-				.getCurrentUser().getId());
+		Department[] departments = getMyDepartments(getCurrentUser().getId());
 		for (Department department : departments) {
 			if (department.getId().equals(workSpaceId))
 				return department;
 		}
-		Group[] groups = SmartWorks.getMyGroups(SmartWorks.getCurrentUser()
+		Group[] groups = getMyGroups(getCurrentUser()
 				.getId());
 		for (Group group : groups) {
 			if (group.getId().equals(workSpaceId))
 				return group;
 		}
 
-		if (SmartWorks.getUser1().getId().equals(workSpaceId))
-			return SmartWorks.getUser1();
-		if (SmartWorks.getUser2().getId().equals(workSpaceId))
-			return SmartWorks.getUser2();
-		if (SmartWorks.getUser3().getId().equals(workSpaceId))
-			return SmartWorks.getUser3();
-		if (SmartWorks.getCurrentUser().getId().equals(workSpaceId))
-			return SmartWorks.getCurrentUser();
+		if (getUser1().getId().equals(workSpaceId))
+			return getUser1();
+		if (getUser2().getId().equals(workSpaceId))
+			return getUser2();
+		if (getUser3().getId().equals(workSpaceId))
+			return getUser3();
+		if (getCurrentUser().getId().equals(workSpaceId))
+			return getCurrentUser();
 
 		return workSpace;
 	}
 
-	public static String getContextPrefixByWorkType(int smartWorkType,
+	public String getContextPrefixByWorkType(int smartWorkType,
 			int spaceType) throws Exception {
 
 		if (spaceType == SmartWorks.SPACE_TYPE_WORK_LIST) {
@@ -214,7 +212,7 @@ public class SmartWorks {
 		return null;
 	}
 
-	public static String getTargetContentByWorkType(int smartWorkType,
+	public String getTargetContentByWorkType(int smartWorkType,
 			int spaceType) throws Exception {
 
 		if (spaceType == SmartWorks.SPACE_TYPE_WORK_LIST) {
@@ -243,13 +241,13 @@ public class SmartWorks {
 		return null;
 	}
 
-	public static String[] getBroadcastingMessages()
+	public String[] getBroadcastingMessages()
 			throws Exception {
 		return new String[] {"오늘 시스템 작업예정으로 오후 5시부터 한시간 동안 시스템을 사용할 수 없으니, 업무진행에 착오없으시길 바랍니다. -- 기술연구소 ---",
 						 "금일 전체회식에 전원참석하여 좋은 친목의 시간이 되기를 바랍니다. --- 경영 기획팀 ----"};
 	}
 	
-	public static CompanyCalendar[] getCompanyCalendars(LocalDate fromDate, int days) throws Exception{
+	public CompanyCalendar[] getCompanyCalendars(LocalDate fromDate, int days) throws Exception{
 		CompanyCalendar cc1 = new CompanyCalendar(new LocalDate(), new CompanyEvent[]{getCompanyEvent1(), getCompanyEvent2()}, new WorkHour());
 		CompanyCalendar cc2 = new CompanyCalendar(new LocalDate((new LocalDate()).getTime()+LocalDate.ONE_DAY), new CompanyEvent[]{getCompanyEvent2()}, new WorkHour());
 		CompanyCalendar cc3 = new CompanyCalendar(new LocalDate((new LocalDate()).getTime()+LocalDate.ONE_DAY*2), new CompanyEvent[]{getCompanyEvent1()}, new WorkHour());
@@ -260,11 +258,11 @@ public class SmartWorks {
 		
 	}
 	
-	public static CompanyCalendar[] getCompanyCalendars(LocalDate fromDate, LocalDate toDate) throws Exception{
+	public CompanyCalendar[] getCompanyCalendars(LocalDate fromDate, LocalDate toDate) throws Exception{
 		return null;
 	}
 
-	public static EventInstance[] getEventInstances(LocalDate fromDate, int days) throws Exception{
+	public EventInstance[] getEventInstances(LocalDate fromDate, int days) throws Exception{
 		LocalDate time1 = new LocalDate(); time1.plusToGMTTime(-1*LocalDate.ONE_HOUR);
 		LocalDate time2 = new LocalDate(); time2.plusToGMTTime(LocalDate.ONE_HOUR);		
 		LocalDate time3 = new LocalDate(); time3.plusToGMTTime(3*LocalDate.ONE_HOUR);
@@ -301,11 +299,11 @@ public class SmartWorks {
 		return new EventInstance[] {event1, event2, event3, event4, event5};
 	}
 	
-	public static EventInstance[] getEventInstances(LocalDate fromDate, LocalDate toDate) throws Exception{
+	public EventInstance[] getEventInstances(LocalDate fromDate, LocalDate toDate) throws Exception{
 		return null;
 	}
 
-	public static BoardInstance[] getBoardInstances(LocalDate fromDate, int days) throws Exception{
+	public BoardInstance[] getBoardInstances(LocalDate fromDate, int days) throws Exception{
 		LocalDate time1 = new LocalDate(); time1.plusToGMTTime(-(1*LocalDate.ONE_HOUR));
 		LocalDate time2 = new LocalDate(); time2.plusToGMTTime(-(LocalDate.ONE_HOUR));		
 		LocalDate time3 = new LocalDate(); time3.plusToGMTTime(-(3*LocalDate.ONE_HOUR));
@@ -333,11 +331,11 @@ public class SmartWorks {
 		return new BoardInstance[] {board1, board2, board3, board4, board5, board6, board7, board8, board9, board10};
 	}
 	
-	public static BoardInstance[] getBoardInstances(LocalDate fromDate, LocalDate toDate) throws Exception{
+	public BoardInstance[] getBoardInstances(LocalDate fromDate, LocalDate toDate) throws Exception{
 		return null;
 	}
 
-	private static CompanyEvent getCompanyEvent1(){
+	private CompanyEvent getCompanyEvent1(){
 		CompanyEvent event = new CompanyEvent("companyevent1", "창립기념일");
 		event.setIsHoliday(false);
 		event.setPlannedStart(new LocalDate());
@@ -345,7 +343,7 @@ public class SmartWorks {
 		return event;
 	}
 	
-	private static CompanyEvent getCompanyEvent2(){
+	private CompanyEvent getCompanyEvent2(){
 		CompanyEvent event = new CompanyEvent("companyevent2", "크리스마스");
 		event.setIsHoliday(true);
 		event.setPlannedStart(new LocalDate());
@@ -355,7 +353,7 @@ public class SmartWorks {
 		return event;
 	}
 	
-	public static CompanyCalendar getCompanyEventBox(LocalDate date) throws Exception{
+	public CompanyCalendar getCompanyEventBox(LocalDate date) throws Exception{
 		CompanyCalendar eventBox = new CompanyCalendar();
 		eventBox.setDate(date);
 		CompanyEvent event1 = new CompanyEvent();
@@ -364,20 +362,20 @@ public class SmartWorks {
 		
 	}
 
-	public static SmartWork[] getMyFavoriteWorks(String userId)
+	public SmartWork[] getMyFavoriteWorks(String userId)
 			throws Exception {
 
 		return new SmartWork[] { getSmartWork1(), getSmartWork2(),
 				getSmartWork3() };
 	}
 
-	public static WorkCategory[] getMyWorkCategories(String userId)
+	public WorkCategory[] getMyWorkCategories(String userId)
 			throws Exception {
 
 		return new WorkCategory[] { getWorkCategory1(), getWorkCategory2() };
 	}
 
-	public static SmartWork[] getMyAllWorksByCategoryId(String userId,
+	public SmartWork[] getMyAllWorksByCategoryId(String userId,
 			String categoryId) throws Exception {
 
 		SmartWork[] smartWorks = new SmartWork[] { getSmartWork1(),
@@ -400,27 +398,27 @@ public class SmartWorks {
 		return resultWorks;
 	}
 
-	public static SmartWork[] getMyAllWorksByGroupId(String userId,
+	public SmartWork[] getMyAllWorksByGroupId(String userId,
 			String groupId) throws Exception {
 
 		return new SmartWork[] { getSmartWork7(), getSmartWork8(),
 				getSmartWork9() };
 	}
 
-	public static WorkInstance[] getMyRecentInstances(String userId)
+	public WorkInstance[] getMyRecentInstances(String userId)
 			throws Exception {
 
 		return new WorkInstance[] { getWorkInstance1(), getWorkInstance2(),
 				getWorkInstance3(), getWorkInstance4(), getWorkInstance5() };
 	}
 
-	public static Department[] getMyDepartments(String userId) throws Exception {
+	public Department[] getMyDepartments(String userId) throws Exception {
 		return new Department[] { getDepartment1(), getDepartment2(),
 				getDepartment3(), getDepartment4() };
 
 	}
 
-	public static Department getDepartmentById(String departId)
+	public Department getDepartmentById(String departId)
 			throws Exception {
 		Department[] departments = getMyDepartments(getCurrentUser().getId());
 		for (int i = 0; i < departments.length; i++) {
@@ -431,11 +429,11 @@ public class SmartWorks {
 
 	}
 
-	public static Group[] getMyGroups(String userId) throws Exception {
+	public Group[] getMyGroups(String userId) throws Exception {
 		return new Group[] { getGroup1(), getGroup2(), getGroup3() };
 	}
 
-	public static Group getGroupById(String groupId) throws Exception {
+	public Group getGroupById(String groupId) throws Exception {
 		Group[] groups = getMyGroups(getCurrentUser().getId());
 		for (int i = 0; i < groups.length; i++) {
 			if (groups[i].getId().equals(groupId))
@@ -445,7 +443,7 @@ public class SmartWorks {
 
 	}
 
-	public static User getCurrentUser() throws Exception {
+	public User getCurrentUser() throws Exception {
 		User user = new User();
 		user.setId("jisook@maninsoft.co.kr");
 		user.setName("김지숙");
@@ -462,7 +460,7 @@ public class SmartWorks {
 		return user;
 	}
 
-	public static User getUserById(String userId) throws Exception {
+	public User getUserById(String userId) throws Exception {
 		if (getCurrentUser().getId().equals(userId))
 			return getCurrentUser();
 		else if (getUser1().getId().equals(userId))
@@ -472,53 +470,53 @@ public class SmartWorks {
 		return getCurrentUser();
 	}
 
-	public static SmartWork[] searchWorkList(String user, String key)
+	public SmartWork[] searchWorkList(String user, String key)
 			throws Exception {
-		return SmartWorks.getMyFavoriteWorks(user);
+		return getMyFavoriteWorks(user);
 	}
 
-	public static WorkSpace[] searchCommunityList(String user, String key)
+	public WorkSpace[] searchCommunityList(String user, String key)
 			throws Exception {
-		WorkSpace[] comms = new WorkSpace[] { SmartWorks.getMyGroups(user)[0],
-				SmartWorks.getUser1(), SmartWorks.getMyDepartments(user)[1],
-				SmartWorks.getUser2() };
+		WorkSpace[] comms = new WorkSpace[] { getMyGroups(user)[0],
+				getUser1(), getMyDepartments(user)[1],
+				getUser2() };
 		return comms;
 
 	}
 
-	public static User[] searchCommunityMemberList(String user, String key)
+	public User[] searchCommunityMemberList(String user, String key)
 			throws Exception {
-		User[] users = new User[] { SmartWorks.getUser1(),
-				SmartWorks.getUser2() };
+		User[] users = new User[] { getUser1(),
+				getUser2() };
 		return users;
 
 	}
 
-	public static User[] getAvailableChatter() throws Exception {
-		User[] chatters = new User[] { SmartWorks.getUser2(),
-				SmartWorks.getUser1(), SmartWorks.getCurrentUser(),
-				SmartWorks.getUser2(), SmartWorks.getUser1(),
-				SmartWorks.getCurrentUser(), SmartWorks.getUser2(),
-				SmartWorks.getUser1(), SmartWorks.getCurrentUser(),
-				SmartWorks.getUser2(), SmartWorks.getUser1(),
-				SmartWorks.getCurrentUser() };
+	public User[] getAvailableChatter() throws Exception {
+		User[] chatters = new User[] { getUser2(),
+				getUser1(), getCurrentUser(),
+				getUser2(), getUser1(),
+				getCurrentUser(), getUser2(),
+				getUser1(), getCurrentUser(),
+				getUser2(), getUser1(),
+				getCurrentUser() };
 		return chatters;
 	}
 
-	public static User[] searchAvailableChatterList(String key)
+	public User[] searchAvailableChatterList(String key)
 			throws Exception {
-		User[] chatters = new User[] { SmartWorks.getUser2(),
-				SmartWorks.getUser1(), SmartWorks.getCurrentUser(),
-				SmartWorks.getUser2(), SmartWorks.getUser1(),
-				SmartWorks.getCurrentUser(), SmartWorks.getUser2(),
-				SmartWorks.getUser1(), SmartWorks.getCurrentUser(),
-				SmartWorks.getUser2(), SmartWorks.getUser1(),
-				SmartWorks.getCurrentUser() };
+		User[] chatters = new User[] { getUser2(),
+				getUser1(), getCurrentUser(),
+				getUser2(), getUser1(),
+				getCurrentUser(), getUser2(),
+				getUser1(), getCurrentUser(),
+				getUser2(), getUser1(),
+				getCurrentUser() };
 		return chatters;
 
 	}
 
-	public static EventInstance[] getCompanyEventsByDate(LocalDate date,
+	public EventInstance[] getCompanyEventsByDate(LocalDate date,
 			int maxEvents) throws Exception {
 		EventInstance[] events = new EventInstance[] {
 
@@ -526,7 +524,7 @@ public class SmartWorks {
 		return events;
 	}
 
-	public static EventInstance[] getMyEventsByDate(String userId, LocalDate date,
+	public EventInstance[] getMyEventsByDate(String userId, LocalDate date,
 			int maxEvents) throws Exception {
 		EventInstance[] events = new EventInstance[] {
 
@@ -534,7 +532,7 @@ public class SmartWorks {
 		return events;
 	}
 
-	public static Notice[] getNoticesForMe(String userId) throws Exception {
+	public Notice[] getNoticesForMe(String userId) throws Exception {
 		return new Notice[] { new Notice(Notice.TYPE_NOTIFICATION, 1),
 				new Notice(Notice.TYPE_MESSAGE, 0),
 				new Notice(Notice.TYPE_COMMENTS, 29),
@@ -543,7 +541,7 @@ public class SmartWorks {
 				new Notice(Notice.TYPE_SAVEDBOX, 7) };
 	}
 
-	public static NoticeBox getNoticeBoxForMe10(int noticeType,
+	public NoticeBox getNoticeBoxForMe10(int noticeType,
 			LocalDate lastNotice) throws Exception {
 		if (noticeType == Notice.TYPE_NOTIFICATION) {
 			NoticeBox noticeBox = new NoticeBox();
@@ -603,7 +601,7 @@ public class SmartWorks {
 	}
 
 	/*
-	 * public static Date getLocalDate(Date utcDate) throws Exception{ User
+	 * public Date getLocalDate(Date utcDate) throws Exception{ User
 	 * currentUser = getCurrentUser(); Calendar cal = Calendar.getInstance();
 	 * cal.setTimeZone(currentUser.getTimeZone()); cal.setTime(utcDate); return
 	 * cal.getTime(); }
@@ -613,7 +611,7 @@ public class SmartWorks {
 	// ************************** 테스트용 데이터
 	// ******************************************//
 
-	private static User getUser1() throws Exception {
+	private User getUser1() throws Exception {
 		User user = new User();
 		user.setId("kmyu@maninsoft.co.kr");
 		user.setName("유광민");
@@ -630,7 +628,7 @@ public class SmartWorks {
 		return user;
 	}
 
-	private static User getUser2() throws Exception {
+	private User getUser2() throws Exception {
 		User user = new User();
 		user.setId("hsshin@maninsoft.co.kr");
 		user.setName("신현성");
@@ -647,7 +645,7 @@ public class SmartWorks {
 		return user;
 	}
 
-	private static User getUser3() throws Exception {
+	private User getUser3() throws Exception {
 		User user = new User();
 		user.setId("hjlee@maninsoft.co.kr");
 		user.setName("이현정");
@@ -664,122 +662,122 @@ public class SmartWorks {
 		return user;
 	}
 
-	private static WorkCategory getWorkCategory1() throws Exception {
+	private WorkCategory getWorkCategory1() throws Exception {
 		return new WorkCategory("cat1", "공통업무");
 	}
 
-	private static WorkCategory getWorkCategory2() throws Exception {
+	private WorkCategory getWorkCategory2() throws Exception {
 		return new WorkCategory("cat2", "영업관리");
 	}
 
-	private static SmartWork getSmartWork1() throws Exception {
+	private SmartWork getSmartWork1() throws Exception {
 		return new SmartWork("work1", "근태품의", SmartWork.TYPE_PROCESS, "",
 				getWorkCategory1());
 	}
 
-	private static SmartWork getSmartWork2() throws Exception {
+	private SmartWork getSmartWork2() throws Exception {
 		return new SmartWork("work2", "회의록", SmartWork.TYPE_INFORMATION,
 				"", getWorkCategory1());
 	}
 
-	private static SmartWork getSmartWork3() throws Exception {
+	private SmartWork getSmartWork3() throws Exception {
 		return new SmartWork("work3", "구매기안", SmartWork.TYPE_PROCESS, "",
 				getWorkCategory1());
 	}
 
-	private static SmartWork getSmartWork4() throws Exception {
+	private SmartWork getSmartWork4() throws Exception {
 		return new SmartWork("work4", "제안견적프로세스", SmartWork.TYPE_PROCESS,
 				"", getWorkCategory2());
 	}
 
-	private static SmartWork getSmartWork5() throws Exception {
+	private SmartWork getSmartWork5() throws Exception {
 		return new SmartWork("work5", "영업기회", SmartWork.TYPE_INFORMATION,
 				"", getWorkCategory2());
 	}
 
-	private static SmartWork getSmartWork6() throws Exception {
+	private SmartWork getSmartWork6() throws Exception {
 		return new SmartWork("work6", "자료실", SmartWork.TYPE_GROUP, "",
 				getWorkCategory2());
 	}
 
-	private static SmartWork getSmartWork7() throws Exception {
+	private SmartWork getSmartWork7() throws Exception {
 		return new SmartWork("work11", "구매프로세스", SmartWork.TYPE_PROCESS,
 				"", getWorkCategory2());
 	}
 
-	private static SmartWork getSmartWork8() throws Exception {
+	private SmartWork getSmartWork8() throws Exception {
 		return new SmartWork("work21", "구매발주서",
 				SmartWork.TYPE_INFORMATION, "", getWorkCategory2());
 	}
 
-	private static SmartWork getSmartWork9() throws Exception {
+	private SmartWork getSmartWork9() throws Exception {
 		return new SmartWork("work31", "자재발주서", SmartWork.TYPE_PROCESS,
 				"", getWorkCategory2());
 	}
 
-	private static Group getGroup1() throws Exception {
+	private Group getGroup1() throws Exception {
 		return new Group("group1", "SmartWorks.net V3 TFT", new User[] {
 				getUser1(), getUser2() }, getUser1());
 	}
 
-	private static Group getGroup2() throws Exception {
+	private Group getGroup2() throws Exception {
 		return new Group("group2", "한라공조 협력업체 정보화시스템 고도화 프로젝트", new User[] {
 				getCurrentUser(), getUser3() }, getUser2());
 	}
 
-	private static Group getGroup3() throws Exception {
+	private Group getGroup3() throws Exception {
 		return new Group("group3", "금성출판사 그룹웨어 프로젝트",
 				new User[] { getUser2() }, getCurrentUser());
 	}
 
-	private static WorkInstance getWorkInstance1() throws Exception {
+	private WorkInstance getWorkInstance1() throws Exception {
 		return new WorkInstance("inst1", "휴가 신청합니다.", getSmartWork1(),
 				getUser1(), new LocalDate());
 	}
 
-	private static WorkInstance getWorkInstance2() throws Exception {
+	private WorkInstance getWorkInstance2() throws Exception {
 		return new WorkInstance("inst2", "스마트웍스 3.0 개발계획 회의록 입니다.",
 				getSmartWork2(), getUser1(), new LocalDate());
 	}
 
-	private static WorkInstance getWorkInstance3() throws Exception {
+	private WorkInstance getWorkInstance3() throws Exception {
 		return new WorkInstance("inst3", "노트북 구매 기안합니다.", getSmartWork3(),
 				getUser1(), new LocalDate());
 	}
 
-	private static WorkInstance getWorkInstance4() throws Exception {
+	private WorkInstance getWorkInstance4() throws Exception {
 		return new WorkInstance("inst4", "금성출판사 스마트웍스 프로젝트", getSmartWork5(),
 				getUser1(), new LocalDate());
 	}
 
-	private static WorkInstance getWorkInstance5() throws Exception {
+	private WorkInstance getWorkInstance5() throws Exception {
 		return new WorkInstance("inst5", "삼성 노트북 구매발주서", getSmartWork8(),
 				getUser3(), new LocalDate());
 	}
 
-	private static Department getDepartment1() throws Exception {
+	private Department getDepartment1() throws Exception {
 		return new Department("depart1", "(주)맨인소프트", new User[] {
 				getCurrentUser(), getUser3() }, getCurrentUser());
 	}
 
-	private static Department getDepartment2() throws Exception {
+	private Department getDepartment2() throws Exception {
 		return new Department("depart2", "대표이사", new User[] { getUser3(),
 				getUser2() }, getUser1());
 	}
 
-	private static Department getDepartment3() throws Exception {
+	private Department getDepartment3() throws Exception {
 		return new Department("depart3", "경영기획본부", new User[] { getUser2() },
 				getUser2());
 	}
 
-	private static Department getDepartment4() throws Exception {
+	private Department getDepartment4() throws Exception {
 		return new Department("depart4", "기술사업본부", new User[] { getUser1(),
 				getCurrentUser() }, getCurrentUser());
 	}
 
-	private static EventInstance getEventInstance1() throws Exception {
+	private EventInstance getEventInstance1() throws Exception {
 		EventInstance event = new EventInstance("event1", "한라공조 협력업체 설명회",
-				new Work("work1", "개인일정"), SmartWorks.getCurrentUser(),
+				new Work("work1", "개인일정"), getCurrentUser(),
 				new LocalDate());
 		event.setStart(new LocalDate());
 		event.setEnd(new LocalDate());
@@ -787,23 +785,23 @@ public class SmartWorks {
 
 	}
 
-	private static TaskInstance getTaskInstance1() throws Exception {
+	private TaskInstance getTaskInstance1() throws Exception {
 		TaskInstance taskInstance = new TaskInstance("taskInstance1", "대표이사승인",
 				TaskInstance.TASK_TYPE_PROCESSWORK_TASK_ASSIGNED,
-				SmartWorks.getUser2(), new LocalDate());
+				getUser2(), new LocalDate());
 		taskInstance.setWorkInstance(getWorkInstance1());
-		taskInstance.setAssignee(SmartWorks.getCurrentUser());
+		taskInstance.setAssignee(getCurrentUser());
 		return taskInstance;
 	}
 
-	private static NoticeMessage getNotificationMessage(int noticeType)
+	private NoticeMessage getNotificationMessage(int noticeType)
 			throws Exception {
 
 		NoticeMessage notice1, notice2, notice3, notice4, notice5;
 		if (noticeType == NoticeMessage.TYPE_SYSTEM_NOTICE) {
 			notice1 = new NoticeMessage("notice1",
 					NoticeMessage.TYPE_SYSTEM_NOTICE,
-					SmartWorks.getUser1(), new LocalDate());
+					getUser1(), new LocalDate());
 			notice1.setMessage("금주 주말(토요일, 일요일)에 시스템 정기점검을 실시하는 관계를 시스템을 1시간 가량 사용할 수 없으니 이점 양해 바랍니다.");
 			return notice1;
 		}
@@ -811,14 +809,14 @@ public class SmartWorks {
 		if (noticeType == NoticeMessage.TYPE_EVENT_ALARM) {
 			notice2 = new NoticeMessage("notic2",
 					NoticeMessage.TYPE_EVENT_ALARM,
-					SmartWorks.getUser2(), new LocalDate());
+					getUser2(), new LocalDate());
 			notice2.setEvent(getEventInstance1());
 			return notice2;
 		}
 		if (noticeType == NoticeMessage.TYPE_TASK_DELAYED) {
 			notice3 = new NoticeMessage("notice3",
 					NoticeMessage.TYPE_TASK_DELAYED,
-					SmartWorks.getCurrentUser(), new LocalDate());
+					getCurrentUser(), new LocalDate());
 			notice3.setInstance(getTaskInstance1());
 			return notice3;
 		}
@@ -826,7 +824,7 @@ public class SmartWorks {
 		if (noticeType == NoticeMessage.TYPE_JOIN_REQUEST) {
 			notice4 = new NoticeMessage("notice4",
 					NoticeMessage.TYPE_JOIN_REQUEST,
-					SmartWorks.getUser1(), new LocalDate());
+					getUser1(), new LocalDate());
 			notice4.setGroup(getGroup1());
 			notice4.setMessage("님이 커뮤너티에 가입을 신청하셨습니다.");
 			return notice4;
@@ -834,7 +832,7 @@ public class SmartWorks {
 		if (noticeType == NoticeMessage.TYPE_INSTANCE_CREATED) {
 			notice5 = new NoticeMessage("notice5",
 					NoticeMessage.TYPE_INSTANCE_CREATED,
-					SmartWorks.getUser1(), new LocalDate());
+					getUser1(), new LocalDate());
 			notice5.setInstance(getWorkInstance1());
 			notice5.setMessage("새로운 업무를 등록하였습니다..");
 			return notice5;
@@ -843,29 +841,29 @@ public class SmartWorks {
 
 	}
 
-	private static NoticeMessage[] getNotificationMessages() throws Exception {
+	private NoticeMessage[] getNotificationMessages() throws Exception {
 
 		NoticeMessage notice1, notice2, notice3, notice4, notice5;
 		notice1 = new NoticeMessage("notice1",
 				NoticeMessage.TYPE_SYSTEM_NOTICE,
-				SmartWorks.getUser1(), new LocalDate());
+				getUser1(), new LocalDate());
 		notice1.setMessage("금주 주말(토요일, 일요일)에 시스템 정기점검을 실시하는 관계를 시스템을 1시간 가량 사용할 수 없으니 이점 양해 바랍니다.");
 		notice2 = new NoticeMessage("notic2",
 				NoticeMessage.TYPE_EVENT_ALARM,
-				SmartWorks.getUser2(), new LocalDate());
+				getUser2(), new LocalDate());
 		notice2.setEvent(getEventInstance1());
 		notice3 = new NoticeMessage("notice3",
 				NoticeMessage.TYPE_TASK_DELAYED,
-				SmartWorks.getCurrentUser(), new LocalDate());
+				getCurrentUser(), new LocalDate());
 		notice3.setInstance(getTaskInstance1());
 		notice4 = new NoticeMessage("notice4",
 				NoticeMessage.TYPE_JOIN_REQUEST,
-				SmartWorks.getUser1(), new LocalDate());
+				getUser1(), new LocalDate());
 		notice4.setGroup(getGroup1());
 		notice4.setMessage("님이 커뮤너티에 가입을 신청하셨습니다.");
 		notice5 = new NoticeMessage("notice5",
 				NoticeMessage.TYPE_INSTANCE_CREATED,
-				SmartWorks.getUser1(), new LocalDate());
+				getUser1(), new LocalDate());
 		notice5.setInstance(getWorkInstance1());
 		notice5.setMessage("새로운 업무를 등록하였습니다..");
 		return new NoticeMessage[] { notice1, notice2, notice3, notice4,
@@ -873,25 +871,25 @@ public class SmartWorks {
 
 	}
 
-	private static NoticeMessage[] getMessageMessages() throws Exception {
+	private NoticeMessage[] getMessageMessages() throws Exception {
 
 		NoticeMessage notice1, notice2, notice3, notice4, notice5;
 		AsyncMessageInstance messageInstance1 = new AsyncMessageInstance(
 				"message1", getUser1(), new LocalDate(), "안녕하세요?  잘지내시죠??? ㅎㅎㅎ");
-		notice1 = new NoticeMessage("notice21", 0, SmartWorks.getUser1(),
+		notice1 = new NoticeMessage("notice21", 0, getUser1(),
 				new LocalDate());
 		notice1.setInstance(messageInstance1);
 
 		AsyncMessageInstance messageInstance2 = new AsyncMessageInstance(
 				"message2", getUser2(), new LocalDate(),
 				"일간 한번 찾아뵙겠습니다. 그동안 몇번 연락드렸었는데, 연락이 안되던데요???");
-		notice2 = new NoticeMessage("notice22", 0, SmartWorks.getUser1(),
+		notice2 = new NoticeMessage("notice22", 0, getUser1(),
 				new LocalDate());
 		notice2.setInstance(messageInstance2);
 
 		AsyncMessageInstance messageInstance3 = new AsyncMessageInstance(
 				"message3", getUser3(), new LocalDate(), "누구시더라????ㅠ");
-		notice3 = new NoticeMessage("notice23", 0, SmartWorks.getUser1(),
+		notice3 = new NoticeMessage("notice23", 0, getUser1(),
 				new LocalDate());
 		notice3.setInstance(messageInstance3);
 
@@ -899,7 +897,7 @@ public class SmartWorks {
 
 	}
 
-	private static NoticeMessage[] getCommentsMessages() throws Exception {
+	private NoticeMessage[] getCommentsMessages() throws Exception {
 
 		NoticeMessage notice1, notice2, notice3, notice4, notice5;
 		CommentsInstance commentsInstance1 = new CommentsInstance("comments1",
@@ -934,7 +932,7 @@ public class SmartWorks {
 
 	}
 
-	private static NoticeMessage[] getAssignedMessages() throws Exception {
+	private NoticeMessage[] getAssignedMessages() throws Exception {
 
 		NoticeMessage notice1, notice2, notice3, notice4, notice5;
 		TaskInstance assignedInstance1 = new TaskInstance("assignedtask1",
@@ -978,7 +976,7 @@ public class SmartWorks {
 				notice5 };
 	}
 
-	private static NoticeMessage[] getMailboxMessages() throws Exception {
+	private NoticeMessage[] getMailboxMessages() throws Exception {
 
 		NoticeMessage notice1, notice2, notice3, notice4, notice5;
 		MailInstance mailInstance1 = new MailInstance("mailinst1", "하이닉스프로젝트관련 회의록입니다.", getUser3(), new LocalDate());
@@ -1002,7 +1000,7 @@ public class SmartWorks {
 		return new NoticeMessage[] { notice1, notice2, notice3};
 	}
 
-	private static NoticeMessage[] getSavedboxMessages() throws Exception {
+	private NoticeMessage[] getSavedboxMessages() throws Exception {
 
 		NoticeMessage[] mailboxNotices = getMailboxMessages();
 		

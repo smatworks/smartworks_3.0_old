@@ -10,7 +10,7 @@
 			<input id="" class="input js_auto_complete" type="text"
 				title="<fmt:message key='search.search_work'/>"
 				placeholder="<fmt:message key='search.search_work'/>"
-				href="layouts/search/work_list.jsp" />
+				href="work_list.sw" />
 			<button title="<fmt:message key='search.search'/>" onclick=""></button>
 		</div>
 		<div style="display: none"></div>
@@ -21,15 +21,15 @@
 <div class="navi_list js_collapsible">
 	<!-- 내부 메뉴 -->
 	<div class="categ_link js_tab_work">
-		<a href="jsp/nav/my_favorite_works.jsp" class="current"><fmt:message
+		<a href="my_favorite_works.sw" class="current"><fmt:message
 				key="nav.works.my_favorite_works" /> </a> <a
-			href="jsp/nav/my_recent_instances.jsp" class=""><fmt:message
+			href="my_recent_instances.sw" class=""><fmt:message
 				key="nav.works.my_recent_instances" /> </a> <a
-			href="jsp/nav/my_all_works.jsp" class=""><fmt:message
+			href="my_all_works.sw" class=""><fmt:message
 				key="nav.works.my_all_works" /> </a>
 	</div>
 	<div id='my_works'>
-		<jsp:include page="/jsp/nav/my_favorite_works.jsp" />
+		<jsp:include page="my_favorite_works.sw" />
 	</div>
 	<!--내부메뉴//-->
 </div>
