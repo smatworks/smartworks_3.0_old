@@ -20,22 +20,21 @@
 	<jsp:include page="/jsp/nav/space_profile.jsp"/></div>
 
 <%
-	if (wid == null || wid.equals(cUser.getId()) || !SmartWorks.isCommunitySpaceContextType(cid) ) {
+	if (SmartWorks.isCommunitySpaceContextType(cid)){
+		if(!SmartWorks.isSameContextPrefix(SmartWorks.CONTEXT_PREFIX_USER_SPACE, cid)){
+		%>
+		<div class="nav_list">
+			<jsp:include page="/jsp/nav/community_members.jsp"/>
+		</div>
+		<%
+		}
+	}else if (wid == null || wid.equals(cUser.getId())) {
 %>
 <div class="nav_list">
 	<jsp:include page="/jsp/nav/works.jsp"/>
 </div>
 <div class="nav_list">
 	<jsp:include page="/jsp/nav/communities.jsp"/>
-</div>
-<%
-	} else if (smartWorks.isSameContextPrefix(
-			SmartWorks.CONTEXT_PREFIX_GROUP_SPACE, cid)
-			|| smartWorks.isSameContextPrefix(
-					SmartWorks.CONTEXT_PREFIX_DEPARTMENT_SPACE, cid)) {
-%>
-<div class="nav_list">
-	<jsp:include page="/jsp/nav/community_members.jsp"/>
 </div>
 <%
 	}

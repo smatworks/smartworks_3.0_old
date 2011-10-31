@@ -2,6 +2,7 @@
 <%@ page import="net.smartworks.*"%>
 <%@ page import="net.smartworks.model.instance.*"%>
 <%@ page import="net.smartworks.model.work.*"%>
+<%@ page import="net.smartworks.model.community.*" %>
 
 <%
 	SmartWorks smartWorks = (SmartWorks) request
@@ -19,6 +20,8 @@
 		for (WorkInstance workInstance : workInstances) {
 			SmartWork work = (SmartWork) workInstance.getWork();
 			String workSpaceId = workInstance.getWorkSpace().getId();
+			User owner = workInstance.getOwner();
+			String userContext = SmartWorks.CONTEXT_PREFIX_USER_SPACE + owner.getId();
 			if (workInstance.getWork().getType() == SmartWork.TYPE_PROCESS) {
 				iconType = "ico_pworks";
 				instanceContext = SmartWorks.CONTEXT_PREFIX_PWORK_SPACE
@@ -43,8 +46,8 @@
 				classType = "js_content";
 			}
 	%>
-	<li><img src="<%=workInstance.getOwner().getMinPicture()%>"
-		border="0"><a
+	<li><a href="user_space.sw?cid=<%=userContext %>"><img src="<%=owner.getMinPicture()%>"
+		title="<%=owner.getLongName() %>" border="0"></a><a
 		href="<%=targetContent%>?cid=<%=instanceContext%>&wid=<%=workSpaceId%>"
 		class="<%=classType%>" title="<%=work.getFullpathName()%>"><%=workInstance.getSubject()%></a>
 	</li>

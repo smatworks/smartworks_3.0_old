@@ -32,7 +32,7 @@
 					+ owner.getId();
 %>
 <li><div class="info_img">
-		<a href="user_space.sw?cid=<%=instContext%>&wid=<%=owner.getId()%>"
+		<a href="user_space.sw?cid=<%=instContext%>"
 			title="<%=owner.getLongName()%>"> <img
 			src="<%=owner.getMinPicture()%>" border="0"> </a>
 	</div>

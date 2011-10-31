@@ -15,7 +15,7 @@
 					+ group.getId();
 	%>
 	<li class="ico_depart"><a
-		href="group_space.sw?cid=<%=groupContext%>&workSpaceId=<%=group.getId()%>"><%=group.getName()%></a>
+		href="group_space.sw?cid=<%=groupContext%>"><%=group.getName()%></a>
 	</li>
 	<%
 		}

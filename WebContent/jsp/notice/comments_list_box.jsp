@@ -44,7 +44,7 @@
 						+ work.getId();
 %>
 <li><div class="info_img">
-		<a href="user_space.sw?cid=<%=userContext%>&wid=<%=owner.getId()%>"
+		<a href="user_space.sw?cid=<%=userContext%>"
 			title="<%=owner.getLongName()%>"> <img
 			src="<%=owner.getMinPicture()%>" border="0"> </a>
 	</div>
@@ -72,7 +72,7 @@
 						+ workInstance.getId();
 %>
 <li><div class="info_img">
-		<a href="user_space.sw?cid=<%=userContext%>&wid=<%=owner.getId()%>"
+		<a href="user_space.sw?cid=<%=userContext%>"
 			title="<%=owner.getLongName()%>"> <img
 			src="<%=owner.getMinPicture()%>" border="0"> </a>
 	</div>
@@ -102,7 +102,7 @@
 						+ taskInstance.getWorkInstance().getId();
 %>
 <li><div class="info_img">
-		<a href="user_space.sw?cid=<%=userContext%>&wid=<%=owner.getId()%>"
+		<a href="user_space.sw?cid=<%=userContext%>"
 			title="<%=owner.getLongName()%>"> <img
 			src="<%=owner.getMinPicture()%>" border="0"> </a>
 	</div>

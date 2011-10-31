@@ -16,7 +16,7 @@
 					+ department.getId();
 	%>
 	<li class="ico_depart"><a
-		href="department_space.sw?cid=<%=departmentContext%>&wid=<%=department.getId()%>"><%=department.getName()%></a>
+		href="department_space.sw?cid=<%=departmentContext%>"><%=department.getName()%></a>
 	</li>
 	<%
 		}
