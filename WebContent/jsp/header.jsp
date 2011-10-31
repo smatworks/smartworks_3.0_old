@@ -140,8 +140,11 @@
 				key="header.global_menu.help" />
 		</a>
 	</div>
-	<a href="" onclick="$(this).next('div').toggle(); return false;"><%=currentUser.getPosition()%>
-		<%=currentUser.getName()%>▼</a>
+	<div>
+		<a href="" onclick="$(this).next('div').toggle(); return false;"><%=currentUser.getPosition()%>
+		<%=currentUser.getName()%>▼
+		</a>
+	</div>
 
 	<!-- global_menu sub -->
 	<div class="pop" style="display: none">
