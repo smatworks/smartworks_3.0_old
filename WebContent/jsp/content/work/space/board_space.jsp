@@ -16,6 +16,6 @@
 %>
 
 Content for Board Space ~!!!! contextId =
-<%=session.getAttribute("contentContext")%>
+<%=session.getAttribute("cid")%>
 workSpaceId =
 <%=session.getAttribute("wid")%>

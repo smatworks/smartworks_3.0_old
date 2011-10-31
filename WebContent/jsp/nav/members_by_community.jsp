@@ -34,7 +34,7 @@
 						+ member.getId();
 	%>
 	<li><img src="<%=member.getMinPicture()%>" border="0"> <a
-		href="user_space.sw?cid=<%=contextId%>&wid=<%=member.getId()%>"><%=member.getPosition()%>
+		href="user_space.sw?cid=<%=contextId%>"><%=member.getPosition()%>
 			<%=member.getName()%></a></li>
 	<%
 		}

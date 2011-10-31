@@ -19,24 +19,50 @@
 		<%
 			for (BoardInstance board : boards) {
 				User owner = board.getOwner();
+				String userContext = SmartWorks.CONTEXT_PREFIX_USER_SPACE
+						+ owner.getId();
+				String boardContext = SmartWorks.CONTEXT_PREFIX_BOARD_SPACE
+						+ board.getId();
 		%>
 		<li>
 			<div class="noti_pic">
-				<img src="<%=owner.getMidPicture()%>"
-					alt="<%=owner.getLongName()%>" align="bottom" />
+				<a href="user_space.sw?cid=<%=owner.getId()%>"><img
+					src="<%=owner.getMidPicture()%>" alt="<%=owner.getLongName()%>"
+					align="bottom" />
+				</a>
 			</div>
 			<div class="noti_in">
-				<span class="t_name"><%=owner.getName()%></span>
+				<a href="user_space.sw?cid=<%=userContext%>"><span
+					class="t_name"><%=owner.getName()%></span>
+				</a>
 				<%
 					if (!board.getWorkSpace().getId().equals(owner.getId())) {
+							WorkSpace workSpace = board.getWorkSpace();
+							String targetContent = null;
+							String commContext = null;
+							if (workSpace.getClass().equals(Group.class)) {
+								targetContent = "group_space.sw";
+								commContext = SmartWorks.CONTEXT_PREFIX_GROUP_SPACE
+										+ workSpace.getId();
+							} else if (workSpace.getClass().equals(Department.class)) {
+								targetContent = "department_space.sw";
+								commContext = SmartWorks.CONTEXT_PREFIX_DEPARTMENT_SPACE
+										+ workSpace.getId();
+							}
 				%>
-				<span class="arr">▶</span><span class="ico_division_s"><%=board.getWorkSpace().getName()%></span>
+				<span class="arr">▶</span><a
+					href="<%=targetContent%>?cid=<%=commContext%>"><span
+					class="ico_division_s"><%=board.getWorkSpace().getName()%></span>
+				</a>
 				<%
 					}
 				%>
 				<span class="t_date"> <%=board.getLastModifiedDate().toLocalString()%></span>
-				<span class="noti_tit"><%=board.getSubject()%></span>
-			</div></li>
+				<a href="board_space.sw?cid=<%=boardContext%>&wid=<%=owner.getId()%>"><span
+					class="noti_tit"><%=board.getSubject()%></span>
+				</a>
+			</div>
+		</li>
 		<%
 			}
 		%>

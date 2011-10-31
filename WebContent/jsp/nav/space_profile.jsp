@@ -16,8 +16,14 @@
 	Group thisGroup = null;
 	Department thisDepartment = null;
 	User thisUser = null;
-
-	if (!wid.equals(smartWorks.getCurrentUser().getId())) {
+	String spaceId = SmartWorks.getSpaceIdFromContentContext(cid);
+	if(smartWorks.isSameContextPrefix(SmartWorks.CONTEXT_PREFIX_GROUP_SPACE, cid)){
+		thisGroup = (Group)smartWorks.getWorkSpaceById(spaceId);
+	}else if(smartWorks.isSameContextPrefix(SmartWorks.CONTEXT_PREFIX_DEPARTMENT_SPACE, cid)){
+		thisDepartment = (Department)smartWorks.getWorkSpaceById(spaceId);
+	}else if(smartWorks.isSameContextPrefix(SmartWorks.CONTEXT_PREFIX_USER_SPACE, cid)){
+		thisUser = (User)smartWorks.getWorkSpaceById(spaceId);
+	}else if (!wid.equals(smartWorks.getCurrentUser().getId())) {
 		WorkSpace workSpace = smartWorks.getWorkSpaceById(wid);
 		if (workSpace == null) {
 			thisUser = smartWorks.getCurrentUser();
@@ -43,14 +49,7 @@
 
 <ul>
 	<%
-		if (thisUser != null) {
-	%>
-	<li><img src="<%=thisUser.getOrgPicture()%>"></li>
-	<li><%=thisUser.getPosition()%><br /> <b><%=thisUser.getName()%></b><br />
-		<%=thisUser.getDepartment()%><br />
-	</li>
-	<%
-		} else if (thisGroup != null) {
+		if (thisGroup != null) {
 	%>
 	<li><img src="<%=thisGroup.getOrgPicture()%>"></li>
 	<li><%=thisGroup.getName()%><br /> <b><%=thisGroup.getDesc()%></b><br />
@@ -62,6 +61,13 @@
 	<li><img src="<%=thisDepartment.getOrgPicture()%>"></li>
 	<li><%=thisDepartment.getName()%><br /> <b><%=thisDepartment.getDesc()%></b><br />
 		<fmt:message key="department.text.head" /> : <%=thisDepartment.getHead().getLongName()%><br />
+	</li>
+	<%
+	 } else if (thisUser != null) {
+	%>
+	<li><img src="<%=thisUser.getOrgPicture()%>"></li>
+	<li><%=thisUser.getPosition()%><br /> <b><%=thisUser.getName()%></b><br />
+		<%=thisUser.getDepartment()%><br />
 	</li>
 	<%
 		}

@@ -16,8 +16,7 @@
 			: Integer.parseInt(sNoticeType);
 	LocalDate dateOfLastNotice = (sLastNotice == null) ? new LocalDate(
 			0) : new LocalDate(Long.parseLong(sLastNotice));
-	NoticeBox noticeBox = smartWorks.getNoticeBoxForMe10(noticeType,
-			dateOfLastNotice);
+	NoticeBox noticeBox = smartWorks.getNoticeBoxForMe10(noticeType,dateOfLastNotice);
 %>
 <%
 	for (NoticeMessage nMessage : (NoticeMessage[]) noticeBox
@@ -32,7 +31,7 @@
 					+ owner.getId();
 %>
 <li><div class="info_img">
-		<a href="user_space.sw?cid=<%=instContext%>&wid=<%=owner.getId()%>"
+		<a href="user_space.sw?cid=<%=instContext%>"
 			title="<%=owner.getLongName()%>"> <img
 			src="<%=owner.getMinPicture()%>" border="0"> </a>
 	</div>

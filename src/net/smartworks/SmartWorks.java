@@ -24,6 +24,7 @@ import net.smartworks.model.work.SocialWork;
 import net.smartworks.model.work.Work;
 import net.smartworks.model.work.WorkCategory;
 import net.smartworks.server.service.ICommunityService;
+import net.smartworks.server.service.INoticeService;
 import net.smartworks.util.LocalDate;
 import net.smartworks.util.LocaleInfo;
 
@@ -34,10 +35,16 @@ import org.springframework.stereotype.Service;
 public class SmartWorks {
 
 	ICommunityService communityService;
+	INoticeService noticeService;
 
 	@Autowired
 	public void setCommunityService(ICommunityService communityService) {
 		this.communityService = communityService;
+	}
+
+	@Autowired
+	public void setNoticeService(INoticeService noticeService) {
+		this.noticeService = noticeService;
 	}
 
 	public static String CONTEXT_HOME = "sf.hm";
@@ -51,6 +58,7 @@ public class SmartWorks {
 	public static int SPACE_TYPE_WORK_INSTANCE = 2;
 	public static int SPACE_TYPE_TASK_INSTANCE = 3;
 	
+	public static int CONTEXT_PREFIX_LENGTH = 6;
 	public static String CONTEXT_PREFIX_USER_SPACE = "us.sp.";
 	public static String CONTEXT_PREFIX_GROUP_SPACE = "gp.sp.";
 	public static String CONTEXT_PREFIX_DEPARTMENT_SPACE = "dp.sp.";
@@ -137,20 +145,22 @@ public class SmartWorks {
 		return false;
 	}
 
-	public String getSpaceIdFromContentContext(String contentContext)
+	public boolean isCommunitySpaceContextType(String contextId)
 			throws Exception {
-		if (contentContext == null
-				|| isWorkSpaceContextType(contentContext))
-			return null;
+		if (contextId == null || contextId.length() < 6)
+			return false;
+		if (contextId.substring(0, 6).equals(SmartWorks.CONTEXT_PREFIX_DEPARTMENT_SPACE)
+				|| contextId.substring(0, 6).equals(SmartWorks.CONTEXT_PREFIX_GROUP_SPACE)
+				|| contextId.substring(0, 6).equals(SmartWorks.CONTEXT_PREFIX_USER_SPACE))
+			return true;
+		return false;
+	}
 
-		StringTokenizer st = new StringTokenizer(contentContext, ".");
-		if (st.countTokens() < 3)
+	public static String getSpaceIdFromContentContext(String contentContext)
+			throws Exception {
+		if (contentContext == null || contentContext.length() <= SmartWorks.CONTEXT_PREFIX_LENGTH)
 			return null;
-
-		String spaceId = null;
-		for (int i = 0; i < 3; i++)
-			spaceId = st.nextElement().toString();
-		return spaceId;
+		return contentContext.substring(SmartWorks.CONTEXT_PREFIX_LENGTH);
 	}
 	
 	public WorkSpace getWorkSpaceById(String workSpaceId)
@@ -173,6 +183,10 @@ public class SmartWorks {
 			return getUser1();
 		if (getUser2().getId().equals(workSpaceId))
 			return getUser2();
+		if (getUser3().getId().equals(workSpaceId))
+			return getUser3();
+		if (getCurrentUser().getId().equals(workSpaceId))
+			return getCurrentUser();
 
 		return workSpace;
 	}

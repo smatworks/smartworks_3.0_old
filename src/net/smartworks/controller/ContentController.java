@@ -51,4 +51,5 @@ public class ContentController {
 		return SmartUtil.returnMnv(request, "jsp/content/my_profile.jsp",
 				"my_profile.tiles");
 	}
+
 }

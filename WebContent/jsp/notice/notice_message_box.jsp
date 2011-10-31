@@ -9,8 +9,7 @@
 <%@ page import="net.smartworks.util.LocalDate"%>
 
 <%
-	SmartWorks smartWorks = (SmartWorks) request
-			.getAttribute("smartWorks");
+	SmartWorks smartWorks = (SmartWorks) request.getAttribute("smartWorks");
 	User currentUser = smartWorks.getCurrentUser();
 %>
 <fmt:setLocale value="<%=currentUser.getLocale() %>" scope="request" />
