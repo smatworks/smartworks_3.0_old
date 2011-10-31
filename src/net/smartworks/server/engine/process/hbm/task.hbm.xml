@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="net.smartworks.server.engine.process.task.model" default-lazy="false">
+	<class name="TskTask" table="TskTask">
+		<id name="objId" column="tskObjId" type="string" length="100" unsaved-value="undefined">
+			<generator class="net.smartworks.server.engine.common.model.util.IdGen"/>
+		</id>
+		<property name="name" column="tskName" type="string" length="100" index="IxTskTask"/>
+		<property name="creationUser" column="tskCreateUser" type="string" length="50" index="IxTskTask1"/>
+		<property name="creationDate" column="tskCreateDate" type="timestamp" index="IxTskTask2"/>
+		<property name="modificationUser" column="tskModifyUser" type="string" length="50" index="IxTskTask3"/>
+		<property name="modificationDate" column="tskModifyDate" type="timestamp" index="IxTskTask4"/>
+		<property name="status" column="tskStatus" type="string" length="50" index="IxTskTask5"/>
+		<property name="correlation" column="tskCorr" type="string" length="50" index="IxTskTask6"/>
+		<property name="type" column="tskType" type="string" length="100" index="IxTskTask7"/>
+		<property name="processInstId" column="tskPrcInstId" type="string" length="50" index="IxTskTask8"/>
+		<property name="title" column="tskTitle" type="string" length="200"/>
+		<property name="description" column="tskDesc" type="text"/>
+		<property name="priority" column="tskPriority" type="string" length="50"/>
+		<property name="document" column="tskDoc" type="text"/>
+		<property name="assigner" column="tskAssigner" type="string" length="50" index="IxTskTask9"/>
+		<property name="assignee" column="tskAssignee" type="string" length="50" index="IxTskTask10"/>
+		<property name="performer" column="tskPerformer" type="string" length="50" index="IxTskTask11"/>
+		<property name="startDate" column="tskStartDate" type="timestamp" index="IxTskTask12"/>
+		<property name="assignmentDate" column="tskAssignDate" type="timestamp" index="IxTskTask13"/>
+		<property name="executionDate" column="tskExecuteDate" type="timestamp" index="IxTskTask14"/>
+		<property name="dueDate" column="tskDueDate" type="timestamp"/>
+		
+		<property name="expectStartDate" column="tskExpectStartDate" type="timestamp"/>
+		<property name="expectEndDate" column="tskExpectEndDate" type="timestamp"/>
+		<property name="realStartDate" column="tskRealStartDate" type="timestamp"/>
+		<property name="realEndDate" column="tskRealEndDate" type="timestamp"/>
+		
+		<property name="def" column="tskDef" type="string" length="100" index="IxTskTask15"/>
+		<property name="form" column="tskForm" type="string" length="100" index="IxTskTask16"/>
+		<property name="multiInstId" column="tskMultiInstId" type="string" length="100" index="IxTskTask17"/>
+		<property name="multiInstOrdering" column="tskMultiInstOrder" type="string" length="10"/>
+		<property name="multiInstFlowCondition" column="tskMultiInstFlowCond" type="string" length="10"/>
+		<property name="stepInteger" column="tskStep" type="int"/>
+		<property name="instVariable" column="tskInstVariable" type="text"/>
+		<property name="loopCounterInteger" column="tskLoopCnt" type="int"/>
+		<array name="extendedProperties" table="TskTaskExtProp">
+			<key column="tskObjId" foreign-key="FkTskTaskExtProp"/>
+			<list-index column="tskSeq"/>
+			<composite-element class="net.smartworks.server.engine.common.model.Property">
+				<property name="name" column="tskName" type="string" length="100" index="IxTskTaskExtProp"/>
+				<property name="value" column="tskValue" type="string" length="800" index="IxTskTaskExtProp2"/>
+			</composite-element>
+		</array>
+	</class>
+	<class name="TskTaskDef" table="TskTaskDef">
+		<id name="objId" column="tskObjId" type="string" length="200" unsaved-value="undefined">
+			<generator class="net.smartworks.server.engine.common.model.util.IdGen"/>
+		</id>
+		<property name="name" column="tskName" type="string" length="100" index="IxTskTaskDef"/>
+		<property name="creationUser" column="tskCreateUser" type="string" length="50" index="IxTskTaskDef1"/>
+		<property name="creationDate" column="tskCreateDate" type="timestamp" index="IxTskTaskDef2"/>
+		<property name="modificationUser" column="tskModifyUser" type="string" length="50" index="IxTskTaskDef3"/>
+		<property name="modificationDate" column="tskModifyDate" type="timestamp" index="IxTskTaskDef4"/>
+		<property name="status" column="tskStatus" type="string" length="50" index="IxTskTaskDef5"/>
+		<property name="correlation" column="tskCorr" type="string" length="100"/>
+		<property name="type" column="tskType" type="string" length="100" index="IxTskTaskDef6"/>
+		<property name="processInstId" column="tskPrcInstId" type="string" length="100"/>
+		<property name="title" column="tskTitle" type="string" length="200"/>
+		<property name="description" column="tskDesc" type="text"/>
+		<property name="priority" column="tskPriority" type="string" length="100" index="IxTskTaskDef7"/>
+		<property name="document" column="tskDoc" type="text"/>
+		<property name="assigner" column="tskAssigner" type="string" length="100"/>
+		<property name="assignee" column="tskAssignee" type="string" length="100"/>
+		<property name="assignmentDate" column="tskAssignDate" type="string" length="100"/>
+		<property name="dueDate" column="tskDueDate" type="string" length="100"/>
+		<property name="form" column="tskForm" type="string" length="100" index="IxTskTask8"/>
+		<property name="multiInstOrdering" column="tskMultiInstOrder" type="string" length="10"/>
+		<property name="multiInstFlowCondition" column="tskMultiInstFlowCond" type="string" length="10"/>
+		<property name="subFlowTargetId" column="tskSubFlowTargetId" type="string" length="200"/>
+		<property name="subFlowTargetVersion" column="tskSubFlowTargetVer" type="string" length="10"/>
+		<property name="subFlowExecution" column="tskSubFlowExecution" type="string" length="50"/>
+		<property name="serviceTargetId" column="tskServiceTargetId" type="string" length="100"/>
+		<array name="extendedProperties" table="TskTaskDefExtProp">
+			<key column="tskObjId" foreign-key="FkTskTaskDefExtProp"/>
+			<list-index column="tskSeq"/>
+			<composite-element class="net.smartworks.server.engine.common.model.Property">
+				<property name="name" column="tskName" type="string" length="100" index="IxTskTaskDefExtProp"/>
+				<property name="value" column="tskValue" type="string" length="200" index="IxTskTaskDefExtProp2"/>
+			</composite-element>
+		</array>
+	</class>
+</hibernate-mapping>
