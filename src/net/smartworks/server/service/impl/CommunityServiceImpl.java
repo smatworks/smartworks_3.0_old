@@ -116,4 +116,69 @@ public class CommunityServiceImpl implements ICommunityService {
 
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * net.smartworks.service.impl.ISmartWorks#getWorkSpaceById(java.lang.String
+	 * )
+	 */
+	@Override
+	public WorkSpace getWorkSpaceById(String workSpaceId) throws Exception {
+		WorkSpace workSpace = null;
+
+		Department[] departments = getMyDepartments(SmartUtil.getCurrentUser().getId());
+		for (Department department : departments) {
+			if (department.getId().equals(workSpaceId))
+				return department;
+		}
+		Group[] groups = getMyGroups(SmartUtil.getCurrentUser().getId());
+		for (Group group : groups) {
+			if (group.getId().equals(workSpaceId))
+				return group;
+		}
+
+		if (SmartTest.getUser1().getId().equals(workSpaceId))
+			return SmartTest.getUser1();
+		if (SmartTest.getUser2().getId().equals(workSpaceId))
+			return SmartTest.getUser2();
+		if (SmartTest.getUser3().getId().equals(workSpaceId))
+			return SmartTest.getUser3();
+		if (SmartUtil.getCurrentUser().getId().equals(workSpaceId))
+			return SmartUtil.getCurrentUser();
+
+		return workSpace;
+	}
+	
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.smartworks.service.impl.ISmartWorks#getAvailableChatter()
+	 */
+	@Override
+	public User[] getAvailableChatter() throws Exception {
+		User[] chatters = new User[] { SmartTest.getUser2(), SmartTest.getUser1(), SmartUtil.getCurrentUser(), SmartTest.getUser2(), SmartTest.getUser1(),
+				SmartUtil.getCurrentUser(), SmartTest.getUser2(), SmartTest.getUser1(), SmartUtil.getCurrentUser(), SmartTest.getUser2(), SmartTest.getUser1(),
+				SmartUtil.getCurrentUser() };
+		return chatters;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * net.smartworks.service.impl.ISmartWorks#searchAvailableChatterList(java
+	 * .lang.String)
+	 */
+	@Override
+	public User[] searchAvailableChatterList(String key) throws Exception {
+		User[] chatters = new User[] { SmartTest.getUser2(), SmartTest.getUser1(), SmartUtil.getCurrentUser(), SmartTest.getUser2(), SmartTest.getUser1(),
+				SmartUtil.getCurrentUser(), SmartTest.getUser2(), SmartTest.getUser1(), SmartUtil.getCurrentUser(), SmartTest.getUser2(), SmartTest.getUser1(),
+				SmartUtil.getCurrentUser() };
+		return chatters;
+
+	}
+
+	
 }
