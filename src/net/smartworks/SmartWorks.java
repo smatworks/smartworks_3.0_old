@@ -24,6 +24,7 @@ import net.smartworks.model.work.SocialWork;
 import net.smartworks.model.work.Work;
 import net.smartworks.model.work.WorkCategory;
 import net.smartworks.server.service.ICommunityService;
+import net.smartworks.server.service.INoticeService;
 import net.smartworks.util.LocalDate;
 import net.smartworks.util.LocaleInfo;
 
@@ -34,10 +35,16 @@ import org.springframework.stereotype.Service;
 public class SmartWorks {
 
 	ICommunityService communityService;
+	INoticeService noticeService;
 
 	@Autowired
 	public void setCommunityService(ICommunityService communityService) {
 		this.communityService = communityService;
+	}
+
+	@Autowired
+	public void setNoticeService(INoticeService noticeService) {
+		this.noticeService = noticeService;
 	}
 
 	public static String CONTEXT_HOME = "sf.hm";

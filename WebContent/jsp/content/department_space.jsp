@@ -1,9 +1,9 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ page import="net.smartworks.*"%>
 <%
-	SmartWorks smartWorks = (SmartWorks) request
-			.getAttribute("smartWorks");
+	SmartWorks smartWorks = (SmartWorks) request.getAttribute("smartWorks");
 
+	System.out.println(smartWorks);
 	String cid = request.getParameter("cid");
 	if (cid == null)
 		session.setAttribute("cid", SmartWorks.CONTEXT_HOME);

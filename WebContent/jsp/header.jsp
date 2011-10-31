@@ -24,7 +24,7 @@
 <div class="notice_ico">
 	<ul>
 		<li class="i_info js_notice_count"><a
-			href="jsp/notice/notice_message_box.jsp?noticeType=<%=Notice.TYPE_NOTIFICATION%>"
+			href="notice_message_box.sw?noticeType=<%=Notice.TYPE_NOTIFICATION%>"
 			title="<fmt:message key='header.notice.icon.notification'/>"> <%
  	if (notices.length > Notice.TYPE_NOTIFICATION
  			&& notices[Notice.TYPE_NOTIFICATION]
@@ -35,7 +35,7 @@
 			}
 		%>
 		<li class="i_note js_notice_count"><a
-			href="jsp/notice/notice_message_box.jsp?noticeType=<%=Notice.TYPE_MESSAGE%>"
+			href="notice_message_box.sw?noticeType=<%=Notice.TYPE_MESSAGE%>"
 			title="<fmt:message key='header.notice.icon.message'/>"> <%
  	if (notices.length > Notice.TYPE_MESSAGE
  			&& notices[Notice.TYPE_MESSAGE].getLength() > 0) {
@@ -45,7 +45,7 @@
 			}
 		%>
 		<li class="i_replay js_notice_count"><a
-			href="jsp/notice/notice_message_box.jsp?noticeType=<%=Notice.TYPE_COMMENTS%>"
+			href="notice_message_box.sw?noticeType=<%=Notice.TYPE_COMMENTS%>"
 			title="<fmt:message key='header.notice.icon.comments'/>"> <%
  	if (notices.length > Notice.TYPE_COMMENTS
  			&& notices[Notice.TYPE_COMMENTS].getLength() > 0) {
@@ -55,7 +55,7 @@
 			}
 		%>
 		<li class="i_assworks js_notice_count"><a
-			href="jsp/notice/notice_message_box.jsp?noticeType=<%=Notice.TYPE_ASSIGNED%>"
+			href="notice_message_box.sw?noticeType=<%=Notice.TYPE_ASSIGNED%>"
 			title="<fmt:message key='header.notice.icon.assigned'/>"> <%
  	if (notices.length > Notice.TYPE_ASSIGNED
  			&& notices[Notice.TYPE_ASSIGNED].getLength() > 0) {
@@ -65,7 +65,7 @@
 			}
 		%>
 		<li class="i_mail js_notice_count"><a
-			href="jsp/notice/notice_message_box.jsp?noticeType=<%=Notice.TYPE_MAILBOX%>"
+			href="notice_message_box.sw?noticeType=<%=Notice.TYPE_MAILBOX%>"
 			title="<fmt:message key='header.notice.icon.mailbox'/>"> <%
  	if (notices.length > Notice.TYPE_MAILBOX
  			&& notices[Notice.TYPE_MAILBOX].getLength() > 0) {
@@ -75,7 +75,7 @@
 			}
 		%>
 		<li class="i_imsave js_notice_count"><a
-			href="jsp/notice/notice_message_box.jsp?noticeType=<%=Notice.TYPE_SAVEDBOX%>"
+			href="notice_message_box.sw?noticeType=<%=Notice.TYPE_SAVEDBOX%>"
 			title="<fmt:message key='header.notice.icon.savedbox'/>"> <%
  	if (notices.length > Notice.TYPE_SAVEDBOX
  			&& notices[Notice.TYPE_SAVEDBOX].getLength() > 0) {

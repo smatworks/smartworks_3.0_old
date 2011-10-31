@@ -25,7 +25,7 @@ public class CommunityController {
 			HttpServletResponse response) throws Exception {
 
 		return SmartUtil.returnMnv(request,
-				"jsp/content/space/department_space.jsp",
+				"jsp/content/department_space.jsp",
 				"department_space.tiles");
 	}
 
