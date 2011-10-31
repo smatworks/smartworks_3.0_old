@@ -1,15 +1,14 @@
 package net.smartworks;
 
-import java.util.Locale;
 import java.util.StringTokenizer;
 
+import net.smartworks.model.calendar.CompanyCalendar;
+import net.smartworks.model.calendar.CompanyEvent;
+import net.smartworks.model.calendar.WorkHour;
 import net.smartworks.model.community.Department;
 import net.smartworks.model.community.Group;
 import net.smartworks.model.community.User;
 import net.smartworks.model.community.WorkSpace;
-import net.smartworks.model.calendar.CompanyEvent;
-import net.smartworks.model.calendar.CompanyCalendar;
-import net.smartworks.model.calendar.WorkHour;
 import net.smartworks.model.instance.AsyncMessageInstance;
 import net.smartworks.model.instance.BoardInstance;
 import net.smartworks.model.instance.CommentsInstance;
@@ -25,8 +24,8 @@ import net.smartworks.model.work.SocialWork;
 import net.smartworks.model.work.Work;
 import net.smartworks.model.work.WorkCategory;
 import net.smartworks.server.service.ICommunityService;
-import net.smartworks.util.LocaleInfo;
 import net.smartworks.util.LocalDate;
+import net.smartworks.util.LocaleInfo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
