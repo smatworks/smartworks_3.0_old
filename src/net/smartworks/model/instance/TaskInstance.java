@@ -84,7 +84,7 @@ public class TaskInstance extends Instance {
 
 	public TaskInstance(String id, String name, int taskType, User owner,
 			LocalDate lastModifiedDate) {
-		super(id, name, Instance.INSTANCE_TYPE_TASK, owner, lastModifiedDate);
+		super(id, name, Instance.TYPE_TASK, owner, lastModifiedDate);
 		this.name = name;
 		this.taskType = taskType;
 	}

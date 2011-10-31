@@ -106,7 +106,7 @@ public class MailInstance extends Instance {
 
 	public MailInstance(String id, String subject, User sender,
 			LocalDate sendDate) {
-		super(id, subject, Instance.INSTANCE_TYPE_MAIL, sender, sendDate);
+		super(id, subject, Instance.TYPE_MAIL, sender, sendDate);
 		this.sender = sender;
 		this.sendDate = sendDate;
 	}

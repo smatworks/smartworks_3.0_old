@@ -14,10 +14,10 @@ public class EventInstance extends WorkInstance {
 	public static int EVENT_STATUS_ALARM_START		= 1;
 	public static int EVENT_STATUS_ALARM_CONFIRMED	= 2;
 	
-	public static int EVENT_ALARM_NONE				= 0;
-	public static int EVENT_ALARM_ON_TIME			= 1;
-	public static int EVENT_ALARM_ON_ALARM_TIME		= 2;
-	public static int EVENT_ALARM_ON_BOTH_TIME		= 3;
+	public static int ALARM_NONE				= 0;
+	public static int ALARM_ON_TIME			= 1;
+	public static int ALARM_ON_ALARM_TIME		= 2;
+	public static int ALARM_ON_BOTH_TIME		= 3;
 		
 	private String			content;
 	private User[]			relatedUsers;
@@ -64,11 +64,11 @@ public class EventInstance extends WorkInstance {
 	}
 	public EventInstance(){
 		super();
-		super.setInstanceType(Instance.INSTANCE_TYPE_EVENT);
+		super.setInstanceType(Instance.TYPE_EVENT);
 	}
 
 	public EventInstance(String id, String subject, Work work, User owner, LocalDate lastModifiedDate){
 			super(id, subject, work, owner, lastModifiedDate);
-			super.setInstanceType(Instance.INSTANCE_TYPE_EVENT);
+			super.setInstanceType(Instance.TYPE_EVENT);
 	}
 }

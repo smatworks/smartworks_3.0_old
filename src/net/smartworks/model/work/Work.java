@@ -4,10 +4,10 @@ import net.smartworks.model.BaseObject;
 
 public class Work extends BaseObject{
 
-	public static int	WORK_TYPE_ASYNC_MESSAGE	= 1;
-	public static int	WORK_TYPE_NOTIFICAITON	= 2;
-	public static int	WORK_TYPE_COMMENTS		= 3;
-	public static int	WORK_TYPE_MAIL_MESSAGE	= 4;
+	public static int	TYPE_ASYNC_MESSAGE	= 1;
+	public static int	TYPE_NOTIFICAITON	= 2;
+	public static int	TYPE_COMMENTS		= 3;
+	public static int	TYPE_MAIL_MESSAGE	= 4;
 
 	private int 	type; 
 	private String 	desc;

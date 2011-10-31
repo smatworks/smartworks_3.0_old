@@ -39,7 +39,7 @@ public class AsyncMessageInstance extends Instance {
 
 	public AsyncMessageInstance(String id, User sender, LocalDate sendDate,
 			String message) {
-		super(id, "", Instance.INSTANCE_TYPE_ASYNC_MESSAGE, sender, sendDate);
+		super(id, "", Instance.TYPE_ASYNC_MESSAGE, sender, sendDate);
 		this.sender = sender;
 		this.sendDate = sendDate;
 		this.message = message;
