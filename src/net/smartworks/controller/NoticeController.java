@@ -21,11 +21,65 @@ import org.springframework.web.servlet.ModelAndView;
 public class NoticeController {
 
 	@RequestMapping("/notice_message_box")
-	public ModelAndView departmentSpace(HttpServletRequest request,
+	public ModelAndView noticeMessageBox(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
 		return SmartUtil.returnMnv(request,
 				"jsp/notice/notice_message_box.jsp",
-				"");
+				"notice_message_box.tiles");
+	}
+
+	@RequestMapping("/notification_list_box")
+	public ModelAndView notificationListBox(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		return SmartUtil.returnMnv(request,
+				"jsp/notice/notification_list_box.jsp",
+				"notification_list_box.tiles");
+	}
+
+	@RequestMapping("/message_list_box")
+	public ModelAndView messageListBox(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		return SmartUtil.returnMnv(request,
+				"jsp/notice/message_list_box.jsp",
+				"message_list_box.tiles");
+	}
+
+	@RequestMapping("/comments_list_box")
+	public ModelAndView commentsListBox(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		return SmartUtil.returnMnv(request,
+				"jsp/notice/comments_list_box.jsp",
+				"comments_list_box.tiles");
+	}
+
+	@RequestMapping("/assigned_list_box")
+	public ModelAndView assignedListBox(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		return SmartUtil.returnMnv(request,
+				"jsp/notice/assigned_list_box.jsp",
+				"assigned_list_box.tiles");
+	}
+
+	@RequestMapping("/mailbox_list_box")
+	public ModelAndView mailboxListBox(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		
+		return SmartUtil.returnMnv(request,
+				"jsp/notice/mailbox_list_box.jsp",
+				"mailbox_list_box.tiles");
+	}
+
+	@RequestMapping("/savedbox_list_box")
+	public ModelAndView savedboxListBox(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		
+		return SmartUtil.returnMnv(request,
+				"jsp/notice/savedbox_list_box.jsp",
+				"savedbox_list_box.tiles");
 	}
 }
