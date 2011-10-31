@@ -6,12 +6,10 @@
 <%@ page import="net.smartworks.model.instance.*"%>
 <%@ page import="net.smartworks.model.community.*"%>
 <%
-	ISmartWorks smartWorks = (ISmartWorks) request
-			.getAttribute("smartWorks");
-	User cUser = smartWorks.getCurrentUser();
+	ISmartWorks smartWorks = (ISmartWorks) request.getAttribute("smartWorks");
+	User cUser = SmartUtil.getCurrentUser();
 
-//	Instance[] instances = smartWorks.getMyRunningInstances(new LocalDate(), 10);
-
+	//	Instance[] instances = smartWorks.getMyRunningInstances(new LocalDate(), 10);
 %>
 
 <!-- 나의 진행중인 업무 -->

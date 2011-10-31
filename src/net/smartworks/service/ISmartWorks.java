@@ -12,7 +12,6 @@ import net.smartworks.model.notice.Notice;
 import net.smartworks.model.notice.NoticeBox;
 import net.smartworks.model.work.SmartWork;
 import net.smartworks.model.work.WorkCategory;
-import net.smartworks.service.impl.SmartWorks;
 import net.smartworks.util.LocalDate;
 
 public interface ISmartWorks {

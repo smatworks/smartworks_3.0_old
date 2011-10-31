@@ -1,32 +1,32 @@
+<%@page import="net.smartworks.util.SmartUtil"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page import="net.smartworks.service.ISmartWorks"%>
 <%@ page import="net.smartworks.model.community.*"%>
 
 <%
-	ISmartWorks smartWorks = (ISmartWorks) request
-			.getAttribute("smartWorks");
+	ISmartWorks smartWorks = (ISmartWorks) request.getAttribute("smartWorks");
 	String cid = request.getParameter("cid");
 	if (cid == null)
 		cid = ISmartWorks.CONTEXT_HOME;
 	String wid = request.getParameter("wid");
 	if (wid == null)
-		wid = smartWorks.getCurrentUser().getId();
+		wid = SmartUtil.getCurrentUser().getId();
 
 	Group thisGroup = null;
 	Department thisDepartment = null;
 	User thisUser = null;
-	String spaceId = smartWorks.getSpaceIdFromContentContext(cid);
-	if(smartWorks.isSameContextPrefix(ISmartWorks.CONTEXT_PREFIX_GROUP_SPACE, cid)){
-		thisGroup = (Group)smartWorks.getWorkSpaceById(spaceId);
-	}else if(smartWorks.isSameContextPrefix(ISmartWorks.CONTEXT_PREFIX_DEPARTMENT_SPACE, cid)){
-		thisDepartment = (Department)smartWorks.getWorkSpaceById(spaceId);
-	}else if(smartWorks.isSameContextPrefix(ISmartWorks.CONTEXT_PREFIX_USER_SPACE, cid)){
-		thisUser = (User)smartWorks.getWorkSpaceById(spaceId);
-	}else if (!wid.equals(smartWorks.getCurrentUser().getId())) {
+	String spaceId = SmartUtil.getSpaceIdFromContentContext(cid);
+	if (SmartUtil.isSameContextPrefix(ISmartWorks.CONTEXT_PREFIX_GROUP_SPACE, cid)) {
+		thisGroup = (Group) smartWorks.getWorkSpaceById(spaceId);
+	} else if (SmartUtil.isSameContextPrefix(ISmartWorks.CONTEXT_PREFIX_DEPARTMENT_SPACE, cid)) {
+		thisDepartment = (Department) smartWorks.getWorkSpaceById(spaceId);
+	} else if (SmartUtil.isSameContextPrefix(ISmartWorks.CONTEXT_PREFIX_USER_SPACE, cid)) {
+		thisUser = (User) smartWorks.getWorkSpaceById(spaceId);
+	} else if (!wid.equals(SmartUtil.getCurrentUser().getId())) {
 		WorkSpace workSpace = smartWorks.getWorkSpaceById(wid);
 		if (workSpace == null) {
-			thisUser = smartWorks.getCurrentUser();
+			thisUser = SmartUtil.getCurrentUser();
 		} else if (workSpace.getClass() == User.class) {
 			thisUser = (User) workSpace;
 		} else if (workSpace.getClass() == Group.class) {
@@ -35,7 +35,7 @@
 			thisDepartment = (Department) workSpace;
 		}
 	} else {
-		thisUser = smartWorks.getCurrentUser();
+		thisUser = SmartUtil.getCurrentUser();
 	}
 	/*
 	 if(smartWorks.isSameContextPrefix(ISmartWorks.CONTEXT_PREFIX_GROUP_SPACE, navContext)){
@@ -63,7 +63,7 @@
 		<fmt:message key="department.text.head" /> : <%=thisDepartment.getHead().getLongName()%><br />
 	</li>
 	<%
-	 } else if (thisUser != null) {
+		} else if (thisUser != null) {
 	%>
 	<li><img src="<%=thisUser.getOrgPicture()%>"></li>
 	<li><%=thisUser.getPosition()%><br /> <b><%=thisUser.getName()%></b><br />

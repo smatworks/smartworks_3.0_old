@@ -8,27 +8,20 @@
 <%@ page import="net.smartworks.model.work.*"%>
 <%@ page import="net.smartworks.util.LocalDate"%>
 <%
-	ISmartWorks smartWorks = (ISmartWorks) request
-			.getAttribute("smartWorks");
+	ISmartWorks smartWorks = (ISmartWorks) request.getAttribute("smartWorks");
 	String sNoticeType = request.getParameter("noticeType");
 	String sLastNotice = request.getParameter("dateOfLastNotice");
-	int noticeType = (sNoticeType == null) ? Notice.TYPE_INVALID
-			: Integer.parseInt(sNoticeType);
-	LocalDate dateOfLastNotice = (sLastNotice == null) ? new LocalDate(
-			0) : new LocalDate(Long.parseLong(sLastNotice));
-	NoticeBox noticeBox = smartWorks.getNoticeBoxForMe10(noticeType,dateOfLastNotice);
+	int noticeType = (sNoticeType == null) ? Notice.TYPE_INVALID : Integer.parseInt(sNoticeType);
+	LocalDate dateOfLastNotice = (sLastNotice == null) ? new LocalDate(0) : new LocalDate(Long.parseLong(sLastNotice));
+	NoticeBox noticeBox = smartWorks.getNoticeBoxForMe10(noticeType, dateOfLastNotice);
 %>
 <%
-	for (NoticeMessage nMessage : (NoticeMessage[]) noticeBox
-			.getNoticeMessages()) {
+	for (NoticeMessage nMessage : (NoticeMessage[]) noticeBox.getNoticeMessages()) {
 		String instContext = null;
-		if (noticeBox != null
-				&& noticeBox.getNoticeType() == Notice.TYPE_MESSAGE) {
-			AsyncMessageInstance messageInstance = (AsyncMessageInstance) nMessage
-					.getInstance();
+		if (noticeBox != null && noticeBox.getNoticeType() == Notice.TYPE_MESSAGE) {
+			AsyncMessageInstance messageInstance = (AsyncMessageInstance) nMessage.getInstance();
 			User owner = messageInstance.getSender();
-			instContext = ISmartWorks.CONTEXT_PREFIX_USER_SPACE
-					+ owner.getId();
+			instContext = ISmartWorks.CONTEXT_PREFIX_USER_SPACE + owner.getId();
 %>
 <li><div class="info_img">
 		<a href="user_space.sw?cid=<%=instContext%>"

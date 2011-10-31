@@ -2,11 +2,9 @@
 <%@ page import="net.smartworks.service.ISmartWorks"%>
 <%@ page import="net.smartworks.model.work.*"%>
 <%
-	ISmartWorks smartWorks = (ISmartWorks) request
-			.getAttribute("smartWorks");
+	ISmartWorks smartWorks = (ISmartWorks) request.getAttribute("smartWorks");
 	String key = request.getParameter("key");
-	SmartWork[] works = smartWorks.searchWorkList(smartWorks
-			.getCurrentUser().getId(), key);
+	SmartWork[] works = smartWorks.searchWorkList(SmartUtil.getCurrentUser().getId(), key);
 %>
 
 <ul>
@@ -17,18 +15,15 @@
 			String targetContent = null;
 			if (work.getType() == SmartWork.TYPE_PROCESS) {
 				iconType = "ico_pworks";
-				workContext = ISmartWorks.CONTEXT_PREFIX_PWORK_LIST
-						+ work.getId();
+				workContext = ISmartWorks.CONTEXT_PREFIX_PWORK_LIST + work.getId();
 				targetContent = "pwork_list.sw";
 			} else if (work.getType() == SmartWork.TYPE_INFORMATION) {
 				iconType = "ico_iworks";
-				workContext = ISmartWorks.CONTEXT_PREFIX_IWORK_LIST
-						+ work.getId();
+				workContext = ISmartWorks.CONTEXT_PREFIX_IWORK_LIST + work.getId();
 				targetContent = "iwork_list.sw";
 			} else if (work.getType() == SmartWork.TYPE_SCHEDULE) {
 				iconType = "ico_sworks";
-				workContext = ISmartWorks.CONTEXT_PREFIX_SWORK_LIST
-						+ work.getId();
+				workContext = ISmartWorks.CONTEXT_PREFIX_SWORK_LIST + work.getId();
 				targetContent = "swork_list.sw";
 			}
 	%>

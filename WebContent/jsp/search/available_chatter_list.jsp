@@ -2,8 +2,7 @@
 <%@ page import="net.smartworks.service.ISmartWorks"%>
 <%@ page import="net.smartworks.model.community.*"%>
 <%
-	ISmartWorks smartWorks = (ISmartWorks) request
-			.getAttribute("smartWorks");
+	ISmartWorks smartWorks = (ISmartWorks) request.getAttribute("smartWorks");
 	String key = request.getParameter("key");
 	User[] chatters = smartWorks.searchAvailableChatterList(key);
 %>

@@ -4,8 +4,7 @@
 <%@ page import="net.smartworks.model.community.*"%>
 
 <%
-	ISmartWorks smartWorks = (ISmartWorks) request
-			.getAttribute("smartWorks");
+	ISmartWorks smartWorks = (ISmartWorks) request.getAttribute("smartWorks");
 	User[] chatters = smartWorks.getAvailableChatter();
 %>
 
@@ -25,7 +24,7 @@
 			for (User chatter : chatters) {
 		%> <img src="<%=chatter.getMinPicture()%>"
 		title="<%=chatter.getLongName()%>" /> <%
-			}
-		%>
+ 	}
+ %>
 	</li>
 </ul>

@@ -1,3 +1,4 @@
+<%@page import="net.smartworks.util.SmartUtil"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -8,22 +9,16 @@
 <%@ page import="net.smartworks.model.work.*"%>
 <%@ page import="net.smartworks.util.LocalDate"%>
 <%
-	ISmartWorks smartWorks = (ISmartWorks) request
-			.getAttribute("smartWorks");
+	ISmartWorks smartWorks = (ISmartWorks) request.getAttribute("smartWorks");
 	String sNoticeType = request.getParameter("noticeType");
 	String sLastNotice = request.getParameter("dateOfLastNotice");
-	int noticeType = (sNoticeType == null) ? Notice.TYPE_INVALID
-			: Integer.parseInt(sNoticeType);
-	LocalDate dateOfLastNotice = (sLastNotice == null) ? new LocalDate(
-			0) : new LocalDate(Long.parseLong(sLastNotice));
-	NoticeBox noticeBox = smartWorks.getNoticeBoxForMe10(noticeType,
-			dateOfLastNotice);
+	int noticeType = (sNoticeType == null) ? Notice.TYPE_INVALID : Integer.parseInt(sNoticeType);
+	LocalDate dateOfLastNotice = (sLastNotice == null) ? new LocalDate(0) : new LocalDate(Long.parseLong(sLastNotice));
+	NoticeBox noticeBox = smartWorks.getNoticeBoxForMe10(noticeType, dateOfLastNotice);
 %>
 <%
-	for (NoticeMessage nMessage : (NoticeMessage[]) noticeBox
-			.getNoticeMessages()) {
-		if (noticeBox != null
-				&& noticeBox.getNoticeType() == Notice.TYPE_NOTIFICATION) {
+	for (NoticeMessage nMessage : (NoticeMessage[]) noticeBox.getNoticeMessages()) {
+		if (noticeBox != null && noticeBox.getNoticeType() == Notice.TYPE_NOTIFICATION) {
 			String instContext = null, targetContent = null, userContext = null;
 			User owner = null;
 			if (nMessage.getType() == NoticeMessage.TYPE_SYSTEM_NOTICE) {
@@ -40,13 +35,10 @@
 	</div></li>
 <%
 	} else if (nMessage.getType() == NoticeMessage.TYPE_EVENT_ALARM) {
-				EventInstance event = (EventInstance) nMessage
-						.getEvent();
+				EventInstance event = (EventInstance) nMessage.getEvent();
 				owner = event.getOwner();
-				instContext = ISmartWorks.CONTEXT_PREFIX_EVENT_SPACE
-						+ event.getId();
-				userContext = ISmartWorks.CONTEXT_PREFIX_USER_SPACE
-						+ owner.getId();
+				instContext = ISmartWorks.CONTEXT_PREFIX_EVENT_SPACE + event.getId();
+				userContext = ISmartWorks.CONTEXT_PREFIX_USER_SPACE + owner.getId();
 %>
 <li><div class="info_img">
 		<a href="user_space.sw?cid=<%=userContext%>"
@@ -66,15 +58,11 @@
 	</div></li>
 <%
 	} else if (nMessage.getType() == NoticeMessage.TYPE_TASK_DELAYED) {
-				TaskInstance task = (TaskInstance) nMessage
-						.getInstance();
+				TaskInstance task = (TaskInstance) nMessage.getInstance();
 				owner = task.getOwner();
-				WorkInstance work = (WorkInstance) task
-						.getWorkInstance();
-				instContext = ISmartWorks.CONTEXT_PREFIX_PWORK_TASK
-						+ task.getId();
-				userContext = ISmartWorks.CONTEXT_PREFIX_USER_SPACE
-						+ owner.getId();
+				WorkInstance work = (WorkInstance) task.getWorkInstance();
+				instContext = ISmartWorks.CONTEXT_PREFIX_PWORK_TASK + task.getId();
+				userContext = ISmartWorks.CONTEXT_PREFIX_USER_SPACE + owner.getId();
 %>
 <li><div class="info_img">
 		<a href="user_space.sw?cid=<%=userContext%>"
@@ -94,10 +82,8 @@
 <%
 	} else if (nMessage.getType() == NoticeMessage.TYPE_JOIN_REQUEST) {
 				owner = nMessage.getIssuer();
-				instContext = ISmartWorks.CONTEXT_PREFIX_GROUP_SPACE
-						+ nMessage.getGroup().getId();
-				userContext = ISmartWorks.CONTEXT_PREFIX_USER_SPACE
-						+ owner.getId();
+				instContext = ISmartWorks.CONTEXT_PREFIX_GROUP_SPACE + nMessage.getGroup().getId();
+				userContext = ISmartWorks.CONTEXT_PREFIX_USER_SPACE + owner.getId();
 %>
 <li><div class="info_img">
 		<a href="user_space.sw?cid=<%=userContext%>"
@@ -114,18 +100,12 @@
 	</div></li>
 <%
 	} else if (nMessage.getType() == NoticeMessage.TYPE_INSTANCE_CREATED) {
-				WorkInstance instance = (WorkInstance) nMessage
-						.getInstance();
+				WorkInstance instance = (WorkInstance) nMessage.getInstance();
 				owner = instance.getOwner();
-				targetContent = smartWorks.getTargetContentByWorkType(
-						nMessage.getInstance().getWork().getType(),
-						ISmartWorks.SPACE_TYPE_TASK_INSTANCE);
-				instContext = smartWorks.getContextPrefixByWorkType(
-						nMessage.getInstance().getWork().getType(),
-						ISmartWorks.SPACE_TYPE_TASK_INSTANCE)
+				targetContent = SmartUtil.getTargetContentByWorkType(nMessage.getInstance().getWork().getType(), ISmartWorks.SPACE_TYPE_TASK_INSTANCE);
+				instContext = SmartUtil.getContextPrefixByWorkType(nMessage.getInstance().getWork().getType(), ISmartWorks.SPACE_TYPE_TASK_INSTANCE)
 						+ nMessage.getInstance().getOwner().getId();
-				userContext = ISmartWorks.CONTEXT_PREFIX_USER_SPACE
-						+ owner.getId();
+				userContext = ISmartWorks.CONTEXT_PREFIX_USER_SPACE + owner.getId();
 %>
 <li><div class="info_img">
 		<a href="user_space.sw?cid=<%=userContext%>"

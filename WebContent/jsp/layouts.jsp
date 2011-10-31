@@ -1,3 +1,4 @@
+<%@page import="net.smartworks.util.SmartUtil"%>
 <%@page import="net.smartworks.model.community.User"%>
 <%@page import="net.smartworks.service.ISmartWorks"%>
 <%@ page contentType="text/html; charset=utf-8"%>
@@ -8,9 +9,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <%
-	ISmartWorks smartWorks = (ISmartWorks) request
-			.getAttribute("smartWorks");
-	User currentUser = smartWorks.getCurrentUser();
+	ISmartWorks smartWorks = (ISmartWorks) request.getAttribute("smartWorks");
+	User currentUser = SmartUtil.getCurrentUser();
 %>
 <fmt:setLocale value="<%=currentUser.getLocale() %>" scope="request" />
 <fmt:setBundle basename="resource.smartworksMessage" scope="request" />

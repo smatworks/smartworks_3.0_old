@@ -1,3 +1,4 @@
+<%@page import="net.smartworks.util.SmartUtil"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ page import="net.smartworks.service.ISmartWorks"%>
 <%
@@ -11,7 +12,7 @@
 		session.setAttribute("cid", cid);
 	String wid = request.getParameter("wid");
 	if (wid == null)
-		session.setAttribute("wid", smartWorks.getCurrentUser().getId());
+		session.setAttribute("wid", SmartUtil.getCurrentUser().getId());
 	else
 		session.setAttribute("wid", wid);
 %>

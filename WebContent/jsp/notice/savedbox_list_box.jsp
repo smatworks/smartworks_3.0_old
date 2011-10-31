@@ -8,27 +8,19 @@
 <%@ page import="net.smartworks.model.work.*"%>
 <%@ page import="net.smartworks.util.LocalDate"%>
 <%
-	ISmartWorks smartWorks = (ISmartWorks) request
-			.getAttribute("smartWorks");
+	ISmartWorks smartWorks = (ISmartWorks) request.getAttribute("smartWorks");
 	String sNoticeType = request.getParameter("noticeType");
 	String sLastNotice = request.getParameter("dateOfLastNotice");
-	int noticeType = (sNoticeType == null) ? Notice.TYPE_INVALID
-			: Integer.parseInt(sNoticeType);
-	LocalDate dateOfLastNotice = (sLastNotice == null) ? new LocalDate(
-			0) : new LocalDate(Long.parseLong(sLastNotice));
-	NoticeBox noticeBox = smartWorks.getNoticeBoxForMe10(noticeType,
-			dateOfLastNotice);
+	int noticeType = (sNoticeType == null) ? Notice.TYPE_INVALID : Integer.parseInt(sNoticeType);
+	LocalDate dateOfLastNotice = (sLastNotice == null) ? new LocalDate(0) : new LocalDate(Long.parseLong(sLastNotice));
+	NoticeBox noticeBox = smartWorks.getNoticeBoxForMe10(noticeType, dateOfLastNotice);
 %>
 <%
-	for (NoticeMessage nMessage : (NoticeMessage[]) noticeBox
-			.getNoticeMessages()) {
-		if (noticeBox != null
-				&& noticeBox.getNoticeType() == Notice.TYPE_SAVEDBOX) {
-			MailInstance mailInstance = (MailInstance) nMessage
-					.getInstance();
+	for (NoticeMessage nMessage : (NoticeMessage[]) noticeBox.getNoticeMessages()) {
+		if (noticeBox != null && noticeBox.getNoticeType() == Notice.TYPE_SAVEDBOX) {
+			MailInstance mailInstance = (MailInstance) nMessage.getInstance();
 			User owner = mailInstance.getSender();
-			String instContext = ISmartWorks.CONTEXT_PREFIX_MAIL_SPACE
-					+ owner.getId();
+			String instContext = ISmartWorks.CONTEXT_PREFIX_MAIL_SPACE + owner.getId();
 %>
 <li><div class="info_img">
 		<a href="mail_space.sw?cid=<%=instContext%>&wid=<%=owner.getId()%>"

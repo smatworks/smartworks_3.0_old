@@ -6,12 +6,10 @@
 <%@ page import="net.smartworks.model.instance.*"%>
 <%@ page import="net.smartworks.model.community.*"%>
 <%
-	ISmartWorks smartWorks = (ISmartWorks) request
-			.getAttribute("smartWorks");
-	User cUser = smartWorks.getCurrentUser();
+	ISmartWorks smartWorks = (ISmartWorks) request.getAttribute("smartWorks");
+	User cUser = SmartUtil.getCurrentUser();
 
-	BoardInstance[] boards = smartWorks.getBoardInstances(
-			new LocalDate(), 10);
+	BoardInstance[] boards = smartWorks.getBoardInstances(new LocalDate(), 10);
 %>
 <!-- 공지사항 -->
 <div id="notice">
@@ -19,10 +17,8 @@
 		<%
 			for (BoardInstance board : boards) {
 				User owner = board.getOwner();
-				String userContext = ISmartWorks.CONTEXT_PREFIX_USER_SPACE
-						+ owner.getId();
-				String boardContext = ISmartWorks.CONTEXT_PREFIX_BOARD_SPACE
-						+ board.getId();
+				String userContext = ISmartWorks.CONTEXT_PREFIX_USER_SPACE + owner.getId();
+				String boardContext = ISmartWorks.CONTEXT_PREFIX_BOARD_SPACE + board.getId();
 		%>
 		<li>
 			<div class="noti_pic">
@@ -40,12 +36,10 @@
 							String commContext = null;
 							if (workSpace.getClass().equals(Group.class)) {
 								targetContent = "group_space.sw";
-								commContext = ISmartWorks.CONTEXT_PREFIX_GROUP_SPACE
-										+ workSpace.getId();
+								commContext = ISmartWorks.CONTEXT_PREFIX_GROUP_SPACE + workSpace.getId();
 							} else if (workSpace.getClass().equals(Department.class)) {
 								targetContent = "department_space.sw";
-								commContext = ISmartWorks.CONTEXT_PREFIX_DEPARTMENT_SPACE
-										+ workSpace.getId();
+								commContext = ISmartWorks.CONTEXT_PREFIX_DEPARTMENT_SPACE + workSpace.getId();
 							}
 				%>
 				<span class="arr">▶</span><a

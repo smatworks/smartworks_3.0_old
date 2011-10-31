@@ -1,3 +1,4 @@
+<%@page import="net.smartworks.util.SmartUtil"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -5,7 +6,7 @@
 <%@ page import="net.smartworks.model.community.*"%>
 <%
 	ISmartWorks smartWorks = (ISmartWorks) request.getAttribute("smartWorks");
-	User cUser = smartWorks.getCurrentUser();
+	User cUser = SmartUtil.getCurrentUser();
 	String cid = request.getParameter("cid");
 	if (cid == null)
 		cid = ISmartWorks.CONTEXT_HOME;
@@ -19,8 +20,8 @@
 	<jsp:include page="/jsp/nav/space_profile.jsp" /></div>
 
 <%
-	if (smartWorks.isCommunitySpaceContextType(cid)) {
-		if (!smartWorks.isSameContextPrefix(ISmartWorks.CONTEXT_PREFIX_USER_SPACE, cid)) {
+	if (SmartUtil.isCommunitySpaceContextType(cid)) {
+		if (!SmartUtil.isSameContextPrefix(ISmartWorks.CONTEXT_PREFIX_USER_SPACE, cid)) {
 %>
 <div class="nav_list">
 	<jsp:include page="/jsp/nav/community_members.jsp" />

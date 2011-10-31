@@ -1,12 +1,11 @@
+<%@page import="net.smartworks.util.SmartUtil"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ page import="net.smartworks.service.ISmartWorks"%>
 <%@ page import="net.smartworks.model.work.*"%>
 
 <%
-	ISmartWorks smartWorks = (ISmartWorks) request
-			.getAttribute("smartWorks");
-	WorkCategory[] workCategories = smartWorks
-			.getMyWorkCategories(smartWorks.getCurrentUser().getId());
+	ISmartWorks smartWorks = (ISmartWorks) request.getAttribute("smartWorks");
+	WorkCategory[] workCategories = smartWorks.getMyWorkCategories(SmartUtil.getCurrentUser().getId());
 %>
 
 <ul>
