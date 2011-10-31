@@ -8,13 +8,15 @@
 <%@ page import="net.smartworks.model.work.*"%>
 <%@ page import="net.smartworks.util.LocalDate"%>
 <%
+	SmartWorks smartWorks = (SmartWorks) request
+			.getAttribute("smartWorks");
 	String sNoticeType = request.getParameter("noticeType");
 	String sLastNotice = request.getParameter("dateOfLastNotice");
-	int iNoticeType = (sNoticeType == null) ? Notice.NOTICE_TYPE_INVALID
+	int noticeType = (sNoticeType == null) ? Notice.NOTICE_TYPE_INVALID
 			: Integer.parseInt(sNoticeType);
-	LocalDate dateOfLastNotice = (sLastNotice == null) ? new LocalDate(0)
-			: new LocalDate(Long.parseLong(sLastNotice));
-	NoticeBox noticeBox = smartWorks.getNoticeBoxForMe10(iNoticeType,
+	LocalDate dateOfLastNotice = (sLastNotice == null) ? new LocalDate(
+			0) : new LocalDate(Long.parseLong(sLastNotice));
+	NoticeBox noticeBox = smartWorks.getNoticeBoxForMe10(noticeType,
 			dateOfLastNotice);
 %>
 <%
@@ -55,10 +57,9 @@
 				<a href="">X</a>
 			</div>
 		</div>
-	</div>
-</li>
+	</div></li>
 <%
-			} else if (commentsInstance.getCommentsType() == CommentsInstance.COMMENTS_TYPE_ON_WORK_INSTANCE) {
+	} else if (commentsInstance.getCommentsType() == CommentsInstance.COMMENTS_TYPE_ON_WORK_INSTANCE) {
 				work = commentsInstance.getWorkInstance().getWork();
 				WorkInstance workInstance = commentsInstance
 						.getWorkInstance();
@@ -85,10 +86,9 @@
 				<a href="">X</a>
 			</div>
 		</div>
-	</div>
-</li>
+	</div></li>
 <%
-			} else if (commentsInstance.getCommentsType() == CommentsInstance.COMMENTS_TYPE_ON_TASK_INSTANCE) {
+	} else if (commentsInstance.getCommentsType() == CommentsInstance.COMMENTS_TYPE_ON_TASK_INSTANCE) {
 				work = commentsInstance.getTaskInstance()
 						.getWorkInstance().getWork();
 				TaskInstance taskInstance = commentsInstance
@@ -116,10 +116,9 @@
 				<a href="">X</a>
 			</div>
 		</div>
-	</div>
-</li>
+	</div></li>
 <%
-			}
+	}
 		}
 	}
 %>

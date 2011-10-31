@@ -10,13 +10,15 @@
 <%@ page import="net.smartworks.util.LocalDate"%>
 <%@ page import="java.util.Date"%>
 <%
+	SmartWorks smartWorks = (SmartWorks) request
+			.getAttribute("smartWorks");
 	String sNoticeType = request.getParameter("noticeType");
 	String sLastNotice = request.getParameter("dateOfLastNotice");
-	int iNoticeType = (sNoticeType == null) ? Notice.NOTICE_TYPE_INVALID
+	int noticeType = (sNoticeType == null) ? Notice.NOTICE_TYPE_INVALID
 			: Integer.parseInt(sNoticeType);
 	LocalDate dateOfLastNotice = (sLastNotice == null) ? new LocalDate(
 			0) : new LocalDate(Long.parseLong(sLastNotice));
-	NoticeBox noticeBox = smartWorks.getNoticeBoxForMe10(iNoticeType,
+	NoticeBox noticeBox = smartWorks.getNoticeBoxForMe10(noticeType,
 			dateOfLastNotice);
 %>
 <%
@@ -58,8 +60,7 @@
 		<div class="t_date"><%=taskInstance.getLastModifiedDate()
 								.toLocalString()%>
 		</div>
-	</div>
-</li>
+	</div></li>
 <%
 	}
 		}

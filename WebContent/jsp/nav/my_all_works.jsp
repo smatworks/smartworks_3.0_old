@@ -3,7 +3,8 @@
 <%@ page import="net.smartworks.model.work.*"%>
 
 <%
-	SmartWorks smartWorks = (SmartWorks)request.getAttribute("smartWorks");
+	SmartWorks smartWorks = (SmartWorks) request
+			.getAttribute("smartWorks");
 	WorkCategory[] workCategories = smartWorks
 			.getMyWorkCategories(smartWorks.getCurrentUser().getId());
 %>
@@ -15,7 +16,8 @@
 	<li class="js_drill_down ico_cworks"><a
 		targetContent="jsp/nav/worklist_by_category.jsp"
 		categoryId="<%=workCategory.getId()%>"> <%=workCategory.getName()%></a>
-		<div style="display: none"></div></li>
+		<div style="display: none"></div>
+	</li>
 	<%
 		}
 	%>

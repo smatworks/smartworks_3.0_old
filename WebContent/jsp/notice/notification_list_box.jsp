@@ -8,13 +8,15 @@
 <%@ page import="net.smartworks.model.work.*"%>
 <%@ page import="net.smartworks.util.LocalDate"%>
 <%
+	SmartWorks smartWorks = (SmartWorks) request
+			.getAttribute("smartWorks");
 	String sNoticeType = request.getParameter("noticeType");
 	String sLastNotice = request.getParameter("dateOfLastNotice");
-	int iNoticeType = (sNoticeType == null) ? Notice.NOTICE_TYPE_INVALID
+	int noticeType = (sNoticeType == null) ? Notice.NOTICE_TYPE_INVALID
 			: Integer.parseInt(sNoticeType);
-	LocalDate dateOfLastNotice = (sLastNotice == null) ? new LocalDate(0)
-			: new LocalDate(Long.parseLong(sLastNotice));
-	NoticeBox noticeBox = SmartWorks.getNoticeBoxForMe10(iNoticeType,
+	LocalDate dateOfLastNotice = (sLastNotice == null) ? new LocalDate(
+			0) : new LocalDate(Long.parseLong(sLastNotice));
+	NoticeBox noticeBox = smartWorks.getNoticeBoxForMe10(noticeType,
 			dateOfLastNotice);
 %>
 <%
@@ -35,10 +37,9 @@
 				<a href="">X</a>
 			</div>
 		</div>
-	</div>
-</li>
+	</div></li>
 <%
-			} else if (nMessage.getNotificationType() == NoticeMessage.NOTIFICATION_TYPE_EVENT_ALARM) {
+	} else if (nMessage.getNotificationType() == NoticeMessage.NOTIFICATION_TYPE_EVENT_ALARM) {
 				EventInstance event = (EventInstance) nMessage
 						.getEvent();
 				owner = event.getOwner();
@@ -62,10 +63,9 @@
 				<a href=""></a>
 			</div>
 		</div>
-	</div>
-</li>
+	</div></li>
 <%
-			} else if (nMessage.getNotificationType() == NoticeMessage.NOTIFICATION_TYPE_TASK_DELAYED) {
+	} else if (nMessage.getNotificationType() == NoticeMessage.NOTIFICATION_TYPE_TASK_DELAYED) {
 				TaskInstance task = (TaskInstance) nMessage
 						.getInstance();
 				owner = task.getOwner();
@@ -90,10 +90,9 @@
 				<a href="">X</a>
 			</div>
 		</div>
-	</div>
-</li>
+	</div></li>
 <%
-			} else if (nMessage.getNotificationType() == NoticeMessage.NOTIFICATION_TYPE_JOIN_REQUEST) {
+	} else if (nMessage.getNotificationType() == NoticeMessage.NOTIFICATION_TYPE_JOIN_REQUEST) {
 				owner = nMessage.getIssuer();
 				instContext = SmartWorks.CONTEXT_PREFIX_GROUP_SPACE
 						+ nMessage.getGroup().getId();
@@ -114,10 +113,9 @@
 				<a href="">X</a>
 			</div>
 		</div>
-	</div>
-</li>
+	</div></li>
 <%
-			} else if (nMessage.getNotificationType() == NoticeMessage.NOTIFICATION_TYPE_INSTANCE_CREATED) {
+	} else if (nMessage.getNotificationType() == NoticeMessage.NOTIFICATION_TYPE_INSTANCE_CREATED) {
 				WorkInstance instance = (WorkInstance) nMessage
 						.getInstance();
 				owner = instance.getOwner();
@@ -144,8 +142,7 @@
 				<a href="">X</a>
 			</div>
 		</div>
-	</div>
-</li>
+	</div></li>
 <%
 	}
 		}

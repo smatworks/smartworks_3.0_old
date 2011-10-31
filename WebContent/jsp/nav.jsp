@@ -1,48 +1,47 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="net.smartworks.*"%>
 <%
-	SmartWorks smartWorks = (SmartWorks)request.getAttribute("smartWorks");
-	String contentContext = request.getParameter("cid");
-	if (contentContext == null)
-		contentContext = SmartWorks.CONTEXT_HOME;
-	String workSpaceId = request.getParameter("wid");
-	if (workSpaceId == null)
-		workSpaceId = smartWorks.getCurrentUser().getId();
+	SmartWorks smartWorks = (SmartWorks) request
+			.getAttribute("smartWorks");
+	String cid = request.getParameter("cid");
+	if (cid == null)
+		cid = SmartWorks.CONTEXT_HOME;
+	String wid = request.getParameter("wid");
+	if (wid == null)
+		wid = smartWorks.getCurrentUser().getId();
 %>
 
 
 <div class="personal_info">
-	<%@ include file="nav/space_profile.jsp"%>
-</div>
+	<jsp:include page="/jsp/nav/space_profile.jsp"/></div>
 
 <%
-	if (workSpaceId == null
-			|| workSpaceId.equals(smartWorks.getCurrentUser().getId())) {
+	if (wid == null || wid.equals(smartWorks.getCurrentUser().getId())) {
 %>
 <div class="nav_list">
-	<%@ include file="nav/works.jsp"%>
+	<jsp:include page="/jsp/nav/works.jsp"/>
 </div>
 <div class="nav_list">
-	<%@ include file="nav/communities.jsp"%>
+	<jsp:include page="/jsp/nav/communities.jsp"/>
 </div>
 <%
 	} else if (smartWorks.isSameContextPrefix(
-			SmartWorks.CONTEXT_PREFIX_GROUP_SPACE, contentContext)
+			SmartWorks.CONTEXT_PREFIX_GROUP_SPACE, cid)
 			|| smartWorks.isSameContextPrefix(
-					SmartWorks.CONTEXT_PREFIX_DEPARTMENT_SPACE,
-					contentContext)) {
+					SmartWorks.CONTEXT_PREFIX_DEPARTMENT_SPACE, cid)) {
 %>
 <div class="nav_list">
-	<%@ include file="nav/community_members.jsp"%>
+	<jsp:include page="/jsp/nav/community_members.jsp"/>
 </div>
 <%
 	}
 %>
 
 <div class="navi_tit_mail">
-	<%@ include file="nav/mail.jsp"%>
+	<jsp:include page="nav/mail.jsp" />
 </div>
 <div class="navi_tit_chat">
-	<%@ include file="nav/chatting.jsp"%>
+	<jsp:include page="nav/chatting.jsp" />
 </div>

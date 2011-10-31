@@ -2,7 +2,8 @@
 <%@ page import="net.smartworks.*"%>
 <%@ page import="net.smartworks.model.community.*"%>
 <%
-	SmartWorks smartWorks = (SmartWorks)request.getAttribute("smartWorks");
+	SmartWorks smartWorks = (SmartWorks) request
+			.getAttribute("smartWorks");
 	String key = request.getParameter("key");
 	User[] users = smartWorks.searchCommunityMemberList(SmartWorks
 			.getCurrentUser().getId(), key);

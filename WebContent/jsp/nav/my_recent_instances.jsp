@@ -4,7 +4,8 @@
 <%@ page import="net.smartworks.model.work.*"%>
 
 <%
-	SmartWorks smartWorks = (SmartWorks)request.getAttribute("smartWorks");
+	SmartWorks smartWorks = (SmartWorks) request
+			.getAttribute("smartWorks");
 	WorkInstance[] workInstances = smartWorks
 			.getMyRecentInstances("currentUser");
 	String iconType = null;

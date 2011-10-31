@@ -1,5 +1,6 @@
 package net.smartworks;
 
+import java.util.Locale;
 import java.util.StringTokenizer;
 
 import net.smartworks.model.community.Department;
@@ -7,8 +8,10 @@ import net.smartworks.model.community.Group;
 import net.smartworks.model.community.User;
 import net.smartworks.model.community.WorkSpace;
 import net.smartworks.model.calendar.CompanyEvent;
-import net.smartworks.model.calendar.CompanyEventBox;
+import net.smartworks.model.calendar.CompanyCalendar;
+import net.smartworks.model.calendar.WorkHour;
 import net.smartworks.model.instance.AsyncMessageInstance;
+import net.smartworks.model.instance.BoardInstance;
 import net.smartworks.model.instance.CommentsInstance;
 import net.smartworks.model.instance.EventInstance;
 import net.smartworks.model.instance.MailInstance;
@@ -18,9 +21,11 @@ import net.smartworks.model.notice.Notice;
 import net.smartworks.model.notice.NoticeBox;
 import net.smartworks.model.notice.NoticeMessage;
 import net.smartworks.model.work.SmartWork;
+import net.smartworks.model.work.SocialWork;
 import net.smartworks.model.work.Work;
 import net.smartworks.model.work.WorkCategory;
 import net.smartworks.server.service.ICommunityService;
+import net.smartworks.util.LocaleInfo;
 import net.smartworks.util.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -233,11 +238,86 @@ public class SmartWorks {
 
 	public static String[] getBroadcastingMessages()
 			throws Exception {
-
 		return new String[] {"오늘 시스템 작업예정으로 오후 5시부터 한시간 동안 시스템을 사용할 수 없으니, 업무진행에 착오없으시길 바랍니다. -- 기술연구소 ---",
 						 "금일 전체회식에 전원참석하여 좋은 친목의 시간이 되기를 바랍니다. --- 경영 기획팀 ----"};
 	}
 	
+	public static CompanyCalendar[] getCompanyCalendars(LocalDate fromDate, int days) throws Exception{
+		CompanyCalendar cc1 = new CompanyCalendar(new LocalDate(), new CompanyEvent[]{getCompanyEvent1(), getCompanyEvent2()}, new WorkHour());
+		CompanyCalendar cc2 = new CompanyCalendar(new LocalDate((new LocalDate()).getTime()+LocalDate.ONE_DAY), new CompanyEvent[]{getCompanyEvent2()}, new WorkHour());
+		CompanyCalendar cc3 = new CompanyCalendar(new LocalDate((new LocalDate()).getTime()+LocalDate.ONE_DAY*2), new CompanyEvent[]{getCompanyEvent1()}, new WorkHour());
+		cc1.getDate().setLocale(LocaleInfo.LOCALE_KOREAN);
+		cc2.getDate().setLocale(LocaleInfo.LOCALE_KOREAN);
+		cc3.getDate().setLocale(LocaleInfo.LOCALE_KOREAN);
+		return new CompanyCalendar[] {cc1, cc2, cc3};
+		
+	}
+	
+	public static CompanyCalendar[] getCompanyCalendars(LocalDate fromDate, LocalDate toDate) throws Exception{
+		return null;
+	}
+
+	public static EventInstance[] getEventInstances(LocalDate fromDate, int days) throws Exception{
+		LocalDate time1 = new LocalDate(); time1.plusToGMTTime(-1*LocalDate.ONE_HOUR);
+		LocalDate time2 = new LocalDate(); time2.plusToGMTTime(LocalDate.ONE_HOUR);		
+		LocalDate time3 = new LocalDate(); time3.plusToGMTTime(3*LocalDate.ONE_HOUR);
+		LocalDate time4 = new LocalDate(); time4.plusToGMTTime(5*LocalDate.ONE_HOUR);
+		LocalDate time5 = new LocalDate(); time5.plusToGMTTime(LocalDate.ONE_DAY);
+		LocalDate time6 = new LocalDate(); time6.plusToGMTTime(LocalDate.ONE_DAY+LocalDate.ONE_HOUR);
+		LocalDate time7 = new LocalDate(); time7.plusToGMTTime(2*LocalDate.ONE_DAY+LocalDate.ONE_HOUR*3);
+		LocalDate time8 = new LocalDate(); time8.plusToGMTTime(2*LocalDate.ONE_DAY+LocalDate.ONE_HOUR*7);
+		LocalDate time9 = new LocalDate(); time9.plusToGMTTime(1*LocalDate.ONE_YEAR+LocalDate.ONE_HOUR*10);
+		LocalDate time10 = new LocalDate(); time10.plusToGMTTime(1*LocalDate.ONE_YEAR+LocalDate.ONE_HOUR*14);
+		EventInstance event1 = new EventInstance("event1", "정부장님 점심약속", new SocialWork("socialwork1", "Event Work"), getUser1(), new LocalDate());		
+		event1.setStart(time1);
+		event1.setEnd(time2);
+		event1.setRelatedUsers(new User[]{getUser2()});
+
+		EventInstance event2 = new EventInstance("event2", "스마트웍스닷넷 디자인회의", new SocialWork("socialwork1", "Event Work"), getUser2(), new LocalDate());
+		event2.setStart(time3);
+		event2.setEnd(time4);
+		event2.setRelatedUsers(new User[]{getUser1(), getUser2(), getUser3()});
+		event2.setWorkSpace(getGroup1());
+
+		EventInstance event3 = new EventInstance("event3", "주간업무 보고회의", new SocialWork("socialwork1", "Event Work"), getUser3(), new LocalDate());
+		event3.setStart(time5);
+		event3.setEnd(time6);
+		event3.setWorkSpace(getDepartment1());
+		
+		EventInstance event4 = new EventInstance("event4", "KT 스마트웍킹팀 저녁", new SocialWork("socialwork1", "Event Work"), getUser1(), new LocalDate());
+		event4.setStart(time7);
+		event4.setEnd(time8);
+		
+		EventInstance event5 = new EventInstance("event5", "진산회 골프모임", new SocialWork("socialwork1", "Event Work"), getCurrentUser(), new LocalDate());
+		event5.setStart(time9);
+		event5.setEnd(time10);
+		return new EventInstance[] {event1, event2, event3, event4, event5};
+	}
+	
+	public static EventInstance[] getEventInstances(LocalDate fromDate, LocalDate toDate) throws Exception{
+		return null;
+	}
+
+	public static BoardInstance[] getBoardInstances(LocalDate fromDate, int days) throws Exception{
+		LocalDate time1 = new LocalDate(); time1.plusToGMTTime(-(1*LocalDate.ONE_HOUR));
+		LocalDate time2 = new LocalDate(); time2.plusToGMTTime(-(LocalDate.ONE_HOUR));		
+		LocalDate time3 = new LocalDate(); time3.plusToGMTTime(-(3*LocalDate.ONE_HOUR));
+		LocalDate time4 = new LocalDate(); time4.plusToGMTTime(-(5*LocalDate.ONE_HOUR));
+		LocalDate time5 = new LocalDate(); time5.plusToGMTTime(-(LocalDate.ONE_DAY));
+		LocalDate time6 = new LocalDate(); time6.plusToGMTTime(-(LocalDate.ONE_DAY+LocalDate.ONE_HOUR));
+		LocalDate time7 = new LocalDate(); time7.plusToGMTTime(-(2*LocalDate.ONE_DAY+LocalDate.ONE_HOUR*3));
+		LocalDate time8 = new LocalDate(); time8.plusToGMTTime(-(2*LocalDate.ONE_DAY+LocalDate.ONE_HOUR*7));
+		LocalDate time9 = new LocalDate(); time9.plusToGMTTime(-(10*LocalDate.ONE_DAY+LocalDate.ONE_HOUR*10));
+		LocalDate time10 = new LocalDate(); time10.plusToGMTTime(-(10*LocalDate.ONE_DAY+LocalDate.ONE_HOUR*14));
+		
+		BoardInstance board1 = new BoardInstance("board1", "워크샵 일정계획 공지 합니다.", new SocialWork("socialwork1", "Board Work"), getCurrentUser(), time1);
+		return new BoardInstance[] {board1};
+	}
+	
+	public static BoardInstance[] getBoardInstances(LocalDate fromDate, LocalDate toDate) throws Exception{
+		return null;
+	}
+
 	private static CompanyEvent getCompanyEvent1(){
 		CompanyEvent event = new CompanyEvent("companyevent1", "창립기념일");
 		event.setIsHoliday(false);
@@ -256,8 +336,8 @@ public class SmartWorks {
 		return event;
 	}
 	
-	public static CompanyEventBox getCompanyEventBox(LocalDate date) throws Exception{
-		CompanyEventBox eventBox = new CompanyEventBox();
+	public static CompanyCalendar getCompanyEventBox(LocalDate date) throws Exception{
+		CompanyCalendar eventBox = new CompanyCalendar();
 		eventBox.setDate(date);
 		CompanyEvent event1 = new CompanyEvent();
 		eventBox.setCompanyEvents(new CompanyEvent[] {event1});
@@ -352,7 +432,7 @@ public class SmartWorks {
 		user.setName("김지숙");
 		user.setPosition("CEO");
 		user.setDepartment("경영기획실 디자인팀");
-		user.setLocale("ko_KR"); // ko_KR, en_US
+		user.setLocale("ko"); // ko, en
 		user.setTimeZone("SEOUL");
 		user.setCompany("(주)맨인소프트");
 		user.setPicturePath("images/");
@@ -682,8 +762,8 @@ public class SmartWorks {
 		EventInstance event = new EventInstance("event1", "한라공조 협력업체 설명회",
 				new Work("work1", "개인일정"), SmartWorks.getCurrentUser(),
 				new LocalDate());
-		event.setPlannedStart(new LocalDate());
-		event.setPlannedEnd(new LocalDate());
+		event.setStart(new LocalDate());
+		event.setEnd(new LocalDate());
 		return event;
 
 	}

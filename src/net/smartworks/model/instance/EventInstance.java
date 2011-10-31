@@ -10,10 +10,6 @@ import net.smartworks.util.LocalDate;
 
 public class EventInstance extends WorkInstance {
 
-	public static int EVENT_TYPE_COMPANY_EVENT		= 1;
-	public static int EVENT_TYPE_BIRTHDAY			= 2;
-	public static int EVENT_TYPE_NORMAL_EVENT		= 3;
-	
 	public static int EVENT_STATUS_NORMAL			= 0;
 	public static int EVENT_STATUS_ALARM_START		= 1;
 	public static int EVENT_STATUS_ALARM_CONFIRMED	= 2;
@@ -23,20 +19,13 @@ public class EventInstance extends WorkInstance {
 	public static int EVENT_ALARM_ON_ALARM_TIME		= 2;
 	public static int EVENT_ALARM_ON_BOTH_TIME		= 3;
 		
-	private int				eventType;
 	private String			content;
 	private User[]			relatedUsers;
-	private LocalDate		plannedStart;
-	private LocalDate		plannedEnd;
+	private LocalDate		start;
+	private LocalDate		end;
 	private int				alarmOption; 	// 시작시간에 한번만, 미리알림시간에 한번만, 미리알리시간과 시작시간에 한번씩, 미리알미리알미리알림없음 
 	private Date			alarmTime;
 
-	public int getEventType() {
-		return eventType;
-	}
-	public void setEventType(int eventType) {
-		this.eventType = eventType;
-	}
 	public String getContent() {
 		return content;
 	}
@@ -49,17 +38,17 @@ public class EventInstance extends WorkInstance {
 	public void setRelatedUsers(User[] relatedUsers) {
 		this.relatedUsers = relatedUsers;
 	}
-	public LocalDate getPlannedStart() {
-		return plannedStart;
+	public LocalDate getStart() {
+		return start;
 	}
-	public void setPlannedStart(LocalDate plannedStart) {
-		this.plannedStart = plannedStart;
+	public void setStart(LocalDate start) {
+		this.start = start;
 	}
-	public LocalDate getPlannedEnd() {
-		return plannedEnd;
+	public LocalDate getEnd() {
+		return end;
 	}
-	public void setPlannedEnd(LocalDate plannedEnd) {
-		this.plannedEnd = plannedEnd;
+	public void setEnd(LocalDate end) {
+		this.end = end;
 	}
 	public int getAlarmOption() {
 		return alarmOption;

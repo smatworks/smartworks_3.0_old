@@ -4,19 +4,21 @@
 <%@ page import="net.smartworks.model.community.*"%>
 
 <%
-	String navContext = request.getParameter("cid");
-	if (navContext == null)
-		navContext = SmartWorks.CONTEXT_HOME;
-	String spaceId = request.getParameter("wid");
-	if (spaceId == null)
-		spaceId = smartWorks.getCurrentUser().getId();
+	SmartWorks smartWorks = (SmartWorks) request
+			.getAttribute("smartWorks");
+	String cid = request.getParameter("cid");
+	if (cid == null)
+		cid = SmartWorks.CONTEXT_HOME;
+	String wid = request.getParameter("wid");
+	if (wid == null)
+		wid = smartWorks.getCurrentUser().getId();
 
 	Group thisGroup = null;
 	Department thisDepartment = null;
 	User thisUser = null;
 
-	if (!spaceId.equals(smartWorks.getCurrentUser().getId())) {
-		WorkSpace workSpace = smartWorks.getWorkSpaceById(spaceId);
+	if (!wid.equals(smartWorks.getCurrentUser().getId())) {
+		WorkSpace workSpace = smartWorks.getWorkSpaceById(wid);
 		if (workSpace == null) {
 			thisUser = smartWorks.getCurrentUser();
 		} else if (workSpace.getClass() == User.class) {
@@ -43,23 +45,21 @@
 	<%
 		if (thisUser != null) {
 	%>
-	<li><img src="<%=thisUser.getOrgPicture()%>">
-	</li>
+	<li><img src="<%=thisUser.getOrgPicture()%>"></li>
 	<li><%=thisUser.getPosition()%><br /> <b><%=thisUser.getName()%></b><br />
-		<%=thisUser.getDepartment()%><br /></li>
+		<%=thisUser.getDepartment()%><br />
+	</li>
 	<%
 		} else if (thisGroup != null) {
 	%>
-	<li><img src="<%=thisGroup.getOrgPicture()%>">
-	</li>
+	<li><img src="<%=thisGroup.getOrgPicture()%>"></li>
 	<li><%=thisGroup.getName()%><br /> <b><%=thisGroup.getDesc()%></b><br />
 		<fmt:message key="group.text.leader" /> : <%=thisGroup.getLeader().getLongName()%><br />
 	</li>
 	<%
 		} else if (thisDepartment != null) {
 	%>
-	<li><img src="<%=thisDepartment.getOrgPicture()%>">
-	</li>
+	<li><img src="<%=thisDepartment.getOrgPicture()%>"></li>
 	<li><%=thisDepartment.getName()%><br /> <b><%=thisDepartment.getDesc()%></b><br />
 		<fmt:message key="department.text.head" /> : <%=thisDepartment.getHead().getLongName()%><br />
 	</li>

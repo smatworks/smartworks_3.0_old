@@ -2,7 +2,8 @@
 <%@ page import="net.smartworks.*"%>
 <%@ page import="net.smartworks.model.work.*"%>
 <%
-	SmartWorks smartWorks = (SmartWorks)request.getAttribute("smartWorks");
+	SmartWorks smartWorks = (SmartWorks) request
+			.getAttribute("smartWorks");
 	String key = request.getParameter("key");
 	SmartWork[] works = smartWorks.searchWorkList(SmartWorks
 			.getCurrentUser().getId(), key);

@@ -17,6 +17,7 @@ public class Instance {
 	public static int INSTANCE_TYPE_FILE = 8;
 	public static int INSTANCE_TYPE_IMAGE = 9;
 	public static int INSTANCE_TYPE_MENO = 10;
+	public static int INSTANCE_TYPE_BOARD = 11;
 
 	private String id;
 	private String subject;

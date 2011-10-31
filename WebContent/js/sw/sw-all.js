@@ -35,11 +35,6 @@ $(document).ready(function() {
 		return false;
 	});
 
-	$('.js_top_menu').live('click', function(e){
-		$('.js_top_menu').find('li').removeClass('current');
-		$(e.target).parents('li:first').addClass('current');
-	});
-
 	$('.js_select_action').live('click', function(e){
 		$('.js_select_action').siblings('.js_upload_form').hide();
 		$('.js_select_action').find('a').removeClass('current');

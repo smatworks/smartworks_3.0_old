@@ -3,7 +3,8 @@
 <%@ page import="net.smartworks.model.work.*"%>
 
 <%
-	SmartWorks smartWorks = (SmartWorks)request.getAttribute("smartWorks");
+	SmartWorks smartWorks = (SmartWorks) request
+			.getAttribute("smartWorks");
 	SmartWork[] works = smartWorks.getMyAllWorksByCategoryId(
 			"currentUser", request.getParameter("categoryId"));
 	String iconType = null;
@@ -37,8 +38,7 @@
 			if (work.getType() != SmartWork.WORK_TYPE_GROUP) {
 	%>
 	<li class="<%=iconType%>"><a
-		href="<%=targetContent%>?cid=<%=workContext%>"
-		class="<%=classType%>"><%=work.getName()%></a>
+		href="<%=targetContent%>?cid=<%=workContext%>" class="<%=classType%>"><%=work.getName()%></a>
 	</li>
 	<%
 		} else {
@@ -46,7 +46,8 @@
 	<li class="js_drilling_down <%=iconType%>"><a
 		targetContent="jsp/nav/worklist_by_group.jsp"
 		groupId="<%=work.getId()%>"> <%=work.getName()%></a>
-		<div style="display: none"></div></li>
+		<div style="display: none"></div>
+	</li>
 	<%
 		}
 	%>
