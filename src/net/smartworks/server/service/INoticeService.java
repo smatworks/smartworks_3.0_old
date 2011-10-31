@@ -8,6 +8,19 @@
 
 package net.smartworks.server.service;
 
-public interface INoticeService {
+import net.smartworks.model.notice.Notice;
+import net.smartworks.model.notice.NoticeBox;
+import net.smartworks.util.LocalDate;
 
+public interface INoticeService {
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#getNoticesForMe(java.lang.String)
+	 */
+	public Notice[] getNoticesForMe(String userId) throws Exception;
+
+	/* (non-Javadoc)
+	 * @see net.smartworks.service.impl.ISmartWorks#getNoticeBoxForMe10(int, net.smartworks.util.LocalDate)
+	 */
+	public NoticeBox getNoticeBoxForMe10(int noticeType,
+			LocalDate lastNotice) throws Exception;
 }

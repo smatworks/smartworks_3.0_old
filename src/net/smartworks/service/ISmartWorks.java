@@ -27,7 +27,7 @@ public interface ISmartWorks {
 	public static int SPACE_TYPE_WORK_LIST = 1;
 	public static int SPACE_TYPE_WORK_INSTANCE = 2;
 	public static int SPACE_TYPE_TASK_INSTANCE = 3;
-	
+
 	public static int CONTEXT_PREFIX_LENGTH = 6;
 	public static String CONTEXT_PREFIX_USER_SPACE = "us.sp.";
 	public static String CONTEXT_PREFIX_GROUP_SPACE = "gp.sp.";
@@ -58,106 +58,59 @@ public interface ISmartWorks {
 	public static String CONTEXT_PREFIX_PWORK_TASK = "pw.ts.";
 	public static String CONTEXT_PREFIX_SWORK_TASK = "sw.ts.";
 
-	public abstract boolean isSameContextPrefix(String contextPrefix,
-			String contextId) throws Exception;
-
-	public abstract boolean isWorkContextType(String contextId)
-			throws Exception;
-
-	public abstract boolean isWorkSpaceContextType(String contextId)
-			throws Exception;
-
-	public abstract boolean isTaskSpaceContextType(String contextId)
-			throws Exception;
-
-	public abstract boolean isCommunitySpaceContextType(String contextId)
-			throws Exception;
-
-	public abstract WorkSpace getWorkSpaceById(String workSpaceId)
-			throws Exception;
-
-	public abstract String getContextPrefixByWorkType(int smartWorkType,
-			int spaceType) throws Exception;
-
-	public abstract String getTargetContentByWorkType(int smartWorkType,
-			int spaceType) throws Exception;
-
 	public abstract String[] getBroadcastingMessages() throws Exception;
 
-	public abstract CompanyCalendar[] getCompanyCalendars(LocalDate fromDate,
-			int days) throws Exception;
+	public abstract CompanyCalendar[] getCompanyCalendars(LocalDate fromDate, int days) throws Exception;
 
-	public abstract CompanyCalendar[] getCompanyCalendars(LocalDate fromDate,
-			LocalDate toDate) throws Exception;
+	public abstract WorkSpace getWorkSpaceById(String workSpaceId) throws Exception;
 
-	public abstract EventInstance[] getEventInstances(LocalDate fromDate,
-			int days) throws Exception;
+	public abstract CompanyCalendar[] getCompanyCalendars(LocalDate fromDate, LocalDate toDate) throws Exception;
 
-	public abstract EventInstance[] getEventInstances(LocalDate fromDate,
-			LocalDate toDate) throws Exception;
+	public abstract EventInstance[] getEventInstances(LocalDate fromDate, int days) throws Exception;
 
-	public abstract BoardInstance[] getBoardInstances(LocalDate fromDate,
-			int days) throws Exception;
+	public abstract EventInstance[] getEventInstances(LocalDate fromDate, LocalDate toDate) throws Exception;
 
-	public abstract BoardInstance[] getBoardInstances(LocalDate fromDate,
-			LocalDate toDate) throws Exception;
+	public abstract BoardInstance[] getBoardInstances(LocalDate fromDate, int days) throws Exception;
 
-	public abstract CompanyCalendar getCompanyEventBox(LocalDate date)
-			throws Exception;
+	public abstract BoardInstance[] getBoardInstances(LocalDate fromDate, LocalDate toDate) throws Exception;
 
-	public abstract SmartWork[] getMyFavoriteWorks(String userId)
-			throws Exception;
+	public abstract CompanyCalendar getCompanyEventBox(LocalDate date) throws Exception;
 
-	public abstract WorkCategory[] getMyWorkCategories(String userId)
-			throws Exception;
+	public abstract SmartWork[] getMyFavoriteWorks(String userId) throws Exception;
 
-	public abstract SmartWork[] getMyAllWorksByCategoryId(String userId,
-			String categoryId) throws Exception;
+	public abstract WorkCategory[] getMyWorkCategories(String userId) throws Exception;
 
-	public abstract SmartWork[] getMyAllWorksByGroupId(String userId,
-			String groupId) throws Exception;
+	public abstract SmartWork[] getMyAllWorksByCategoryId(String userId, String categoryId) throws Exception;
 
-	public abstract WorkInstance[] getMyRecentInstances(String userId)
-			throws Exception;
+	public abstract SmartWork[] getMyAllWorksByGroupId(String userId, String groupId) throws Exception;
 
-	public abstract Department[] getMyDepartments(String userId)
-			throws Exception;
+	public abstract WorkInstance[] getMyRecentInstances(String userId) throws Exception;
 
-	public abstract Department getDepartmentById(String departId)
-			throws Exception;
+	public abstract Department[] getMyDepartments(String userId) throws Exception;
+
+	public abstract Department getDepartmentById(String departId) throws Exception;
 
 	public abstract Group[] getMyGroups(String userId) throws Exception;
 
 	public abstract Group getGroupById(String groupId) throws Exception;
 
-	public abstract User getCurrentUser() throws Exception;
-
 	public abstract User getUserById(String userId) throws Exception;
 
-	public abstract SmartWork[] searchWorkList(String user, String key)
-			throws Exception;
+	public abstract SmartWork[] searchWorkList(String user, String key) throws Exception;
 
-	public abstract WorkSpace[] searchCommunityList(String user, String key)
-			throws Exception;
+	public abstract WorkSpace[] searchCommunityList(String user, String key) throws Exception;
 
-	public abstract User[] searchCommunityMemberList(String user, String key)
-			throws Exception;
+	public abstract User[] searchCommunityMemberList(String user, String key) throws Exception;
 
 	public abstract User[] getAvailableChatter() throws Exception;
 
-	public abstract User[] searchAvailableChatterList(String key)
-			throws Exception;
+	public abstract User[] searchAvailableChatterList(String key) throws Exception;
 
-	public abstract EventInstance[] getCompanyEventsByDate(LocalDate date,
-			int maxEvents) throws Exception;
+	public abstract EventInstance[] getCompanyEventsByDate(LocalDate date, int maxEvents) throws Exception;
 
-	public abstract EventInstance[] getMyEventsByDate(String userId,
-			LocalDate date, int maxEvents) throws Exception;
+	public abstract EventInstance[] getMyEventsByDate(String userId, LocalDate date, int maxEvents) throws Exception;
 
 	public abstract Notice[] getNoticesForMe(String userId) throws Exception;
 
-	public abstract NoticeBox getNoticeBoxForMe10(int noticeType,
-			LocalDate lastNotice) throws Exception;
-	public abstract String getSpaceIdFromContentContext(String contentContext)
-			throws Exception;
+	public abstract NoticeBox getNoticeBoxForMe10(int noticeType, LocalDate lastNotice) throws Exception;
 }
