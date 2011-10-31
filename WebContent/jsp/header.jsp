@@ -138,7 +138,7 @@
 				key="header.global_menu.help" /> </a>
 	</div>
 	<div>
-		<a href="" onclick="$(this).next('div').toggle(); return false;"><%=currentUser.getPosition()%>
+		<a href="" onclick="$(this).parent().next('div').toggle(); return false;"><%=currentUser.getPosition()%>
 		<%=currentUser.getName()%>▼
 		</a>
 	</div>
