@@ -2,15 +2,17 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="net.smartworks.*"%>
+<%@ page import="net.smartworks.model.community.*" %>
 <%
 	SmartWorks smartWorks = (SmartWorks) request
 			.getAttribute("smartWorks");
+	User cUser = smartWorks.getCurrentUser();
 	String cid = request.getParameter("cid");
 	if (cid == null)
 		cid = SmartWorks.CONTEXT_HOME;
 	String wid = request.getParameter("wid");
 	if (wid == null)
-		wid = smartWorks.getCurrentUser().getId();
+		wid = cUser.getId();
 %>
 
 
@@ -18,7 +20,7 @@
 	<jsp:include page="/jsp/nav/space_profile.jsp"/></div>
 
 <%
-	if (wid == null || wid.equals(smartWorks.getCurrentUser().getId())) {
+	if (wid == null || wid.equals(cUser.getId()) || !SmartWorks.isCommunitySpaceContextType(cid) ) {
 %>
 <div class="nav_list">
 	<jsp:include page="/jsp/nav/works.jsp"/>

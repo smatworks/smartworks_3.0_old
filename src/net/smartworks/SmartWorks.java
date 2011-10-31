@@ -52,6 +52,7 @@ public class SmartWorks {
 	public static int SPACE_TYPE_WORK_INSTANCE = 2;
 	public static int SPACE_TYPE_TASK_INSTANCE = 3;
 	
+	public static int CONTEXT_PREFIX_LENGTH = 6;
 	public static String CONTEXT_PREFIX_USER_SPACE = "us.sp.";
 	public static String CONTEXT_PREFIX_GROUP_SPACE = "gp.sp.";
 	public static String CONTEXT_PREFIX_DEPARTMENT_SPACE = "dp.sp.";
@@ -138,20 +139,22 @@ public class SmartWorks {
 		return false;
 	}
 
+	public static boolean isCommunitySpaceContextType(String contextId)
+			throws Exception {
+		if (contextId == null || contextId.length() < 6)
+			return false;
+		if (contextId.substring(0, 6).equals(SmartWorks.CONTEXT_PREFIX_DEPARTMENT_SPACE)
+				|| contextId.substring(0, 6).equals(SmartWorks.CONTEXT_PREFIX_GROUP_SPACE)
+				|| contextId.substring(0, 6).equals(SmartWorks.CONTEXT_PREFIX_USER_SPACE))
+			return true;
+		return false;
+	}
+
 	public static String getSpaceIdFromContentContext(String contentContext)
 			throws Exception {
-		if (contentContext == null
-				|| SmartWorks.isWorkSpaceContextType(contentContext))
+		if (contentContext == null || contentContext.length() <= SmartWorks.CONTEXT_PREFIX_LENGTH)
 			return null;
-
-		StringTokenizer st = new StringTokenizer(contentContext, ".");
-		if (st.countTokens() < 3)
-			return null;
-
-		String spaceId = null;
-		for (int i = 0; i < 3; i++)
-			spaceId = st.nextElement().toString();
-		return spaceId;
+		return contentContext.substring(SmartWorks.CONTEXT_PREFIX_LENGTH);
 	}
 	
 	public static WorkSpace getWorkSpaceById(String workSpaceId)
@@ -175,6 +178,10 @@ public class SmartWorks {
 			return SmartWorks.getUser1();
 		if (SmartWorks.getUser2().getId().equals(workSpaceId))
 			return SmartWorks.getUser2();
+		if (SmartWorks.getUser3().getId().equals(workSpaceId))
+			return SmartWorks.getUser3();
+		if (SmartWorks.getCurrentUser().getId().equals(workSpaceId))
+			return SmartWorks.getCurrentUser();
 
 		return workSpace;
 	}

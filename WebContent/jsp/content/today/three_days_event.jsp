@@ -106,6 +106,19 @@
 														|| ((cnt == 2) && tomorrow.isAfterDate(event
 																.getStart()))) {
 													User owner = event.getOwner();
+													String userContext = SmartWorks.CONTEXT_PREFIX_USER_SPACE + owner.getId();
+													String commContext=null;
+													String targetContent=null;
+													String eventContext=SmartWorks.CONTEXT_PREFIX_EVENT_SPACE+event.getId();
+													WorkSpace workSpace=event.getWorkSpace();;
+													if(workSpace!=null && workSpace.getClass()==Group.class){
+														targetContent = "group_space.sw";
+														commContext = SmartWorks.CONTEXT_PREFIX_GROUP_SPACE + workSpace.getId();
+													}else if(event.getWorkSpace()!=null && workSpace.getClass()==Department.class){
+														targetContent = "department_space.sw";
+														commContext = SmartWorks.CONTEXT_PREFIX_DEPARTMENT_SPACE + workSpace.getId();
+													}
+														
 													if (cnt < 2) {
 									%>
 									<li><span class="t_gbold"><%=event.getStart().toLocalTimeShortString()%></span>
@@ -117,15 +130,15 @@
 										<%
 											}
 														if (!owner.getId().equals(cUser.getId())) {
-										%> <span class="t_name"><%=owner.getLongName()%></span><span
+										%><span class="t_name"><a href="user_space.sw?cid=<%=userContext%>"><%=owner.getLongName()%></a></span><span
 										class="arr">▶</span> <%
  	}
  %> <%
- 	if (!event.getWorkSpace().getId().equals(owner.getId())) {
- %> <span class="ico_division_s"><%=event.getWorkSpace().getName()%></span>
+ 	if (!workSpace.getId().equals(owner.getId())) {
+ %> <span class="ico_division_s"><a href="<%=targetContent%>?cid=<%=commContext%>"><%=workSpace.getName()%></a></span>
 										<%
 											}
-										%> <%=event.getSubject()%></li>
+										%><a href="event_space.sw?cid=<%=eventContext%>&wid=<%=workSpace.getId()%>"><%=event.getSubject()%></a></li>
 									<%
 										}
 											}
