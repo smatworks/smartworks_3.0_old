@@ -1,9 +1,13 @@
-<%@ page contentType="text/html; charset=utf-8"%> 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ page import="net.smartworks.*" %> 
-<%@ page import="net.smartworks.model.community.*" %> 
+<%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ page import="net.smartworks.*"%>
+<%@ page import="net.smartworks.model.community.*"%>
 
-<% 	User[] chatters = SmartWorks.getAvailableChatter();%>
+<%
+	SmartWorks smartWorks = (SmartWorks) request
+			.getAttribute("smartWorks");
+	User[] chatters = smartWorks.getAvailableChatter();
+%>
 
 <ul>
 	<li class="nav_srch">
@@ -14,12 +18,14 @@
 				href="jsp/search/available_chatter_list.jsp">
 			<button title="<fmt:message key='search.search'/>" onclick=""></button>
 		</div>
-		<div style="display:none">
-		</div>
-	</li>
+		<div style="display: none"></div></li>
 	<li class="ico_chatpe">
-		<% for( User chatter : chatters){ %>
-			<img src="<%=chatter.getMinPicture()%>" title="<%=chatter.getLongName() %>" />
-		<%} %>
+		<%
+			for (User chatter : chatters) {
+		%> <img
+		src="<%=chatter.getMinPicture()%>" title="<%=chatter.getLongName()%>" />
+		<%
+			}
+		%>
 	</li>
 </ul>

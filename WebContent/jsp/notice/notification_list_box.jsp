@@ -1,32 +1,32 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <%@ page import="net.smartworks.*"%>
 <%@ page import="net.smartworks.model.community.*"%>
 <%@ page import="net.smartworks.model.notice.*"%>
 <%@ page import="net.smartworks.model.instance.*"%>
 <%@ page import="net.smartworks.model.work.*"%>
 <%@ page import="net.smartworks.util.LocalDate"%>
-
 <%
+	SmartWorks smartWorks = (SmartWorks) request
+			.getAttribute("smartWorks");
 	String sNoticeType = request.getParameter("noticeType");
 	String sLastNotice = request.getParameter("dateOfLastNotice");
-	int iNoticeType = (sNoticeType == null) ? Notice.NOTICE_TYPE_INVALID
+	int noticeType = (sNoticeType == null) ? Notice.TYPE_INVALID
 			: Integer.parseInt(sNoticeType);
-	LocalDate dateOfLastNotice = (sLastNotice == null) ? new LocalDate(0)
-			: new LocalDate(Long.parseLong(sLastNotice));
-	NoticeBox noticeBox = SmartWorks.getNoticeBoxForMe10(iNoticeType,
+	LocalDate dateOfLastNotice = (sLastNotice == null) ? new LocalDate(
+			0) : new LocalDate(Long.parseLong(sLastNotice));
+	NoticeBox noticeBox = smartWorks.getNoticeBoxForMe10(noticeType,
 			dateOfLastNotice);
 %>
 <%
 	for (NoticeMessage nMessage : (NoticeMessage[]) noticeBox
 			.getNoticeMessages()) {
 		if (noticeBox != null
-				&& noticeBox.getNoticeType() == Notice.NOTICE_TYPE_NOTIFICATION) {
+				&& noticeBox.getNoticeType() == Notice.TYPE_NOTIFICATION) {
 			String instContext = null, targetContent = null, userContext = null;
 			User owner = null;
-			if (nMessage.getNotificationType() == NoticeMessage.NOTIFICATION_TYPE_SYSTEM_NOTICE) {
+			if (nMessage.getType() == NoticeMessage.TYPE_SYSTEM_NOTICE) {
 %>
 <li><div class="info_img">
 		<img src="images/pop_ico_info.jpg" border="0">
@@ -37,10 +37,9 @@
 				<a href="">X</a>
 			</div>
 		</div>
-	</div>
-</li>
+	</div></li>
 <%
-			} else if (nMessage.getNotificationType() == NoticeMessage.NOTIFICATION_TYPE_EVENT_ALARM) {
+	} else if (nMessage.getType() == NoticeMessage.TYPE_EVENT_ALARM) {
 				EventInstance event = (EventInstance) nMessage
 						.getEvent();
 				owner = event.getOwner();
@@ -58,16 +57,15 @@
 		<a
 			href="event_space.sw?cid=<%=instContext%>&wid=<%=event.getWorkSpace().getId()%>"><%=event.getSubject()%></a>
 		<fmt:message key="notice.message.start.time" />
-		<%=event.getPlannedStart().toLocalString()%>
+		<%=event.getStart().toLocalString()%>
 		<div class="t_date"><%=nMessage.getIssuedDate().toLocalString()%>
 			<div class="btn_x">
 				<a href=""></a>
 			</div>
 		</div>
-	</div>
-</li>
+	</div></li>
 <%
-			} else if (nMessage.getNotificationType() == NoticeMessage.NOTIFICATION_TYPE_TASK_DELAYED) {
+	} else if (nMessage.getType() == NoticeMessage.TYPE_TASK_DELAYED) {
 				TaskInstance task = (TaskInstance) nMessage
 						.getInstance();
 				owner = task.getOwner();
@@ -92,10 +90,9 @@
 				<a href="">X</a>
 			</div>
 		</div>
-	</div>
-</li>
+	</div></li>
 <%
-			} else if (nMessage.getNotificationType() == NoticeMessage.NOTIFICATION_TYPE_JOIN_REQUEST) {
+	} else if (nMessage.getType() == NoticeMessage.TYPE_JOIN_REQUEST) {
 				owner = nMessage.getIssuer();
 				instContext = SmartWorks.CONTEXT_PREFIX_GROUP_SPACE
 						+ nMessage.getGroup().getId();
@@ -116,17 +113,16 @@
 				<a href="">X</a>
 			</div>
 		</div>
-	</div>
-</li>
+	</div></li>
 <%
-			} else if (nMessage.getNotificationType() == NoticeMessage.NOTIFICATION_TYPE_INSTANCE_CREATED) {
+	} else if (nMessage.getType() == NoticeMessage.TYPE_INSTANCE_CREATED) {
 				WorkInstance instance = (WorkInstance) nMessage
 						.getInstance();
 				owner = instance.getOwner();
-				targetContent = SmartWorks.getTargetContentByWorkType(
+				targetContent = smartWorks.getTargetContentByWorkType(
 						nMessage.getInstance().getWork().getType(),
 						SmartWorks.SPACE_TYPE_TASK_INSTANCE);
-				instContext = SmartWorks.getContextPrefixByWorkType(
+				instContext = smartWorks.getContextPrefixByWorkType(
 						nMessage.getInstance().getWork().getType(),
 						SmartWorks.SPACE_TYPE_TASK_INSTANCE)
 						+ nMessage.getInstance().getOwner().getId();
@@ -146,8 +142,7 @@
 				<a href="">X</a>
 			</div>
 		</div>
-	</div>
-</li>
+	</div></li>
 <%
 	}
 		}

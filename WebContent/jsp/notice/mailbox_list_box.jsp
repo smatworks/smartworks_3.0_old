@@ -1,29 +1,29 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <%@ page import="net.smartworks.*"%>
 <%@ page import="net.smartworks.model.community.*"%>
 <%@ page import="net.smartworks.model.notice.*"%>
 <%@ page import="net.smartworks.model.instance.*"%>
 <%@ page import="net.smartworks.model.work.*"%>
 <%@ page import="net.smartworks.util.LocalDate"%>
-
 <%
+	SmartWorks smartWorks = (SmartWorks) request
+			.getAttribute("smartWorks");
 	String sNoticeType = request.getParameter("noticeType");
 	String sLastNotice = request.getParameter("dateOfLastNotice");
-	int iNoticeType = (sNoticeType == null) ? Notice.NOTICE_TYPE_INVALID
+	int noticeType = (sNoticeType == null) ? Notice.TYPE_INVALID
 			: Integer.parseInt(sNoticeType);
-	LocalDate dateOfLastNotice = (sLastNotice == null) ? new LocalDate(0)
-			: new LocalDate(Long.parseLong(sLastNotice));
-	NoticeBox noticeBox = SmartWorks.getNoticeBoxForMe10(iNoticeType,
+	LocalDate dateOfLastNotice = (sLastNotice == null) ? new LocalDate(
+			0) : new LocalDate(Long.parseLong(sLastNotice));
+	NoticeBox noticeBox = smartWorks.getNoticeBoxForMe10(noticeType,
 			dateOfLastNotice);
 %>
 <%
 	for (NoticeMessage nMessage : (NoticeMessage[]) noticeBox
 			.getNoticeMessages()) {
 		if (noticeBox != null
-				&& noticeBox.getNoticeType() == Notice.NOTICE_TYPE_MAILBOX) {
+				&& noticeBox.getNoticeType() == Notice.TYPE_MAILBOX) {
 			MailInstance mailInstance = (MailInstance) nMessage
 					.getInstance();
 			User owner = mailInstance.getSender();
@@ -41,9 +41,8 @@
 				<a href="">X</a>
 			</div>
 		</div>
-	</div>
-</li>
+	</div></li>
 <%
-		}
+	}
 	}
 %>

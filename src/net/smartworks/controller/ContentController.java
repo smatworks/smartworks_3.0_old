@@ -11,6 +11,8 @@ package net.smartworks.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.smartworks.util.SmartUtil;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,51 +24,31 @@ public class ContentController {
 	public ModelAndView home(HttpServletRequest request,
 			HttpServletResponse response) {
 
-		String getHeader = request.getHeader("X-Requested-With");
-
-		if (getHeader != null)
-			return new ModelAndView("jsp/content/home.jsp");
-		else
-			return new ModelAndView("home.tiles");
-
+		return SmartUtil.returnMnv(request, "jsp/content/home.jsp",
+				"home.tiles");
 	}
 
 	@RequestMapping("/smartcaster")
 	public ModelAndView smartcaster(HttpServletRequest request,
 			HttpServletResponse response) {
 
-		String getHeader = request.getHeader("X-Requested-With");
-
-		if (getHeader != null)
-			return new ModelAndView("jsp/content/smartcaster.jsp");
-		else
-			return new ModelAndView("smartcaster.tiles");
-
+		return SmartUtil.returnMnv(request, "jsp/content/smartcaster.jsp",
+				"smartcaster.tiles");
 	}
 
 	@RequestMapping("/dashboard")
 	public ModelAndView dashboard(HttpServletRequest request,
 			HttpServletResponse response) {
 
-		String getHeader = request.getHeader("X-Requested-With");
-
-		if (getHeader != null)
-			return new ModelAndView("jsp/content/dashboard.jsp");
-		else
-			return new ModelAndView("dashboard.tiles");
-
+		return SmartUtil.returnMnv(request, "jsp/content/dashboard.jsp",
+				"dashboard.tiles");
 	}
 
 	@RequestMapping("/my_profile")
 	public ModelAndView myProfile(HttpServletRequest request,
 			HttpServletResponse response) {
 
-		String getHeader = request.getHeader("X-Requested-With");
-
-		if (getHeader != null)
-			return new ModelAndView("jsp/content/my_profile.jsp");
-		else
-			return new ModelAndView("my_profile.tiles");
-
+		return SmartUtil.returnMnv(request, "jsp/content/my_profile.jsp",
+				"my_profile.tiles");
 	}
 }

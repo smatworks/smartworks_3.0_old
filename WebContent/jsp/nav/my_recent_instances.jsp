@@ -4,7 +4,9 @@
 <%@ page import="net.smartworks.model.work.*"%>
 
 <%
-	WorkInstance[] workInstances = SmartWorks
+	SmartWorks smartWorks = (SmartWorks) request
+			.getAttribute("smartWorks");
+	WorkInstance[] workInstances = smartWorks
 			.getMyRecentInstances("currentUser");
 	String iconType = null;
 	String classType = null;
@@ -17,17 +19,17 @@
 		for (WorkInstance workInstance : workInstances) {
 			SmartWork work = (SmartWork) workInstance.getWork();
 			String workSpaceId = workInstance.getWorkSpace().getId();
-			if (workInstance.getWork().getType() == SmartWork.WORK_TYPE_PROCESS) {
+			if (workInstance.getWork().getType() == SmartWork.TYPE_PROCESS) {
 				iconType = "ico_pworks";
 				instanceContext = SmartWorks.CONTEXT_PREFIX_PWORK_SPACE
 						+ workInstance.getId();
 				targetContent = "pwork_space.sw";
-			} else if (workInstance.getWork().getType() == SmartWork.WORK_TYPE_INFORMATION) {
+			} else if (workInstance.getWork().getType() == SmartWork.TYPE_INFORMATION) {
 				iconType = "ico_iworks";
 				instanceContext = SmartWorks.CONTEXT_PREFIX_IWORK_SPACE
 						+ workInstance.getId();
 				targetContent = "iwork_space.sw";
-			} else if (workInstance.getWork().getType() == SmartWork.WORK_TYPE_SCHEDULE) {
+			} else if (workInstance.getWork().getType() == SmartWork.TYPE_SCHEDULE) {
 				iconType = "ico_sworks";
 				instanceContext = SmartWorks.CONTEXT_PREFIX_SWORK_SPACE
 						+ workInstance.getId();

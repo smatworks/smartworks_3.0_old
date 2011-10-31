@@ -1,48 +1,50 @@
 package net.smartworks.model.calendar;
 
+import net.smartworks.util.LocalDate;
+
 public class WorkHour {
 
-	public int start;		//분단위 시작시간 
-	public int end;			//분단위 종료시간
-	public int workTime;	//분단위 업무시간
+	public int start; 
+	public int end;
+	public int workTime;
 
 	public int getStart() {
 		return start;
 	}
-	public void setStart(int startInMinute) {
-		this.start = startInMinute;
+	public void setStart(int start) {
+		this.start = start;
 	}
 	public int getEnd() {
 		return end;
 	}
-	public void setEnd(int endInMinute) {
-		this.end = endInMinute;
+	public void setEnd(int end) {
+		this.end = end;
 	}
 	public int getWorkTime() {
 		return workTime;
 	}
-	public void setWorkTime(int workTimeInMinute) {
-		this.workTime = workTimeInMinute;
+	public void setWorkTime(int workTime) {
+		this.workTime = workTime;
 	}
 
 	public WorkHour(){
 		super();
 	}
-	public WorkHour(int startInMinute, int endInMinute, int workTimeInMinute){
-		this.start = startInMinute;
-		this.end = endInMinute;
-		this.workTime = workTimeInMinute;
+	public WorkHour(int start, int end, int workTime){
+		this.start = start;
+		this.end = end;
+		this.workTime = workTime;
 	}
 	
 	public int getStartInHour(){
-		return start/60;
+		return start/LocalDate.ONE_HOUR;
 	}
 
 	public int getEndInHour(){
-		return end/60;
+		return end/LocalDate.ONE_HOUR;
 	}
 
 	public int getWorkTimeInHour(){
-		return workTime/60;
+		return workTime/LocalDate.ONE_HOUR;
 	}
 }

@@ -13,14 +13,14 @@ import net.smartworks.util.LocalDate;
 
 public class NoticeMessage{
 
-	public static int	NOTIFICATION_TYPE_SYSTEM_NOTICE 	= 1;
-	public static int	NOTIFICATION_TYPE_EVENT_ALARM 		= 2;
-	public static int	NOTIFICATION_TYPE_TASK_DELAYED 		= 3;
-	public static int	NOTIFICATION_TYPE_JOIN_REQUEST 		= 4;
-	public static int	NOTIFICATION_TYPE_INSTANCE_CREATED 	= 5;
+	public static int	TYPE_SYSTEM_NOTICE 	= 1;
+	public static int	TYPE_EVENT_ALARM 		= 2;
+	public static int	TYPE_TASK_DELAYED 		= 3;
+	public static int	TYPE_JOIN_REQUEST 		= 4;
+	public static int	TYPE_INSTANCE_CREATED 	= 5;
 	
 	private String			id;
-	private int				notificationType;
+	private int				type;
 	private User			issuer;
 	private LocalDate		issuedDate;
 	private Instance 		instance;
@@ -34,11 +34,11 @@ public class NoticeMessage{
 	public void setId(String id) {
 		this.id = id;
 	}
-	public int getNotificationType() {
-		return notificationType;
+	public int getType() {
+		return type;
 	}
-	public void setNotificationType(int notificationType) {
-		this.notificationType = notificationType;
+	public void setType(int type) {
+		this.type = type;
 	}
 	public User getIssuer() {
 		return issuer;
@@ -80,8 +80,8 @@ public class NoticeMessage{
 	public NoticeMessage(){
 		super();
 	}
-	public NoticeMessage(String id, int notificationType, User issuer, LocalDate issuedDate){
-		this.notificationType = notificationType;
+	public NoticeMessage(String id, int type, User issuer, LocalDate issuedDate){
+		this.type = type;
 		this.issuer = issuer;
 		this.issuedDate = issuedDate;
 	}

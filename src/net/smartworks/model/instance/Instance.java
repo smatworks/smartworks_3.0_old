@@ -7,17 +7,25 @@ import net.smartworks.util.*;
 
 public class Instance {
 
-	public static int INSTANCE_TYPE_WORK = 1;
-	public static int INSTANCE_TYPE_TASK = 2;
-	public static int INSTANCE_TYPE_ASYNC_MESSAGE = 3;
-	public static int INSTANCE_TYPE_NOTIFICATION = 4;
-	public static int INSTANCE_TYPE_COMMENTS = 5;
-	public static int INSTANCE_TYPE_MAIL = 6;
-	public static int INSTANCE_TYPE_EVENT = 7;
-	public static int INSTANCE_TYPE_FILE = 8;
-	public static int INSTANCE_TYPE_IMAGE = 9;
-	public static int INSTANCE_TYPE_MENO = 10;
-
+	public static int TYPE_WORK = 1;
+	public static int TYPE_TASK = 2;
+	public static int TYPE_ASYNC_MESSAGE = 3;
+	public static int TYPE_NOTIFICATION = 4;
+	public static int TYPE_COMMENTS = 5;
+	public static int TYPE_MAIL = 6;
+	public static int TYPE_EVENT = 7;
+	public static int TYPE_FILE = 8;
+	public static int TYPE_IMAGE = 9;
+	public static int TYPE_MENO = 10;
+	public static int TYPE_BOARD = 11;
+	
+	public static int STATUS_NOT_YET = 0;
+	public static int STATUS_RUNNING = 1;
+	public static int STATUS_DELAYED_RUNNING = 2;
+	public static int STATUS_RETURNED = 3;
+	public static int STATUS_COMPLETED = 4;
+	public static int STATUS_PLANNED = 5;
+	
 	private String id;
 	private String subject;
 	private int instanceType;

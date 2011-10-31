@@ -1,7 +1,10 @@
 package net.smartworks.util;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.TimeZone;
 
 public class LocalDate extends Date{
@@ -15,21 +18,33 @@ public class LocalDate extends Date{
 	private static final long serialVersionUID = 1L;
 	private TimeZone timeZone;
 	private TimeZone hostTimeZone = TimeZone.getDefault();
+	private Locale locale= new Locale(LocaleInfo.LOCALE_GENERAL);
 	private long localNow = System.currentTimeMillis();
-
 	public LocalDate(){
 		super();
 		super.setTime(super.getTime()-hostTimeZone.getRawOffset());
+		this.timeZone = hostTimeZone;
 	}
 	public LocalDate(long GMTDate){
 		super(GMTDate);
+		if(this.timeZone==null) this.timeZone = hostTimeZone;
 	}
 	
-	public LocalDate(long GMTDate, String timeZone){
+	public LocalDate(long GMTDate, String timeZone, String locale){
 		super(GMTDate);
 		this.setTimeZone(timeZone);
+		if(LocaleInfo.isSupportingLocale(locale))
+			this.setLocale(locale);
 	}
 
+	public String getLocale(){
+		return locale.toString();
+	}
+	public void setLocale(String locale){
+		if(LocaleInfo.isSupportingLocale(locale)){
+			this.locale = new Locale(locale);
+		}
+	}
 	public long getGMTDate(){
 		return super.getTime();
 	}
@@ -47,31 +62,87 @@ public class LocalDate extends Date{
 		}
 	}
 	public String toLocalString(){
-		SimpleDateFormat sdf;
 		if(isToday()){
-			sdf = new SimpleDateFormat("HH:mm");
-		}else{
-			sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm");			
+			return (new SimpleDateFormat("HH:mm")).format(getLocalTime());
+		}else if(isThisYear()){
+			return (new SimpleDateFormat("MM.dd HH:mm")).format(getLocalTime());
 		}
-		return sdf.format(getLocalDate());
+		return (new SimpleDateFormat("yyyy.MM.dd HH:mm")).format(getLocalTime());			
+	}
+
+	public String toLocalDateString(){
+		return DateFormat.getDateInstance(DateFormat.FULL, locale).format(getLocalTime());
+	}
+	
+	public String toLocalDateShortString(){
+		return (new SimpleDateFormat("MM.dd E", locale)).format(getLocalTime());
+	}
+	
+	public String toLocalTimeString(){
+		return DateFormat.getTimeInstance(DateFormat.MEDIUM, locale).format(getLocalTime());
+	}
+	
+	public String toLocalTimeShortString(){
+		return (new SimpleDateFormat("HH:mm")).format(getLocalTime());
+	}
+	
+	public void plusToGMTTime(long timeValue){
+		this.setTime(this.getTime() + timeValue);
+	}
+
+	public boolean isSameDate(LocalDate when){
+		if( getLocalDateOnly(this).getTime() == getLocalDateOnly(when).getTime()) return true;
+		return false;
+	}
+
+	public boolean isBeforeDate(LocalDate when){
+		if( getLocalDateOnly(this).getTime() > getLocalDateOnly(when).getTime()) return true;
+		
+		return false;
+	}
+
+	public boolean isAfterDate(LocalDate when){
+		if(getLocalDateOnly(this).getTime() < getLocalDateOnly(when).getTime()) return true;
+		return false;
 	}
 	
 	private boolean isToday(){
-		if(getDateOnly(getLocalDate().getTime()) == getDateOnly(localNow))
+		if(getLocalDateOnly(this).getTime() == getLocalDateOnly(new LocalDate(localNow)).getTime())
 			return true;
 		return false;
 	}
 
-	private Date getLocalDate(){
+	private boolean isThisYear(){
+		if(getLocalYearOnly(this).getTime() == getLocalYearOnly(new LocalDate(localNow)).getTime())
+			return true;
+		return false;
+	}
+
+	public long getLocalTime(){
 		if(this.timeZone == null){
-			return new Date(super.getTime() + TimeZone.getDefault().getRawOffset());
+			return super.getTime() + TimeZone.getDefault().getRawOffset();
 		}else{
-			return new Date(super.getTime() + this.timeZone.getRawOffset());
+			return super.getTime() + this.timeZone.getRawOffset();
 		}
 	}
 	
-	private long getDateOnly(long date){
-		return date/24*60*60*1000;// 24시간 * 60분 * 60초 * 1000밀리세컨
+	private LocalDate getLocalDateOnly(LocalDate localDate){
+		long time = localDate.getLocalTime();
+		time = time/LocalDate.ONE_DAY;
+		time = time*LocalDate.ONE_DAY;
+		LocalDate lDate = new LocalDate(time-localDate.timeZone.getRawOffset());
+		lDate.setTimeZone(localDate.getTimeZone());
+		return lDate;
+
+	}
+	private LocalDate getLocalYearOnly(LocalDate localDate){
+		long time = localDate.getLocalTime();
+		time = time/LocalDate.ONE_YEAR;
+		time = time*LocalDate.ONE_YEAR;
+		LocalDate lDate = new LocalDate(time-localDate.timeZone.getRawOffset());
+		lDate.setTimeZone(localDate.getTimeZone());
+		return lDate;
+
 	}
 	
 	public static boolean isValidTimeZone(String timeZone){

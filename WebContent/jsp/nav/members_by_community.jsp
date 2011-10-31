@@ -3,21 +3,23 @@
 <%@ page import="net.smartworks.model.community.*"%>
 
 <%
+	SmartWorks smartWorks = (SmartWorks) request
+			.getAttribute("smartWorks");
 	User[] members = null;
 	{
-		String myContext = request.getParameter("cid");
-		if (myContext == null)
-			myContext = SmartWorks.CONTEXT_HOME;
+		String cid = request.getParameter("cid");
+		if (cid == null)
+			cid = SmartWorks.CONTEXT_HOME;
 
-		if (SmartWorks.isSameContextPrefix(
-				SmartWorks.CONTEXT_PREFIX_GROUP_SPACE, myContext)) {
-			members = SmartWorks.getGroupById(
-					SmartWorks.getSpaceIdFromContentContext(myContext))
+		if (smartWorks.isSameContextPrefix(
+				SmartWorks.CONTEXT_PREFIX_GROUP_SPACE, cid)) {
+			members = smartWorks.getGroupById(
+					smartWorks.getSpaceIdFromContentContext(cid))
 					.getMembers();
-		} else if (SmartWorks.isSameContextPrefix(
-				SmartWorks.CONTEXT_PREFIX_DEPARTMENT_SPACE, myContext)) {
-			members = SmartWorks.getDepartmentById(
-					SmartWorks.getSpaceIdFromContentContext(myContext))
+		} else if (smartWorks.isSameContextPrefix(
+				SmartWorks.CONTEXT_PREFIX_DEPARTMENT_SPACE, cid)) {
+			members = smartWorks.getDepartmentById(
+					smartWorks.getSpaceIdFromContentContext(cid))
 					.getMembers();
 		}
 	}
@@ -33,10 +35,9 @@
 	%>
 	<li><img src="<%=member.getMinPicture()%>" border="0"> <a
 		href="user_space.sw?cid=<%=contextId%>&wid=<%=member.getId()%>"><%=member.getPosition()%>
-			<%=member.getName()%></a>
-	</li>
+			<%=member.getName()%></a></li>
 	<%
 		}
-	}
+		}
 	%>
 </ul>

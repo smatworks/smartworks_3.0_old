@@ -1,29 +1,29 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <%@ page import="net.smartworks.*"%>
 <%@ page import="net.smartworks.model.community.*"%>
 <%@ page import="net.smartworks.model.notice.*"%>
 <%@ page import="net.smartworks.model.instance.*"%>
 <%@ page import="net.smartworks.model.work.*"%>
 <%@ page import="net.smartworks.util.LocalDate"%>
-
 <%
+	SmartWorks smartWorks = (SmartWorks) request
+			.getAttribute("smartWorks");
 	String sNoticeType = request.getParameter("noticeType");
 	String sLastNotice = request.getParameter("dateOfLastNotice");
-	int iNoticeType = (sNoticeType == null) ? Notice.NOTICE_TYPE_INVALID
+	int noticeType = (sNoticeType == null) ? Notice.TYPE_INVALID
 			: Integer.parseInt(sNoticeType);
-	LocalDate dateOfLastNotice = (sLastNotice == null) ? new LocalDate(0)
-			: new LocalDate(Long.parseLong(sLastNotice));
-	NoticeBox noticeBox = SmartWorks.getNoticeBoxForMe10(iNoticeType,
+	LocalDate dateOfLastNotice = (sLastNotice == null) ? new LocalDate(
+			0) : new LocalDate(Long.parseLong(sLastNotice));
+	NoticeBox noticeBox = smartWorks.getNoticeBoxForMe10(noticeType,
 			dateOfLastNotice);
 %>
 <%
 	for (NoticeMessage nMessage : (NoticeMessage[]) noticeBox
 			.getNoticeMessages()) {
 		if (noticeBox != null
-				&& noticeBox.getNoticeType() == Notice.NOTICE_TYPE_COMMENTS) {
+				&& noticeBox.getNoticeType() == Notice.TYPE_COMMENTS) {
 			CommentsInstance commentsInstance = (CommentsInstance) nMessage
 					.getInstance();
 			String instContext = null, targetContent = null;
@@ -57,17 +57,16 @@
 				<a href="">X</a>
 			</div>
 		</div>
-	</div>
-</li>
+	</div></li>
 <%
-			} else if (commentsInstance.getCommentsType() == CommentsInstance.COMMENTS_TYPE_ON_WORK_INSTANCE) {
+	} else if (commentsInstance.getCommentsType() == CommentsInstance.COMMENTS_TYPE_ON_WORK_INSTANCE) {
 				work = commentsInstance.getWorkInstance().getWork();
 				WorkInstance workInstance = commentsInstance
 						.getWorkInstance();
-				targetContent = SmartWorks.getTargetContentByWorkType(
+				targetContent = smartWorks.getTargetContentByWorkType(
 						work.getType(),
 						SmartWorks.SPACE_TYPE_WORK_INSTANCE);
-				instContext = SmartWorks.getContextPrefixByWorkType(
+				instContext = smartWorks.getContextPrefixByWorkType(
 						work.getType(),
 						SmartWorks.SPACE_TYPE_WORK_INSTANCE)
 						+ workInstance.getId();
@@ -87,18 +86,17 @@
 				<a href="">X</a>
 			</div>
 		</div>
-	</div>
-</li>
+	</div></li>
 <%
-			} else if (commentsInstance.getCommentsType() == CommentsInstance.COMMENTS_TYPE_ON_TASK_INSTANCE) {
+	} else if (commentsInstance.getCommentsType() == CommentsInstance.COMMENTS_TYPE_ON_TASK_INSTANCE) {
 				work = commentsInstance.getTaskInstance()
 						.getWorkInstance().getWork();
 				TaskInstance taskInstance = commentsInstance
 						.getTaskInstance();
-				targetContent = SmartWorks.getTargetContentByWorkType(
+				targetContent = smartWorks.getTargetContentByWorkType(
 						work.getType(),
 						SmartWorks.SPACE_TYPE_TASK_INSTANCE);
-				instContext = SmartWorks.getContextPrefixByWorkType(
+				instContext = smartWorks.getContextPrefixByWorkType(
 						work.getType(),
 						SmartWorks.SPACE_TYPE_TASK_INSTANCE)
 						+ taskInstance.getWorkInstance().getId();
@@ -118,10 +116,9 @@
 				<a href="">X</a>
 			</div>
 		</div>
-	</div>
-</li>
+	</div></li>
 <%
-			}
+	}
 		}
 	}
 %>

@@ -1,10 +1,11 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ page import="net.smartworks.*"%>
 <%@ page import="net.smartworks.model.community.*"%>
-
 <%
+	SmartWorks smartWorks = (SmartWorks) request
+			.getAttribute("smartWorks");
 	String key = request.getParameter("key");
-	WorkSpace[] communities = SmartWorks.searchCommunityList(SmartWorks
+	WorkSpace[] communities = smartWorks.searchCommunityList(SmartWorks
 			.getCurrentUser().getId(), key);
 %>
 
