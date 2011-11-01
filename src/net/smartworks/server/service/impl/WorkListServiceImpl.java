@@ -78,4 +78,10 @@ public class WorkListServiceImpl implements IWorkListService {
 		return new SmartWork[] { SmartTest.getSmartWork7(), SmartTest.getSmartWork8(), SmartTest.getSmartWork9() };
 	}
 
+	@Override
+	public SmartWork[] searchWorkList(String user, String key) throws Exception {
+
+		return getMyFavoriteWorks("");
+	}
+
 }

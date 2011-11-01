@@ -115,7 +115,7 @@ public class SmartWorks implements ISmartWorks {
 
 	@Override
 	public SmartWork[] searchWorkList(String user, String key) throws Exception {
-		return null;
+		return workListService.searchWorkList(user, key);
 	}
 
 	/*

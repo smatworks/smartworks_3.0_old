@@ -13,4 +13,6 @@ public interface IWorkListService {
 
 	SmartWork[] getMyAllWorksByGroupId(String userId, String groupId) throws Exception;
 
+	SmartWork[] searchWorkList(String user, String key) throws Exception;
+
 }
