@@ -1,5 +1,6 @@
+<%@page import="net.smartworks.util.SmartUtil"%>
 <%@page import="net.smartworks.model.community.User"%>
-<%@page import="net.smartworks.SmartWorks"%>
+<%@page import="net.smartworks.service.ISmartWorks"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -8,16 +9,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <%
-	SmartWorks smartWorks = (SmartWorks) request
-			.getAttribute("smartWorks");
-	User currentUser = smartWorks.getCurrentUser();
+	ISmartWorks smartWorks = (ISmartWorks) request.getAttribute("smartWorks");
+	User currentUser = SmartUtil.getCurrentUser();
 %>
 <fmt:setLocale value="<%=currentUser.getLocale() %>" scope="request" />
 <fmt:setBundle basename="resource.smartworksMessage" scope="request" />
 
 <%
 	if (session.getAttribute("cid") == null) {
-		session.setAttribute("cid", SmartWorks.CONTEXT_HOME);
+		session.setAttribute("cid", ISmartWorks.CONTEXT_HOME);
 	}
 %>
 
@@ -31,8 +31,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title><fmt:message key="head.title">
 		<fmt:param value="<%=currentUser.getCompany() %>" />
-	</fmt:message>
-</title>
+	</fmt:message></title>
 
 <script type="text/javascript" src="js/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="js/jquery/history/jquery.history.js"></script>

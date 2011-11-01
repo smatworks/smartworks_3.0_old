@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ page import="net.smartworks.*"%>
+<%@ page import="net.smartworks.service.ISmartWorks"%>
 
 <ul>
 	<li class="js_collapse_slide">&gt; <fmt:message
@@ -11,7 +11,7 @@
 			<input id="" class="input js_auto_complete" type="text"
 				title="<fmt:message key='search.search_community_member'/>"
 				placeholder="<fmt:message key='search.search_community_member'/>"
-				href="jsp/search/community_member_list.jsp">
+				href="community_member_list.sw">
 			<button title="<fmt:message key='search.search'/>" onclick=""></button>
 		</div>
 		<div style="display: none"></div>

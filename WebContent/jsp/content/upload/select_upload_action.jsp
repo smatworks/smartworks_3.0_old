@@ -1,34 +1,29 @@
+<%@page import="net.smartworks.util.SmartUtil"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ page import="net.smartworks.*"%>
+<%@ page import="net.smartworks.service.ISmartWorks"%>
 <%
-	SmartWorks smartWorks = (SmartWorks) request
-			.getAttribute("smartWorks");
+	ISmartWorks smartWorks = (ISmartWorks) request.getAttribute("smartWorks");
 	String cid = request.getParameter("cid");
 	if (cid == null)
-		cid = SmartWorks.CONTEXT_HOME;
+		cid = ISmartWorks.CONTEXT_HOME;
 	String wid = request.getParameter("wid");
 	if (wid == null)
-		wid = smartWorks.getCurrentUser().getId();
+		wid = SmartUtil.getCurrentUser().getId();
 %>
 
 <div id="upload">
 	<ul class="js_select_action">
 		<li class="up_works"><a id="action_work" href=""><fmt:message
-					key='common.upload.work' /> </a>
-		</li>
+					key='common.upload.work' /> </a></li>
 		<li class="up_file"><a id="action_file" href=""><fmt:message
-					key='common.upload.file' /> </a>
-		</li>
+					key='common.upload.file' /> </a></li>
 		<li class="up_event"><a id="action_event" href=""><fmt:message
-					key='common.upload.event' /> </a>
-		</li>
+					key='common.upload.event' /> </a></li>
 		<li class="up_memo"><a id="action_memo" href=""><fmt:message
-					key='common.upload.memo' /> </a>
-		</li>
+					key='common.upload.memo' /> </a></li>
 		<li class="up_board"><a id="action_board" href=""><fmt:message
-					key='common.upload.board' /> </a>
-		</li>
+					key='common.upload.board' /> </a></li>
 	</ul>
 
 	<!-- 새업무 등록 -->

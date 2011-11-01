@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ page import="net.smartworks.*"%>
+<%@ page import="net.smartworks.service.ISmartWorks"%>
 
 <!-- 등록하기- 새업무 기본//-->
 			<div class="up_size" style="display:none">

@@ -3,98 +3,120 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 <tiles-definitions>
-  <definition name="layouts" template="/jsp/layouts.jsp">
-    <put-attribute name="header" value="/jsp/header.jsp" />
-    <put-attribute name="nav" value="/jsp/nav.jsp" />
-    <put-attribute name="board" value="/jsp/broadcasting_board.jsp" />    
-    <put-attribute name="content" value="/jsp/content/home.jsp" />
-    <put-attribute name="footer" value="/jsp/footer.jsp" />
-  </definition>
-  <definition name="home" extends="layouts">
-        <put-attribute name="content" value="/jsp/content/home.jsp" />
-  </definition>
-  <definition name="smartcaster" extends="layouts">
-        <put-attribute name="content" value="/jsp/content/smartcaster.jsp" />
-  </definition>
-  <definition name="dashboard" extends="layouts">
-        <put-attribute name="content" value="/jsp/content/dashboard.jsp" />
-  </definition>
-  <definition name="pwork_list" extends="layouts">
-        <put-attribute name="content" value="/jsp/content/work/list/pwork_list.jsp" />
-  </definition>
-  <definition name="iwork_list" extends="layouts">
-        <put-attribute name="content" value="/jsp/content/work/list/iwork_list.jsp" />
-  </definition>
-  <definition name="swork_list" extends="layouts">
-        <put-attribute name="content" value="/jsp/content/work/list/swork_list.jsp" />
-  </definition>
-  <definition name="board_list" extends="layouts">
-        <put-attribute name="content" value="/jsp/content/work/list/board_list.jsp" />
-  </definition>
-  <definition name="event_list" extends="layouts">
-        <put-attribute name="content" value="/jsp/content/work/list/event_list.jsp" />
-  </definition>
-  <definition name="file_list" extends="layouts">
-        <put-attribute name="content" value="/jsp/content/work/list/file_list.jsp" />
-  </definition>
-  <definition name="image_list" extends="layouts">
-        <put-attribute name="content" value="/jsp/content/work/list/image_list.jsp" />
-  </definition>
-  <definition name="memo_list" extends="layouts">
-        <put-attribute name="content" value="/ljsp/content/work/list/memo_list.jsp" />
-  </definition>
-  <definition name="mail_list" extends="layouts">
-        <put-attribute name="content" value="/jsp/content/work/list/mail_list.jsp" />
-  </definition>
-  <definition name="saved_list" extends="layouts">
-        <put-attribute name="content" value="/jsp/content/work/list/saved_list.jsp" />
-  </definition>
-  <definition name="pwork_space" extends="layouts">
-        <put-attribute name="content" value="/jsp/content/work/space/pwork_space.jsp" />
-  </definition>
-  <definition name="iwork_space" extends="layouts">
-        <put-attribute name="content" value="/jsp/content/work/space/iwork_space.jsp" />
-  </definition>
-  <definition name="swork_space" extends="layouts">
-        <put-attribute name="content" value="/jsp/content/work/space/swork_space.jsp" />
-  </definition>
-  <definition name="board_space" extends="layouts">
-        <put-attribute name="content" value="/jsp/content/work/space/board_space.jsp" />
-  </definition>
-  <definition name="event_space" extends="layouts">
-        <put-attribute name="content" value="/jsp/content/work/space/event_space.jsp" />
-  </definition>
-  <definition name="file_space" extends="layouts">
-        <put-attribute name="content" value="/jsp/content/work/space/file_space.jsp" />
-  </definition>
-  <definition name="image_space" extends="layouts">
-        <put-attribute name="content" value="/jsp/content/work/space/image_space.jsp" />
-  </definition>
-  <definition name="memo_space" extends="layouts">
-        <put-attribute name="content" value="/jsp/content/work/space/memo_space.jsp" />
-  </definition>
-  <definition name="mail_space" extends="layouts">
-        <put-attribute name="content" value="/jsp/content/work/space/mail_space.jsp" />
-  </definition>
-  <definition name="pwork_task" extends="layouts">
-        <put-attribute name="content" value="/jsp/content/work/task/pwork_task.jsp" />
-  </definition>
-  <definition name="iwork_task" extends="layouts">
-        <put-attribute name="content" value="/jsp/content/work/task/iwork_task.jsp" />
-  </definition>
-  <definition name="swork_task" extends="layouts">
-        <put-attribute name="content" value="/jsp/content/work/task/swork_task.jsp" />
-  </definition>
-  <definition name="department_space" extends="layouts">
-        <put-attribute name="content" value="/jsp/content/department_space.jsp" />
-  </definition>
-  <definition name="group_space" extends="layouts">
-        <put-attribute name="content" value="/jsp/content/group_space.jsp" />
-  </definition>
-  <definition name="user_space" extends="layouts">
-        <put-attribute name="content" value="/jsp/content/user_space.jsp" />
-  </definition>
-  <definition name="my_profile" extends="layouts">
-        <put-attribute name="content" value="/jsp/content/my_profile.jsp" />
-  </definition>
+	<definition name="layouts" template="/jsp/layouts.jsp">
+		<put-attribute name="header" value="/jsp/header.jsp" />
+		<put-attribute name="nav" value="/jsp/nav.jsp" />
+		<put-attribute name="board" value="/jsp/broadcasting_board.jsp" />
+		<put-attribute name="content" value="/jsp/content/home.jsp" />
+		<put-attribute name="footer" value="/jsp/footer.jsp" />
+	</definition>
+	<definition name="home" extends="layouts">
+		<put-attribute name="content" value="/jsp/content/home.jsp" />
+	</definition>
+	<definition name="smartcaster" extends="layouts">
+		<put-attribute name="content" value="/jsp/content/smartcaster.jsp" />
+	</definition>
+	<definition name="dashboard" extends="layouts">
+		<put-attribute name="content" value="/jsp/content/dashboard.jsp" />
+	</definition>
+	<definition name="pwork_list" extends="layouts">
+		<put-attribute name="content"
+			value="/jsp/content/work/list/pwork_list.jsp" />
+	</definition>
+	<definition name="iwork_list" extends="layouts">
+		<put-attribute name="content"
+			value="/jsp/content/work/list/iwork_list.jsp" />
+	</definition>
+	<definition name="swork_list" extends="layouts">
+		<put-attribute name="content"
+			value="/jsp/content/work/list/swork_list.jsp" />
+	</definition>
+	<definition name="board_list" extends="layouts">
+		<put-attribute name="content"
+			value="/jsp/content/work/list/board_list.jsp" />
+	</definition>
+	<definition name="event_list" extends="layouts">
+		<put-attribute name="content"
+			value="/jsp/content/work/list/event_list.jsp" />
+	</definition>
+	<definition name="file_list" extends="layouts">
+		<put-attribute name="content"
+			value="/jsp/content/work/list/file_list.jsp" />
+	</definition>
+	<definition name="image_list" extends="layouts">
+		<put-attribute name="content"
+			value="/jsp/content/work/list/image_list.jsp" />
+	</definition>
+	<definition name="memo_list" extends="layouts">
+		<put-attribute name="content"
+			value="/ljsp/content/work/list/memo_list.jsp" />
+	</definition>
+	<definition name="mail_list" extends="layouts">
+		<put-attribute name="content"
+			value="/jsp/content/work/list/mail_list.jsp" />
+	</definition>
+	<definition name="saved_list" extends="layouts">
+		<put-attribute name="content"
+			value="/jsp/content/work/list/saved_list.jsp" />
+	</definition>
+	<definition name="pwork_space" extends="layouts">
+		<put-attribute name="content"
+			value="/jsp/content/work/space/pwork_space.jsp" />
+	</definition>
+	<definition name="iwork_space" extends="layouts">
+		<put-attribute name="content"
+			value="/jsp/content/work/space/iwork_space.jsp" />
+	</definition>
+	<definition name="swork_space" extends="layouts">
+		<put-attribute name="content"
+			value="/jsp/content/work/space/swork_space.jsp" />
+	</definition>
+	<definition name="board_space" extends="layouts">
+		<put-attribute name="content"
+			value="/jsp/content/work/space/board_space.jsp" />
+	</definition>
+	<definition name="event_space" extends="layouts">
+		<put-attribute name="content"
+			value="/jsp/content/work/space/event_space.jsp" />
+	</definition>
+	<definition name="file_space" extends="layouts">
+		<put-attribute name="content"
+			value="/jsp/content/work/space/file_space.jsp" />
+	</definition>
+	<definition name="image_space" extends="layouts">
+		<put-attribute name="content"
+			value="/jsp/content/work/space/image_space.jsp" />
+	</definition>
+	<definition name="memo_space" extends="layouts">
+		<put-attribute name="content"
+			value="/jsp/content/work/space/memo_space.jsp" />
+	</definition>
+	<definition name="mail_space" extends="layouts">
+		<put-attribute name="content"
+			value="/jsp/content/work/space/mail_space.jsp" />
+	</definition>
+	<definition name="pwork_task" extends="layouts">
+		<put-attribute name="content"
+			value="/jsp/content/work/task/pwork_task.jsp" />
+	</definition>
+	<definition name="iwork_task" extends="layouts">
+		<put-attribute name="content"
+			value="/jsp/content/work/task/iwork_task.jsp" />
+	</definition>
+	<definition name="swork_task" extends="layouts">
+		<put-attribute name="content"
+			value="/jsp/content/work/task/swork_task.jsp" />
+	</definition>
+	<definition name="department_space" extends="layouts">
+		<put-attribute name="content" value="/jsp/content/department_space.jsp" />
+	</definition>
+	<definition name="group_space" extends="layouts">
+		<put-attribute name="content" value="/jsp/content/group_space.jsp" />
+	</definition>
+	<definition name="user_space" extends="layouts">
+		<put-attribute name="content" value="/jsp/content/user_space.jsp" />
+	</definition>
+	<definition name="my_profile" extends="layouts">
+		<put-attribute name="content" value="/jsp/content/my_profile.jsp" />
+	</definition>
 </tiles-definitions>

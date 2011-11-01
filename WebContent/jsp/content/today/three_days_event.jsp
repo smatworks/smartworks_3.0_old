@@ -1,17 +1,16 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ page import="net.smartworks.*"%>
+<%@ page import="net.smartworks.service.ISmartWorks"%>
 <%@ page import="net.smartworks.model.calendar.*"%>
 <%@ page import="net.smartworks.util.*"%>
 <%@ page import="net.smartworks.model.instance.*"%>
 <%@ page import="net.smartworks.model.community.*"%>
 <%
-	SmartWorks smartWorks = (SmartWorks) request
-			.getAttribute("smartWorks");
-	User cUser = smartWorks.getCurrentUser();
+	ISmartWorks smartWorks = (ISmartWorks) request.getAttribute("smartWorks");
+	User cUser = SmartUtil.getCurrentUser();
 	String cid = request.getParameter("cid");
 	if (cid == null)
-		session.setAttribute("cid", SmartWorks.CONTEXT_HOME);
+		session.setAttribute("cid", ISmartWorks.CONTEXT_HOME);
 	else
 		session.setAttribute("cid", cid);
 	String wid = request.getParameter("wid");
@@ -20,12 +19,10 @@
 	else
 		session.setAttribute("wid", wid);
 
-	CompanyCalendar[] threeDaysCC = smartWorks.getCompanyCalendars(
-			new LocalDate(), 3);
+	CompanyCalendar[] threeDaysCC = smartWorks.getCompanyCalendars(new LocalDate(), 3);
 	LocalDate today = threeDaysCC[0].getDate();
 	LocalDate tomorrow = threeDaysCC[1].getDate();
-	EventInstance[] events = smartWorks.getEventInstances(
-			new LocalDate(), 10);
+	EventInstance[] events = smartWorks.getEventInstances(new LocalDate(), 10);
 %>
 <!-- 이벤트,공지 포틀릿 -->
 <div id="section_portlet">
@@ -37,7 +34,6 @@
  	if (threeDaysCC[0].getCompanyEvents().length > 0) {
  %> ( <%
  	}
- %> <%
  	CompanyEvent[] cesToday = threeDaysCC[0].getCompanyEvents();
  	CompanyEvent[] cesTomorrow = threeDaysCC[1].getCompanyEvents();
  	for (int i = 0; i < cesToday.length; i++) {
@@ -50,7 +46,8 @@
  	if (threeDaysCC[0].getCompanyEvents().length > 0) {
  %>)<%
  	}
- %> </span>
+ %>
+			</span>
 			<%=today.toLocalTimeString()%>
 		</div>
 	</div>
@@ -83,49 +80,66 @@
 										} else if (cnt == 2) {
 									%>
 									<li class="line_dashed center"><span class="t_bold"><fmt:message
-												key='content.threedays.after' /> </span>
-									</li>
+												key='content.threedays.after' /> </span></li>
 									<%
 										}
 									%>
 									<li><span class="t_red"> <%
- 	for (int i = 0; (cnt != 2) && (i < cesToday.length); i++) {
+ 	for (int i = 0; (cnt == 0) && (i < cesToday.length); i++) {
  			if (i != 0) {
  %>, <%
  	}
  %><%=cesToday[i].getName()%> <%
  	}
- %> </span>
-									</li>
+ %> <%
+ 	for (int i = 0; (cnt == 1) && (i < cesTomorrow.length); i++) {
+ 			if (i != 0) {
+ %>, <%
+ 	}
+ %><%=cesTomorrow[i].getName()%> <%
+ 	}
+ %>
+									</span></li>
 									<%
 										for (EventInstance event : events) {
-
-												if (((cnt == 0) && today.isSameDate(event.getStart()))
-														|| ((cnt == 1) && tomorrow.isSameDate(event
-																.getStart()))
-														|| ((cnt == 2) && tomorrow.isAfterDate(event
-																.getStart()))) {
+												if (((cnt == 0) && today.isSameDate(event.getStart())) || ((cnt == 1) && tomorrow.isSameDate(event.getStart()))
+														|| ((cnt == 2) && tomorrow.isAfterDate(event.getStart()))) {
 													User owner = event.getOwner();
+													String userContext = ISmartWorks.CONTEXT_PREFIX_USER_SPACE + owner.getId();
+													String commContext = null;
+													String targetContent = null;
+													String eventContext = ISmartWorks.CONTEXT_PREFIX_EVENT_SPACE + event.getId();
+													WorkSpace workSpace = event.getWorkSpace();
+													if (workSpace != null && workSpace.getClass() == Group.class) {
+														targetContent = "group_space.sw";
+														commContext = ISmartWorks.CONTEXT_PREFIX_GROUP_SPACE + workSpace.getId();
+													} else if (event.getWorkSpace() != null && workSpace.getClass() == Department.class) {
+														targetContent = "department_space.sw";
+														commContext = ISmartWorks.CONTEXT_PREFIX_DEPARTMENT_SPACE + workSpace.getId();
+													}
 													if (cnt < 2) {
 									%>
 									<li><span class="t_gbold"><%=event.getStart().toLocalTimeShortString()%></span>
 										<%
 											} else {
 										%>
-									
 									<li><span class="t_gbold"><%=event.getStart().toLocalString()%></span>
 										<%
 											}
 														if (!owner.getId().equals(cUser.getId())) {
-										%> <span class="t_name"><%=owner.getLongName()%></span><span
-										class="arr">▶</span> <%
+										%> <span class="t_name"><a
+											href="user_space.sw?cid=<%=userContext%>"><%=owner.getLongName()%></a>
+									</span><span class="arr">▶</span> <%
  	}
  %> <%
- 	if (!event.getWorkSpace().getId().equals(owner.getId())) {
- %> <span class="ico_division_s"><%=event.getWorkSpace().getName()%></span>
-										<%
-											}
-										%> <%=event.getSubject()%></li>
+ 	if (!workSpace.getId().equals(owner.getId())) {
+ %> <span class="ico_division_s"><a
+											href="<%=targetContent%>?cid=<%=commContext%>"><%=workSpace.getName()%></a>
+									</span> <%
+ 	}
+ %><a
+										href="event_space.sw?cid=<%=eventContext%>&wid=<%=workSpace.getId()%>"><%=event.getSubject()%></a>
+									</li>
 									<%
 										}
 											}
@@ -133,7 +147,8 @@
 								</ul>
 							</div>
 							<div class="event_b" style="display: block;"></div>
-						</div></li>
+						</div>
+					</li>
 					<%
 						}
 					%>
